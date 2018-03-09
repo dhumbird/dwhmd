@@ -1,0 +1,9 @@
+#!/bin/tcsh
+#set r3dflgs="-xr 90 -yr 90 -xr -20 -zoom 1.75 -ytr -10 -eyepos 3 -bg white"
+set r3dflgs="-zoom 1.75 -bg white"
+foreach cfg (snap/*.cfg)
+set n=$cfg:r
+set tif=$n.tif
+if ( ! -f $tif ) cfg2r3d $cfg $r3dflgs | render -tiff $tif >& /dev/null
+echo Created $tif
+end

@@ -1,0 +1,18 @@
+# chem.def
+# This file contains the physical properties to be used for each chemical
+# species. If nothing is specified for a particular species, the program
+# will use hard-coded defaults.
+#
+# Any line beginning with a "#" will be ignored. The format of the file is
+# as follows:
+#
+# id	mass	squared_cutoff	three_body
+#
+# where: 	id is the atomic number of the species
+#		mass is in amu
+#		squared_cutoff is the cutoff radius in Ang, squared
+#		three_body is 1 if the species has a three-body potential,
+#				0 otherwise.
+#
+14	28.086	14.22	1
+18	39.948	25	0

@@ -1,0 +1,6 @@
+# element table description data file
+# (number) (symbol) (radius) (color) (Descriptive name)
+0 O 0.5 green water
+1 N 0.5 grey1 head
+2 C 0.5 red  tail
+

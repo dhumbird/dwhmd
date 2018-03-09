@@ -1,0 +1,120 @@
+#include "../config.h"
+
+void FindAmorph(int argc, char * argv[]){
+  string infile=argv[argc-1];
+  vector<svector> cryst;
+  vector<svector>::iterator vsi;
+  VPI i,j;
+  config cfg(infile);
+  set<svector*> sites;
+
+  float rho=0.049852723;
+  double a=pow(8/rho, ONE_THIRD);
+  float norm=sqrt(3)/4*a;
+  int Ix=8; int Iy=8;
+  int Iz=int(cfg.Lz_full/a)+1;
+
+  cryst.clear();
+  for (short x=0; x<Ix; x++)
+    for (short y=0; y<Iy; y++)
+      for (short z=0; z<Iz; z++){
+        cryst.push_back(svector((x+0.25)*a, (y+0.75)*a, (z+0.75)*a));
+	cryst.push_back(svector((x+0.75)*a, (y+0.25)*a, (z+0.75)*a));
+	cryst.push_back(svector(x*a, (y+0.5)*a, (z+0.5)*a));
+	cryst.push_back(svector((x+0.5)*a, (y+1)*a, (z+0.5)*a));
+	cryst.push_back(svector((x+0.25)*a, (y+0.25)*a, (z+0.25)*a));
+        cryst.push_back(svector((x+0.75)*a, (y+0.75)*a, (z+0.25)*a));
+        cryst.push_back(svector(x*a, y*a, z*a));     
+        cryst.push_back(svector((x+0.5)*a, (y+0.5)*a, z*a));
+      }
+  for (vsi=cryst.begin(); vsi!=cryst.end(); vsi++){
+    vsi->x-=cfg.Lx/2;
+    vsi->y-=cfg.Ly/2;
+    vsi->z-=cfg.Lz/2;
+  }
+  //let's get a z-value for the "top" of the cell:
+  float my_top=0;
+  {
+    int Nx=(int)(cfg.Lx)+1;
+    int Ny=(int)(cfg.Ly)+1;
+    float box[Nx][Ny];
+    float maxz=cfg.the_top+5;
+    for (int m=0; m<Nx; m++) for (int n=0; n<Ny; n++) box[m][n]=maxz;
+    svector R;
+    bool flag;
+    set<subcell*>::iterator c;
+    set<particle*>::iterator j0;
+    for (int m=0; m<Nx; m++){
+      for (int n=0; n<Ny; n++){
+	flag=1;
+	R.x=m-cfg.Lx/2;
+	R.y=cfg.Ly/2-n;
+	while(flag){
+	  box[m][n]-=1;
+	  R.z=box[m][n];
+	  int x=(int)((R.x + cfg.Lx/2)/cfg.Lcx)%cfg.Nx;
+	  int y=(int)(fabs((R.y - cfg.Ly/2)/cfg.Lcy))%cfg.Ny;
+	  int z=(int)(fabs((R.z - cfg.the_top)/cfg.Lcz))%cfg.Nz;
+	  int a=x+cfg.Nx*y+cfg.Nx*cfg.Ny*z;
+	  for (c=cfg.cells[a].nbegin(); c!=cfg.cells[a].nend(); c++)
+	    for (j0=(*c)->abegin(); j0!=(*c)->aend(); j0++)
+	      if (flag)
+		if ((R - (*j0)->R).minsqmag(cfg.Lx, cfg.Ly) > (*j0)->rc)
+		  flag=1;
+		else{
+		  flag=0;
+		  box[m][n]=(*j0)->R.z;
+		  break;
+		}
+	}
+      }
+    }
+    for (int m=0; m<Nx; m++) for (int n=0; n<Ny; n++) my_top+=box[m][n];
+    my_top/=(Nx*Ny);
+  }
+  float res=0.25;
+  for (float z=0; z<Iz; z+=res){
+    float mean=0;
+    int count=0;
+    for (i=cfg.begin; i<cfg.end; i++){
+      if (i->R.z >= z*a-cfg.Lz/2-0.0001 && i->R.z < (z+res)*a-cfg.Lz/2-0.0001){
+	set<svector*> my_cryst;
+	for (vsi=cryst.begin(); vsi!=cryst.end(); vsi++)
+	  my_cryst.insert(vsi);
+	svector * me;
+	particle * p;
+	set<svector*>::iterator ssi;
+	bool done=0;
+	while (!done){
+	  float d1=1000; float d2=1000;
+	  for (ssi=my_cryst.begin(); ssi!=my_cryst.end(); ssi++){
+	    d2=d1;
+	    d1 = d1 <? (i->R - **ssi).minsqmag(cfg.Lx,cfg.Ly);
+	    if (d2>d1) me=*ssi;
+	  }
+	  
+	  float d3=1000; float d4=1000;
+	  for (j=cfg.begin; j<cfg.end; j++){
+	    d4=d3;
+	    d3=d3 <? (j->R - *me).minsqmag(cfg.Lx, cfg.Ly);
+	    if (d4>d3) p=j;
+	  }
+	  if (p==i){
+	    mean+=d1;
+	    cryst.erase(me);
+	    done=1;
+	    count++;
+	  }
+	  else{
+	    my_cryst.erase(my_cryst.find(me));
+	  }
+	}
+      }
+    }
+    mean = (count>0)?mean/count:0;
+    if (mean!=0 && my_top-((z)*a-cfg.Lz/2)>0)
+      printf("%f\t%i\t%f\n", my_top-((z)*a-cfg.Lz/2),count,sqrt(mean)/norm);
+  }
+  cerr<<"Atoms: "<<cfg.N<<" Sites: "<<sites.size()<<endl;
+}
+    

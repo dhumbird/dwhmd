@@ -1,0 +1,13 @@
+#include "config.h"
+//**********************************************************************
+void config::ForceEval(bool distrib){
+  pthread_create(&threads[0], NULL, subcell::th_s_ForceEval, &cellset1);
+  pthread_join(threads[0], (void**) &status);
+  pthread_create(&threads[1], NULL, subcell::th_s_ForceEval, &cellset2);
+  pthread_join(threads[1], (void**) &status);
+  for (cells_it=cells.begin(); cells_it!=cells.end(); cells_it++)
+    u+=cells_it->u;
+}
+//**********************************************************************
+
+

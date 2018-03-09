@@ -1,0 +1,3 @@
+-64 -O3 -mips4 -r10000 -LNO:fis=0:pref=0:cs2=2M:ou=2
+    -TENV:X=4 -OPT:Ol=0:IEEE_a=3:ro=3:pad=on
+    -INLINE:=ON:preempt -TARG:pl=ip28

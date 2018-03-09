@@ -1,0 +1,18 @@
+set term post eps enh "Helvetica" 18
+set out "e-nve.eps"
+set xlabel "Time {/Times-Italic t}, ps"
+set ylabel "eV" 0,-11
+set y2label "T, Kelvin" 0,10
+set ytics nomirror
+set yrange [-2215:-2170]
+set nokey
+set label 1 "Potential Energy, U" at 2.7,-3358
+set label 2 "Total Energy,E" at 3.0,-3340
+set label 3 "Temperature, T" at 3.0,-3320
+set y2tics 250,50,550
+set data style line
+set y2range [100:550]
+plot "log1" using 2:8 axes x1y2 with line -1, \
+	       "" using 2:4 axes x1y1 with line -1, \
+	       "" using 2:5 axes x1y1 with line -1
+

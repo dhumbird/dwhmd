@@ -1,0 +1,407 @@
+#include "config.h"
+extern map<short,double> Q, A, ALPHA, B1, B2, B3, BETA1, BETA2, BETA3;
+double fij, f1ij;
+//**********************************************************************
+void config::ForceEval(){
+  for (i=begin; i<end; i++){
+    if (i->ix == inert){
+      for (bond_ij=i->nlist.begin(); bond_ij!=i->nlist.end(); bond_ij++){
+	j=(atom*)bond_ij->a2;
+	r=bond_ij->r;
+	if (j->id == 6){
+	  moa=MO_AR_C_a;
+	  moeps=MO_AR_C_EPS;
+	}
+	else if (j->id == 1){
+	  moa=MO_AR_H_a;
+	  moeps=MO_AR_H_EPS;
+	}
+	rija=r/moa;
+	Fij=moeps/r*(0.35*SpExp(-0.3*rija)*(1/r+0.3/moa)
+		     +0.55*SpExp(-1.2*rija)*(1/r+1.2/moa)
+		     +0.1*SpExp(-6*rija)*(1/r+6/moa))*bond_ij->Rhat;
+	i->F += Fij; j->F -= Fij;
+	u+= moeps/r*(0.35*SpExp(-0.3*rija)
+		     +0.55*SpExp(-1.2*rija)+0.1*SpExp(-6*rija));
+      }
+    }
+    else{
+      for (bond_ij=i->nlist.begin(); bond_ij!=i->nlist.end(); bond_ij++){
+	//establish bond pointers
+	if ((j=(atom*)bond_ij->a2) > &(*i)){
+	  bond_ji=j->FindNbr(&(*i));
+	  //clear storage
+	  iFv_ij.clear(); iFv_ik.clear(); iFv_jk.clear(); iFv_ik2.clear();
+	  iFv_kl.clear();
+	  jFv_ij.clear(); jFv_ik.clear(); jFv_jk.clear(); jFv_jk2.clear();
+	  jFv_kl.clear();
+	  scr_Rhat.clear();
+	  sumdg_i=sumdg_j=0;
+	  iNconj=jNconj=0;
+	  //calculate VA_ij, VR_ij;
+	  type=bond_ij->type;
+	  r=bond_ij->r;
+	  fij=bond_ij->f; f1ij=bond_ij->fprime;
+	  
+	  b1=B1[type]; b2=B2[type]; b3=B3[type];
+	  beta1=BETA1[type]; beta2=BETA2[type]; beta3=BETA3[type];
+	  VA_ij=b1*exp(-beta1*r) + b2*exp(-beta2*r) + b3*exp(-beta3*r);
+	  dVA_ij=b1*beta1*exp(-beta1*r) + b2*beta2*exp(-beta2*r)
+	    +b3*beta3*exp(-beta3*r);
+	  dVA_ij=VA_ij*f1ij-fij*dVA_ij;
+	  VA_ij*=fij;
+	  qq=Q[type]/r; aa=A[type]*exp(-ALPHA[type]*r);
+	  VR_ij=fij*(1+qq)*aa;
+	  dVR_ij=aa*(f1ij*(1+qq)-fij*(qq/r+ALPHA[type]*(1+qq)));
+	  //get P_ij, P_ji
+	  P_ij=P_ji=dHP_ij=dHP_ji=dCP_ij=dCP_ji=0;
+	  if (i->id==6){
+	    if (j->id==1){ 
+	      Pch_bicubicint(bond_ij->NH, bond_ij->NC, &P_ij, &dHP_ij,&dCP_ij);
+	    }
+	    if (j->id==6){
+	      Pcc_bicubicint(bond_ij->NH, bond_ij->NC, &P_ij, &dHP_ij,&dCP_ij);
+	      Pcc_bicubicint(bond_ji->NH, bond_ji->NC, &P_ji, &dHP_ji,&dCP_ji);
+	    }
+	  }
+	  else {
+	    if (j->id==6){
+	      Pch_bicubicint(bond_ji->NH, bond_ji->NC, &P_ji, &dHP_ji,&dCP_ji);
+	    }
+	  }
+	  bsp_ij=P_ij; bsp_ji=P_ji;
+	  
+	  //***************for k neighbor of i*************************
+	  for (bond_ik=i->nlist.begin(); bond_ik!=i->nlist.end(); bond_ik++){
+	    if ((k=(atom*)bond_ik->a2)!=j){
+	      if ((bond_jk=j->FindNbr(k))==j->nlist.end()){
+		svector R=(j->R - k->R); R.minimg(Lx,Ly);
+		rjk=R.mag();
+		R/=rjk;
+		scr_Rhat.push_back(R);
+	      }
+	      else rjk=bond_jk->r;
+	      //*******b-sigma-pi calculations************
+	      if (i->id == 1){
+		el=exp(4.0*((k->id==1)*RHH + (k->id==6)*RCH - bond_ik->r
+			    -(j->id==1)*RHH - (j->id==6)*RCH + r));
+		dlam1=4.0; dlam2=-4.0; 
+		elf=bond_ik->f*el;
+	      }
+	      else{
+		el = 1.0; dlam1=dlam2=0;
+		elf=bond_ik->f;
+	      }
+	      cosO = bond_ij->Rhat ^ bond_ik->Rhat;
+	      Gpoly(cosO, i->id, &G, &Gprime, &gam, &gamprime);
+  
+	      if (gam!=0){
+		if (bond_ij->Nt < 3.2){
+		  g=gam; g1=gamprime;
+		}
+		else if (bond_ij->Nt < 3.7){
+		  xik=2*PI*(bond_ij->Nt-3.2);
+		  S = 0.5*(1+cos(xik));
+		  g = G+S*(gam-G);
+		  g1=Gprime+S*(gamprime-Gprime);
+		  sumdg_i-=elf*(gam-G)*PI*sin(xik);
+		}
+		else{
+		  g=G; g1=Gprime;
+		}
+	      }
+	      else{
+		g=G; g1=Gprime;
+	      }
+	      
+	      iFv_ij.push_back(elf*(g1*(1/bond_ik->r - cosO/r) + g*dlam1));
+	      iFv_ik.push_back(bond_ik->fprime*
+			       (g*el +(k->id==6)*dCP_ij + (k->id==1)*dHP_ij)
+			       +elf*(g1*(1/r - cosO/bond_ik->r) + g*dlam2));
+	      iFv_jk.push_back(elf*(-g1*rjk/bond_ik->r/r));
+	      bsp_ij += g*elf;
+	      //*********conjugation*****************
+	      if (k->id==6){
+		bond_ki=k->FindNbr(&(*i));
+		xik=bond_ki->Nt;
+		if (xik<2){
+		  iNconj += bond_ik->f;
+		  iFv_ik2.push_back(bond_ik->fprime);
+		  iFv_kl.push_back(0);
+		}
+		else if (xik < 3){
+		  xik=PI*(xik-2);
+		  Yik=0.5*(1+cos(xik));
+		  Y1ik=-0.5*PI*(sin(xik));
+		  iNconj += bond_ik->f * Yik;
+		  iFv_ik2.push_back(bond_ik->fprime);
+		  iFv_kl.push_back(bond_ik->f*Y1ik);
+		}
+		else{
+		  iFv_ik2.push_back(0); iFv_kl.push_back(0);
+		}
+	      }
+	      else{
+		iFv_ik2.push_back(0); iFv_kl.push_back(0);
+ 	      }
+ 	    }
+	  }
+	  //***************for k neighbor of j*************************
+	  for (bond_jk=j->nlist.begin(); bond_jk!=j->nlist.end(); bond_jk++){
+	    if ((k=(atom*)bond_jk->a2)!=&(*i)){
+	      if ((bond_ik=i->FindNbr(k))==i->nlist.end()){
+		svector R=(i->R - k->R); R.minimg(Lx,Ly);
+		rik=R.mag();
+		R/=rik;
+		scr_Rhat.push_back(R);
+	      }
+	      else rik=bond_ik->r;
+	      //*********b-sigma-pi calculation*************
+	      if (j->id == 1){
+		el=exp(4.0*((k->id==1)*RHH + (k->id==6)*RCH - bond_jk->r
+			    -(i->id==1)*RHH - (i->id==6)*RCH + r));
+		dlam1=4.0; dlam2=-4.0; 
+		elf=bond_jk->f*el;
+	      }
+	      else{
+		el = 1.0; dlam1=dlam2=0;
+		elf=bond_jk->f;
+	      }
+	      cosO = bond_ji->Rhat ^ bond_jk->Rhat;
+	      Gpoly(cosO, j->id, &G, &Gprime, &gam, &gamprime);
+	      
+	      if (gam!=0){
+		if (bond_ji->Nt < 3.2){
+		  g=gam; g1=gamprime;
+		}
+		else if (bond_ji->Nt < 3.7){
+		  xik=2*PI*(bond_ji->Nt-3.2);
+		  S = 0.5*(1+cos(xik));
+		  g = G+S*(gam-G);
+		  g1=Gprime+S*(gamprime-Gprime);
+		  sumdg_j-=elf*(gam-G)*PI*sin(xik);
+		}
+		else{
+		  g=G; g1=Gprime;
+		}
+	      }
+	      else{
+		g=G; g1=Gprime;
+	      }
+	      jFv_ij.push_back(elf*(g1*(1/bond_jk->r - cosO/r) + g*dlam1));
+	      jFv_ik.push_back(elf*(-g1*rik/bond_jk->r/r));
+	      jFv_jk.push_back(bond_jk->fprime
+			       *(g*el + (k->id==6)*dCP_ji + (k->id==1)*dHP_ji)
+			       +elf*(g1*(1/r - cosO/bond_jk->r) + g*dlam2));
+	      bsp_ji += g * elf;
+	      //*********conjugation************
+	      if (k->id==6){
+		bond_kj=k->FindNbr(j);
+		xik=bond_kj->Nt;
+		if (xik<2){
+		  jNconj += bond_jk->f;
+		  jFv_jk2.push_back(bond_jk->fprime);
+		  jFv_kl.push_back(0);
+		}
+		else if (xik < 3){
+		  xik=PI*(xik-2);
+		  Yik=0.5*(1+cos(xik));
+		  Y1ik=-0.5*PI*(sin(xik));
+		  jNconj += bond_jk->f * Yik;
+		  jFv_jk2.push_back(bond_jk->fprime);
+		  jFv_kl.push_back(bond_jk->f*Y1ik);
+		}
+		else{
+		  jFv_jk2.push_back(0); jFv_kl.push_back(0);
+		}
+	      }
+	      else{
+ 		jFv_jk2.push_back(0); jFv_kl.push_back(0);
+ 	      }
+	    }
+	  }
+	  
+	  //finalize b-sigma-pi
+	  bsp_ij = 1.0 / sqrt(1 + bsp_ij);
+	  bsp_ji = 1.0 / sqrt(1 + bsp_ji);
+	  
+	  //***************conjugation************************
+	  Nconj_ij=1+iNconj*iNconj+jNconj*jNconj;
+ 	  F_ij=t;
+  	  if (type==0)
+  	    Fcc_tricubicint(bond_ij->Nt, bond_ji->Nt, Nconj_ij,
+  			    &F_ij, &dFi_ij, &dFj_ij, &dFc_ij);
+// 	  else if (type==2)
+// 	    Fch_tricubicint(bond_ij->Nt, bond_ji->Nt, Nconj_ij,
+// 			    &F_ij, &dFi_ij, &dFj_ij, &dFc_ij);
+// 	  else if (type==1)
+// 	    Fhh_tricubicint(bond_ij->Nt, bond_ji->Nt, Nconj_ij,
+// 			    &F_ij, &dFi_ij, &dFj_ij, &dFc_ij);
+ 	  else
+	    F_ij=dFi_ij=dFj_ij=dFc_ij=0;
+
+	  //***************dihedral*****************************
+	  bDH_ij=0;
+	  if (type==0){
+	    Rij=r*bond_ij->Rhat;
+	    Tcc_tricubicint(bond_ij->Nt, bond_ji->Nt, Nconj_ij,
+			    &T_ij, &dTi_ij, &dTj_ij, &dTc_ij);
+	    if (T_ij){
+	      Sprime=0.5*VA_ij*T_ij;
+	      for (bond_ik=i->nlist.begin(); bond_ik!=i->nlist.end(); 
+		   bond_ik++){
+		if ((k=(atom*)bond_ik->a2) != j){
+		  if ((bond_ik->Rhat * bond_ij->Rhat).sqmag() > 0.01){
+		    Rik=bond_ik->r*bond_ik->Rhat;
+		    C_ikij = Rik * Rij;
+		    c_ikij = C_ikij.mag();
+		    for (bond_jl=j->nlist.begin(); bond_jl!=j->nlist.end(); 
+			 bond_jl++){
+		      if ((l=(atom*)bond_jl->a2) != &(*i)){
+			if ((bond_jl->Rhat * bond_ij->Rhat).sqmag() > 0.01){
+			  Rjl=bond_jl->r*bond_jl->Rhat;
+			  C_ijjl = Rij * Rjl;
+			  c_ijjl = C_ijjl.mag();
+			  cosO = (1/c_ijjl/c_ikij)*(C_ikij ^ C_ijjl);
+			  
+			  S = (1-cosO*cosO);
+			  bDH_ij+=S*bond_ik->w * bond_jl->w;
+			  
+			  Fij=C_ikij*Rij; //used as temp. vars
+			  R=C_ijjl*Rij;
+			  
+			  dcosO_ik = cosO/c_ikij/c_ikij*Fij-1/c_ijjl/c_ikij*R;
+			  
+			  dcosO_ij = cosO/c_ijjl/c_ijjl*(C_ijjl*Rjl)
+			    - cosO/c_ikij/c_ikij*(C_ikij*Rik)
+			    - 1/c_ikij/c_ijjl*(C_ikij * Rjl + Rik * C_ijjl);
+			  
+			  dcosO_jl = -cosO/c_ijjl/c_ijjl*R + 1/c_ikij/c_ijjl*Fij;
+			  
+			  cosO*=(2*Sprime*bond_jl->w*bond_ik->w);
+			  
+			  dcosO_ik*=cosO;
+			  dcosO_ij*=cosO;
+			  dcosO_jl*=cosO;
+			  
+			  k->F+=dcosO_ik;
+			  i->F-=(dcosO_ik+dcosO_ij);
+			  l->F+=dcosO_jl;
+			  j->F-=(dcosO_jl-dcosO_ij);
+			  if (bond_jl->wprime){
+			    Fij=Sprime*bond_ik->w*S*bond_jl->wprime*bond_jl->Rhat;
+			    l->F-=Fij; j->F+=Fij;
+			  }
+			  if (bond_ik->wprime){
+			    Fij=Sprime*bond_jl->w*S*bond_ik->wprime*bond_ik->Rhat;
+			    k->F-=Fij; i->F+=Fij;
+			  }
+			}
+		      }
+		    }
+		  }
+		}
+	      }
+	      //add terms from the conjugation; they will get handled later.
+	      dFi_ij += dTi_ij * bDH_ij;
+	      dFj_ij += dTj_ij * bDH_ij;
+	      dFc_ij += dTc_ij * bDH_ij;
+	      bDH_ij *= T_ij;
+	    }
+	  }
+
+	  //compute bbar_ij
+	  bbar_ij=(bsp_ij + bsp_ji + F_ij + bDH_ij)/2;
+	  u+=(VR_ij-bbar_ij*VA_ij);
+	  //two-body forces
+	  Fij=(dVR_ij-bbar_ij*dVA_ij)*bond_ij->Rhat;
+	  i->F-=Fij; j->F+=Fij;
+	  //second set of k-loops
+	  cnt=0;
+	  scrcount=0;
+	  S=-0.25*pow(bsp_ij,3)*VA_ij;
+	  for (bond_ik=i->nlist.begin(); bond_ik!=i->nlist.end(); bond_ik++){
+	    if ((k=(atom*)bond_ik->a2)!=j){
+	      if ((bond_jk=j->FindNbr(k))==j->nlist.end())
+		R=scr_Rhat[scrcount++];
+	      else R=bond_jk->Rhat;
+	      
+	      i->F+=S*(iFv_ij[cnt]*bond_ij->Rhat + iFv_ik[cnt]*bond_ik->Rhat);
+	      j->F-=S*(iFv_ij[cnt]*bond_ij->Rhat - iFv_jk[cnt]*R);
+	      k->F-=S*(iFv_ik[cnt]*bond_ik->Rhat + iFv_jk[cnt]*R);
+	      
+	      if (bond_ik->fprime){
+		Fij=(S*bond_ik->fprime*sumdg_i)*bond_ik->Rhat;
+		i->F += Fij; k->F -= Fij;
+		//conjugation contribution
+		if (dFi_ij){
+		  Fij=(0.5*VA_ij*bond_ik->fprime*dFi_ij)*bond_ik->Rhat;
+		  i->F+=Fij; k->F-=Fij;
+		}
+	      }
+	      if (dFc_ij){
+		Sprime = VA_ij * dFc_ij * iNconj * 2;
+		if (iFv_ik2[cnt]){
+		  Fij=(Sprime*iFv_ik2[cnt])*bond_ik->Rhat;
+		  i->F += Fij; k->F -= Fij;
+		}
+		if (iFv_kl[cnt]){
+		  Sprime*=iFv_kl[cnt];
+		  for (bond_kl=k->nlist.begin(); bond_kl!=k->nlist.end();
+		       bond_kl++){
+		    if (bond_kl->fprime && (l=(atom*)bond_kl->a2)!=&(*i)){
+		      Fij=(Sprime*bond_kl->fprime)*bond_kl->Rhat;
+		      k->F += Fij; l->F -= Fij;
+		    }
+		  }
+		}
+	      }
+	      cnt++;
+	    }
+	  }
+	  cnt=0;
+	  S=-0.25*pow(bsp_ji,3)*VA_ij;
+	  for (bond_jk=j->nlist.begin(); bond_jk!=j->nlist.end(); bond_jk++){
+	    if ((k=(atom*)bond_jk->a2)!=&(*i)){
+	      if ((bond_ik=i->FindNbr(k))==i->nlist.end())
+		R=scr_Rhat[scrcount++];
+	      else R=bond_ik->Rhat;
+
+	      i->F+=S*(jFv_ij[cnt]*bond_ij->Rhat + jFv_ik[cnt]*R);
+	      j->F-=S*(jFv_ij[cnt]*bond_ij->Rhat - jFv_jk[cnt]*bond_jk->Rhat);
+	      k->F-=S*(jFv_ik[cnt]*R + jFv_jk[cnt]*bond_jk->Rhat);
+
+	      if (bond_jk->fprime){
+		Fij=(S*bond_jk->fprime*sumdg_j)*bond_jk->Rhat;
+		j->F += Fij; k->F -= Fij;
+		//conjugation contribution
+		if (dFj_ij){
+		  Fij=(0.5*VA_ij*bond_jk->fprime*dFj_ij)*bond_jk->Rhat;
+		  j->F+=Fij; k->F-=Fij;
+		}
+	      }
+	      if (dFc_ij){
+		Sprime=VA_ij*dFc_ij*jNconj * 2;
+		if (jFv_jk2[cnt]){
+		  Fij = (Sprime*jFv_jk2[cnt])*bond_jk->Rhat;
+		  j->F += Fij; k->F -= Fij;
+		}
+		if (jFv_kl[cnt]){
+		  Sprime*=jFv_kl[cnt];
+		  for (bond_kl=k->nlist.begin(); bond_kl!=k->nlist.end();
+		       bond_kl++){
+		    if (bond_kl->fprime && (l=(atom*)bond_kl->a2)!=j){
+		      Fij = (Sprime*bond_kl->fprime)*bond_kl->Rhat;
+		      k->F += Fij; l->F -= Fij;
+		    }
+		  }
+		}
+	      }
+	      cnt++;
+	    }
+	  }
+	}
+      }
+    }
+  }
+}

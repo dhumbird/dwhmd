@@ -1,0 +1,46 @@
+#include "nbr.h"
+
+extern map<short,double> REBO_F_MIN, REBO_F_MAX, REBO_W_MIN, REBO_W_MAX;
+double dmin, dmax;
+void nbr::Invert(){
+  void* dum=a1;
+  a1=a2;
+  a2=dum;
+  Rhat*=-1;
+}
+
+//******************************************************************
+void nbr::PreComp(){
+  dmin=REBO_F_MIN[type]; dmax=REBO_F_MAX[type];
+  if (r < dmin){
+    f=1;
+    fprime=0;
+  }
+  else if (r < dmax){
+    double phi=PI*(r-dmin)/(dmax-dmin);
+    f = 0.5*(1+cos(phi));
+    fprime = -0.5*PI*sin(phi)/(dmax-dmin);
+  }
+  else{
+    f=fprime=0;
+  }
+  if (type == 2){
+    dmin=REBO_W_MIN[type]; dmax=REBO_W_MAX[type];
+    if (r < dmin){
+      w=1;
+      wprime=0;
+    }
+    else if (r < dmax){
+      double phi=PI*(r-dmin)/(dmax-dmin);
+      w = 0.5*(1+cos(phi));
+      wprime = -0.5*PI*sin(phi)/(dmax-dmin);
+    }
+    else{
+      w=wprime=0;
+    }
+  }
+  else{
+    w=f;
+    wprime=fprime;
+  }
+}
