@@ -1,5 +1,6 @@
 #include "strfun.h"
 #include <cstdio>
+#include <stdlib.h>
 //***************************************************************************
 bool sfind (string s1, string s2){
   return (s1.find(s2)!=string::npos);

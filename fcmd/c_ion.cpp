@@ -35,14 +35,12 @@ VAI config::AddIon(float e, string species, float To, bool choose_inc,
     //assign ion x, y position
     if (confine){
       double rndx=rand01()*confine*2-confine;
-      double rndy=rand01()*Ly;
-      //double rndy=rand01()*confine*2-confine;
-      //while (sqrt(pow(rndx,2)+pow(rndy,2))>confine){
-      //	rndx=rand01()*confine*2-confine;
-      //	rndy=rand01()*confine*2-confine;
-      //}
-      ion->R.set(rndx, rndy, 0); 
-      ion->R.minimg(Lx, Ly);
+      double rndy=rand01()*confine*2-confine;
+      while (sqrt(pow(rndx,2)+pow(rndy,2))>confine){
+	rndx=rand01()*confine*2-confine;
+	rndy=rand01()*confine*2-confine;
+      }
+      ion->R.set(rndx, rndy, 0);
     }
     else{
       ion->R.set(rand01()*Lx, rand01()*Ly, 0);
@@ -111,7 +109,7 @@ VAI config::AddIon(float e, string species, float To, bool choose_inc,
 	  ((subcell*) this_cell)->insert(&(*ion));
 	}
       }
-    } 
+    }
 //     ion->R+=50*dir;   ion->R.minimg(Lx,Ly);
 //     Partition();
 //     ReNeighbor(); TimeStepInit();

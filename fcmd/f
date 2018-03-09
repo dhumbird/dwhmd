@@ -1,0 +1,1346 @@
+atom.cpp://     if (stop->a2 > this) break;
+atom.cpp:  while(s!=nlist.end() && (atom*)s->a2 != j) s++;
+atom.cpp:    if ((atom*)s->a2==j) break;
+atom.cpp:    Nt+=m->second;
+atom.h:  //non-printed members
+atom.h:    while (abs(R.x/Lx)>0.5) R.x += (R.x < 0) ? Lx : -Lx;
+atom.h:    while (abs(R.y/Ly)>0.5) R.y += (R.y < 0) ? Ly : -Ly;
+Binary file atom.o matches
+bicubic.cpp: *  m x n 4-membered grid squares.  Each one of these grid squares 
+bicubic.cpp: * 16-member coefficient matrix c_(ij), i=1->4, j=1->4.  c_(ij)
+bicubic.cpp: * value at a specified off-lattice point.
+bicubic.cpp:    -3, 0, 0, 3, 0, 0, 0, 0,-2, 0, 0,-1, 0, 0, 0, 0,
+bicubic.cpp:    2, 0, 0,-2, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0,
+bicubic.cpp:    0, 0, 0, 0,-3, 0, 0, 3, 0, 0, 0, 0,-2, 0, 0,-1,
+bicubic.cpp:    0, 0, 0, 0, 2, 0, 0,-2, 0, 0, 0, 0, 1, 0, 0, 1,
+bicubic.cpp:    -3, 3, 0, 0,-2,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+bicubic.cpp:    0, 0, 0, 0, 0, 0, 0, 0,-3, 3, 0, 0,-2,-1, 0, 0,
+bicubic.cpp:    9,-9, 9,-9, 6, 3,-3,-6, 6,-6,-3, 3, 4, 2, 1, 2,
+bicubic.cpp:    -6 ,6,-6, 6,-4,-2, 2, 4,-3, 3, 3,-3,-2,-1,-1,-2,
+bicubic.cpp:    2,-2, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+bicubic.cpp:    0, 0, 0, 0, 0, 0, 0, 0, 2,-2, 0, 0, 0, 0, 0, 0,
+bicubic.cpp:    -6, 6,-6, 6,-3,-3, 3, 3,-4, 4, 2,-2,-2,-2,-1,-1,
+bicubic.cpp:    4,-4, 4,-4, 2, 2,-2,-2, 2,-2,-2, 2, 1, 1, 1, 1
+bicubic.cpp:  d1 = x1u - x1l;
+bicubic.cpp:  d2 = x2u - x2l;
+bicubic.cpp:  t = (x1-x1l)/d1;
+bicubic.cpp:  u = (x2-x2l)/d2;
+bicubic.cpp:  for (i = 3; i >= 0; i--){
+bicubic.cpp:   *	        (4)------(3)
+bicubic.cpp:   *          (1)------(2)
+bicubic.cpp:  p[2][1] = -0.028;
+bicubic.cpp:  p[3][0] = -0.03783;
+bicubic.cpp:  p1[1][1] = 0.5*(p[2][1] - p[0][1]);
+bicubic.cpp:  p1[2][0] = 0.5*(p[3][0] - p[1][0]);
+bicubic.cpp:  p[3][0] = -0.1277;	    /* CF4 */
+bicubic.cpp:  p[0][1] = -0.0002;	    /* CF b.e. in FCCF */
+bicubic.cpp:  p[1][1] = -0.0454;	    /* CF b.e. in F2CCF2 */
+bicubic.cpp:  p[2][1] = -0.1052;	    /* CF b.e. in F3CCF3 */
+bicubic.cpp:  p[1][2] = -0.055;	    /* CF b.e. in c-C6F12 */
+bicubic.cpp:  p1[1][1] = 0.5*(p[2][1] - p[0][1]);
+bicubic.cpp:  p1[1][0] = 0.5*(p[2][0] - p[0][0]);
+bicubic.cpp:  p1[2][0] = 0.5*(p[3][0] - p[1][0]);
+bicubic.cpp:  p2[0][1] = 0.5*(p[0][2] - p[0][0]);
+bicubic.cpp:  p2[0][2] = 0.5*(p[0][3] - p[0][1]);
+bicubic.cpp:  p2[1][1] = 0.5*(p[1][2] - p[1][0]);
+bicubic.cpp:  //p[1][0] = -0.1755; //SiF2 
+bicubic.cpp:  //p[3][0] = -.181; //SiF4
+bicubic.cpp:  //p[0][3] = -0.12;
+bicubic.cpp:  //p[2][1] = -.07;//-0.06;
+bicubic.cpp:  //p[1][2] = -0.08;//0.2;//-0.0845;
+bicubic.cpp:  //p[1][3] = -.21;//-.25;
+bicubic.cpp:  //p[2][2] = -.1;
+bicubic.cpp:  p1[1][1] = 0.5*(p[2][1] - p[0][1]);
+bicubic.cpp:  p1[1][0] = 0.5*(p[2][0] - p[0][0]); 
+bicubic.cpp:  p1[2][0] = 0.5*(p[3][0] - p[1][0]);
+bicubic.cpp:  p2[0][1] = 0.5*(p[0][2] - p[0][0]);
+bicubic.cpp:  p2[0][2] = 0.5*(p[0][3] - p[0][1]);
+bicubic.cpp:  p2[1][1] = 0.5*(p[1][2] - p[1][0]); 
+bicubic.cpp:  p[1][0] = -0.088;
+bicubic.cpp:  p[3][0] = -.068;
+bicubic.cpp:  p[0][3] = -0.11;
+bicubic.cpp:  p[0][2] = -0.05;
+bicubic.cpp:  p[1][2] = -0.06;
+bicubic.cpp:  p1[1][1] = 0.5*(p[2][1] - p[0][1]);
+bicubic.cpp:  p1[1][0] = 0.5*(p[2][0] - p[0][0]); 
+bicubic.cpp:  p1[2][0] = 0.5*(p[3][0] - p[1][0]);
+bicubic.cpp:  p2[0][1] = 0.5*(p[0][2] - p[0][0]);
+bicubic.cpp:  p2[0][2] = 0.5*(p[0][3] - p[0][1]);
+bicubic.cpp:  p2[1][1] = 0.5*(p[1][2] - p[1][0]); 
+bicubic.cpp:  double x1max = ms-1.e-10, x2max = ms-1.e-10;
+bicubic.cpp:  bcuint(0.0, 1.0, 0.0, 1.0, x1-i, x2-j, y, y1, y2, *(cCC[i][j]));
+bicubic.cpp:  double x1max = ms-1.e-10, x2max = ms-1.e-10;
+bicubic.cpp:  bcuint(0.0, 1.0, 0.0, 1.0, x1-i, x2-j, y, y1, y2, *(cCF[i][j]));
+bicubic.cpp:  double x1max = ms-1.e-10, x2max = ms-1.e-10;
+bicubic.cpp:  bcuint(0.0, 1.0, 0.0, 1.0, x1-i, x2-j, y, y1, y2, *(cSiF[i][j]));
+bicubic.cpp:  double x1max = ms-1.e-10, x2max = ms-1.e-10;
+bicubic.cpp:  bcuint(0.0, 1.0, 0.0, 1.0, x1-i, x2-j, y, y1, y2, *(cSiCl[i][j]));
+bicubic.h:#define X1_NGRIDSQUARES (X1_NGRIDPOINTS-1)
+bicubic.h:#define X2_NGRIDSQUARES (X2_NGRIDPOINTS-1)
+bicubic.h: * 16-member coefficient matrix c_(ij), i=1->4, j=1->4.  c_(ij)
+bicubic.h: * value at a specified off-lattice point.
+Binary file bicubic.o matches
+c_atom.cpp:    N--;
+c_atom.cpp:    if (D->ix==Nmax-1) Nmax--;
+c_atom.cpp:    atom_list->erase(D);
+c_atom.cpp:    begin=atom_list->begin();
+c_atom.cpp:    end=atom_list->end();
+c_atom.cpp:  while (p<end && p->ix!=index) p++;
+c_atom.cpp:  atom_list->resize(s);
+c_atom.cpp:  begin=atom_list->begin();
+c_atom.cpp:  end=atom_list->end();
+c_atom.cpp:  VAI newatom=end-1;
+c_atom.cpp:  newatom->id=id;
+c_atom.cpp:  newatom->ix=Nmax++;
+c_atom.cpp:  newatom->SetProps();
+Binary file c_atom.o matches
+c_base.cpp:    i->ix=index++;
+c_base.cpp:  inert=-1;
+Binary file c_base.o matches
+c_cluster.h:  void insert(atom* p){members.insert(p); p->p_clust=this;}
+c_cryst.cpp:  for(VAI i=begin; i<end; i++) i->id=id;
+c_cryst.cpp:	s->R.set((x+0.25)*a, (y+0.75)*a, (z+0.75)*a);
+c_cryst.cpp:	(s+1)->R.set((x+0.75)*a, (y+0.25)*a, (z+0.75)*a);
+c_cryst.cpp:	(s+2)->R.set(x*a, (y+0.5)*a, (z+0.5)*a);
+c_cryst.cpp:	(s+3)->R.set((x+0.5)*a, (y+1)*a, (z+0.5)*a);
+c_cryst.cpp:	(s+4)->R.set((x+0.25)*a, (y+0.25)*a, (z+0.25)*a);
+c_cryst.cpp:	(s+5)->R.set((x+0.75)*a, (y+0.75)*a, (z+0.25)*a);
+c_cryst.cpp:	(s+6)->R.set(x*a, y*a, z*a);     
+c_cryst.cpp:	(s+7)->R.set((x+0.5)*a, (y+0.5)*a, z*a);
+c_cryst.cpp:	  //i->is_fixed=1; NFixed++;
+c_cryst.cpp:	  //(i+1)->is_fixed=1; NFixed++;
+c_cryst.cpp:	  //(i+2)->is_fixed=1; NFixed++;
+c_cryst.cpp:	  //(i+3)->is_fixed=1; NFixed++;
+c_cryst.cpp:	  (s+4)->is_fixed=1; NFixed++;
+c_cryst.cpp:	  (s+5)->is_fixed=1; NFixed++;
+c_cryst.cpp:	  (s+6)->is_fixed=1; NFixed++;
+c_cryst.cpp:	  (s+7)->is_fixed=1; NFixed++;
+c_cryst.cpp:    i->R.x-=Lx/2;
+c_cryst.cpp:    i->R.y-=Ly/2;
+c_cryst.cpp:    i->R.z-=Lz/2;
+c_cryst.cpp:    i->ix=q++;
+c_cryst.cpp:    if (!i->is_fixed){
+c_cryst.cpp:      double kT=sqrt(KB*To/i->m);
+c_cryst.cpp:      X-=6.0; X*=kT;
+c_cryst.cpp:      Y-=6.0; Y*=kT;
+c_cryst.cpp:      Z-=6.0; Z*=kT;
+c_cryst.cpp:    i->V.set(X,Y,Z);
+c_cryst.cpp:    sumvx+=i->V.x; sumvy+=i->V.y; sumvz+=i->V.z;
+c_cryst.cpp:    if(!i->is_fixed){
+c_cryst.cpp:      i->V-=sumV;
+c_cryst.cpp:      sumek+=i->Ek();
+c_cryst.cpp:  T=sumek/3/(double)(N-NFixed)/KB;
+c_cryst.cpp:    if (!i->is_fixed){
+c_cryst.cpp:      double kT=sqrt(KB*To/i->m);
+c_cryst.cpp:      X-=6.0; X*=kT;
+c_cryst.cpp:      Y-=6.0; Y*=kT;
+c_cryst.cpp:      Z-=6.0; Z*=kT;
+c_cryst.cpp:    i->V.set(X,Y,Z);
+c_cryst.cpp:    sumvx+=i->V.x; sumvy+=i->V.y; sumvz+=i->V.z;
+c_cryst.cpp:    if(!i->is_fixed){
+c_cryst.cpp:      i->V-=sumV;
+c_cryst.cpp:      sumek+=i->Ek();
+c_cryst.cpp:  T=sumek/3/(double)(N-NFixed)/KB;
+c_cryst.cpp:    if (i->is_fixed){
+c_cryst.cpp:      double kT=sqrt(KB*T/i->m);
+c_cryst.cpp:      i->is_fixed=0;
+c_cryst.cpp:      X-=6.0; X*=kT;
+c_cryst.cpp:      Y-=6.0; Y*=kT;
+c_cryst.cpp:      Z-=6.0; Z*=kT;
+c_cryst.cpp:      i->V.set(X,Y,Z);
+c_cryst.cpp:      fixed_list.insert(i->ix);
+c_cryst.cpp:    dummy.R=i->R;
+c_cryst.cpp:    dummy.R.y-=1.5*a;
+c_cryst.cpp:    dummy.R.z-=0.5*a;
+c_cryst.cpp:    dummy.id=i->id;
+c_cryst.cpp:    atom_list->push_back(dummy);
+c_cryst.cpp:    begin=atom_list->begin();
+c_cryst.cpp:    end=atom_list->end();
+c_cryst.cpp:  Run(0.05,0,0,0,0,-1,1,0,0);
+c_cryst.cpp:    if (s->is_fixed)
+c_cryst.cpp:      for (VNI sp=s->nlist.begin(); sp!=s->nlist.end(); sp++){
+c_cryst.cpp:	if (((atom*)sp->a2)->id != s->id){
+Binary file c_cryst.o matches
+c_force.cpp:    if (i_->ix == inert)
+c_force.cpp:      	svector R=i_->R - j->R; R.minimg(Lx,Ly);
+c_force.cpp:      	int type = i_->id+j->id;
+c_force.cpp:      	Fij=moeps/r*(0.35*SpExp(-0.3*rija)*(1/r+0.3/moa)
+c_force.cpp:      		     +0.55*SpExp(-1.2*rija)*(1/r+1.2/moa)
+c_force.cpp:      		     +0.1*SpExp(-6*rija)*(1/r+6/moa))/r*R;
+c_force.cpp:      	i_->F += Fij; j->F -= Fij;
+c_force.cpp:      	u+= moeps/r*(0.35*SpExp(-0.3*rija)
+c_force.cpp:      		     +0.55*SpExp(-1.2*rija)+0.1*SpExp(-6*rija));
+c_force.cpp:      for (VNI ij=i_->nlist.begin(); ij!=i_->nlist.end(); ij++)
+c_force.cpp:      	atom* j = (atom*)ij->a2;
+c_force.cpp:    	    int type=i_->id+j->id;
+c_force.cpp:    	    double r=ij->r;
+c_force.cpp:          double aa = B[type] * SpExp(-MORSE_MU[type] * r);
+c_force.cpp:          VA_ij = ij->f * aa;
+c_force.cpp:          dVA_ij = aa * (ij->fprime - ij->f*MORSE_MU[type]);
+c_force.cpp:      	    VR_ij = moeps/r*(0.35*SpExp(-0.3*rija)
+c_force.cpp:      			     +0.55*SpExp(-1.2*rija)
+c_force.cpp:      			     +0.1*SpExp(-6*rija)) + MO_S[type];
+c_force.cpp:      	    dVR_ij = -moeps/r*(0.35*SpExp(-0.3*rija)*(1/r+0.3/moa)
+c_force.cpp:      			      +0.55*SpExp(-1.2*rija)*(1/r+1.2/moa)
+c_force.cpp:      			      +0.1*SpExp(-6*rija)*(1/r+6/moa));
+c_force.cpp:      	    aa=A[type] * SpExp(-MORSE_LAM[type] * r);
+c_force.cpp:      	    VR_ij = ij->f * aa;
+c_force.cpp:      	    dVR_ij = aa * (ij->fprime - ij->f*MORSE_LAM[type]);
+c_force.cpp:      	  u+=VR_ij - b_ij*VA_ij;
+c_force.cpp:      	  Fij=(-dVR_ij+b_ij*dVA_ij)*ij->Rhat;
+c_force.cpp:      	  i_->F+=Fij; j->F-=Fij;
+c_force.cpp:  atom* i=(atom*)bond_ij->a1;
+c_force.cpp:  atom* j=(atom*)bond_ij->a2;
+c_force.cpp:  NF_ij  = i->Nmap[9]  - (j->id==9)  * bond_ij->f;
+c_force.cpp:  NC_ij  = i->Nmap[6]  - (j->id==6)  * bond_ij->f;
+c_force.cpp:  NSi_ij = i->Nmap[14] - (j->id==14) * bond_ij->f;
+c_force.cpp:  NCl_ij = i->Nmap[17] - (j->id==17) * bond_ij->f;
+c_force.cpp:  NF_ji  = j->Nmap[9]  - (i->id==9)  * bond_ij->f;
+c_force.cpp:  NC_ji  = j->Nmap[6]  - (i->id==6)  * bond_ij->f;
+c_force.cpp:  NSi_ji = j->Nmap[14] - (i->id==14) * bond_ij->f;
+c_force.cpp:  NCl_ji = j->Nmap[17] - (i->id==17) * bond_ij->f;
+c_force.cpp:  if (bond_ij->type==12){
+c_force.cpp:  else if (bond_ij->type==15){
+c_force.cpp:    if (i->id==6) Pcf_bicubicint(NF_ij, NC_ij+NSi_ij, &P_ij, &dFP_ij,&dCP_ij);
+c_force.cpp:  else if (bond_ij->type==23){
+c_force.cpp:    if (i->id==14) Psif_bicubicint(NF_ij, NC_ij+NSi_ij, &P_ij, &dFP_ij,&dCP_ij);
+c_force.cpp:  else if (bond_ij->type==31){
+c_force.cpp:    if (i->id==14) Psicl_bicubicint(NCl_ij, NC_ij+NSi_ij, &P_ij, &dFP_ij,&dCP_ij);
+c_force.cpp:  for (VNI bond_ik=i->nlist.begin(); bond_ik!=i->nlist.end(); bond_ik++){
+c_force.cpp:    atom* k=(atom*)bond_ik->a2;
+c_force.cpp:      VNI bond_jk=j->FindNbr(k);
+c_force.cpp:      if (bond_jk!=j->nlist.end()){
+c_force.cpp:	rjk=bond_jk->r;
+c_force.cpp:	Rjk=bond_jk->Rhat;
+c_force.cpp:	Rjk=j->R-k->R;
+c_force.cpp:      //*******b-sigma-pi calculations************
+c_force.cpp:      elambda(i->id, j->id, k->id, bond_ij->r, bond_ik->r, &el, &dlam);
+c_force.cpp:      elf=el*bond_ik->f;
+c_force.cpp:      cosO = bond_ij->Rhat ^ bond_ik->Rhat;
+c_force.cpp:      G_angle(i->id, j->id, k->id, cosO, &g, &g1);
+c_force.cpp:      iFv_ij+=(elf*(g1*(1/bond_ik->r - cosO/bond_ij->r) + g*dlam));
+c_force.cpp:      iFv_ik.push_back(bond_ik->fprime*
+c_force.cpp:		       (g*el + ((k->id==9||k->id==17) ? dFP_ij : dCP_ij))
+c_force.cpp:		       +elf*(g1*(1/bond_ij->r - cosO/bond_ik->r) - g*dlam));
+c_force.cpp:      iFv_jk.push_back(elf*(-g1*rjk/bond_ik->r/bond_ij->r));
+c_force.cpp:      if (bond_ij->type==12 && k->id==6){
+c_force.cpp:	PolySwitch(k->Nt - bond_ik->f - 2, &Yik, &Y1ik);
+c_force.cpp:	iNconj += bond_ik->f * Yik;
+c_force.cpp:	iFv_ik2.push_back(bond_ik->fprime * Yik);
+c_force.cpp:	bond_ik->Fv_kl=bond_ik->f*Y1ik;
+c_force.cpp:	bond_ik->Fv_kl=0;
+c_force.cpp:  for (VNI bond_jk=j->nlist.begin(); bond_jk!=j->nlist.end(); bond_jk++){
+c_force.cpp:    atom* k=(atom*)bond_jk->a2;
+c_force.cpp:      VNI bond_ik=i->FindNbr(k);
+c_force.cpp:      if (bond_ik!=i->nlist.end()){
+c_force.cpp:	rik=bond_ik->r;
+c_force.cpp:	Rik=bond_ik->Rhat;
+c_force.cpp:	Rik=i->R-k->R;
+c_force.cpp:      //*********b-sigma-pi calculation*************
+c_force.cpp:      elambda(j->id, i->id, k->id, bond_ij->r, bond_jk->r, &el, &dlam);
+c_force.cpp:      elf=el*bond_jk->f;
+c_force.cpp:      cosO = -(bond_ij->Rhat ^ bond_jk->Rhat);
+c_force.cpp:      G_angle(j->id, i->id, k->id, cosO, &g, &g1);
+c_force.cpp:      jFv_ij+=(elf*(g1*(1/bond_jk->r - cosO/bond_ij->r) + g*dlam));
+c_force.cpp:      jFv_ik.push_back(elf*(-g1*rik/bond_jk->r/bond_ij->r));
+c_force.cpp:      jFv_jk.push_back(bond_jk->fprime
+c_force.cpp:		       *(g*el + ((k->id==9||k->id==17) ? dFP_ji : dCP_ji))
+c_force.cpp:		       +elf*(g1*(1/bond_ij->r - cosO/bond_jk->r) - g*dlam));
+c_force.cpp:      if ( bond_ij->type==12 && k->id==6){
+c_force.cpp:	PolySwitch(k->Nt - bond_jk->f - 2, &Yik, &Y1ik);
+c_force.cpp:	jNconj += bond_jk->f * Yik;
+c_force.cpp:	jFv_jk2.push_back(bond_jk->fprime * Yik);
+c_force.cpp:	bond_jk->Fv_kl=bond_jk->f*Y1ik;
+c_force.cpp:	bond_jk->Fv_kl=0;
+c_force.cpp:  if (bond_ij->type==12){
+c_force.cpp:  set_eta(i->id, j->id, &eta_i, &delta_i);
+c_force.cpp:  set_eta(j->id, i->id, &eta_j, &delta_j);
+c_force.cpp:  bbar_ij = 0.5*(pow(1 + pow(bsp_ij, eta_i), -delta_i)
+c_force.cpp:		 + pow(1 + pow(bsp_ji, eta_j), -delta_j)
+c_force.cpp:      bsp_ij=pow(1 + pow(bsp_ij, eta_i), -delta_i-1)*
+c_force.cpp:	eta_i*pow(bsp_ij, eta_i-1);
+c_force.cpp:    bsp_ij=pow(1 + bsp_ij, -delta_i-1);
+c_force.cpp:  bsp_ij*=-Pre*delta_i;
+c_force.cpp:      bsp_ji=pow(1 + pow(bsp_ji, eta_j), -delta_j-1)*
+c_force.cpp:	eta_j*pow(bsp_ji, eta_j-1);
+c_force.cpp:    bsp_ji=pow(1 + bsp_ji, -delta_j-1);
+c_force.cpp:  bsp_ji*=-Pre*delta_j;
+c_force.cpp:  Fij=(bsp_ij*iFv_ij+bsp_ji*jFv_ij)*bond_ij->Rhat;
+c_force.cpp:  i->F+=Fij; j->F-=Fij;
+c_force.cpp:  for (VNI bond_ik=i->nlist.begin(); bond_ik!=i->nlist.end(); bond_ik++){
+c_force.cpp:    atom* k=(atom*)bond_ik->a2;
+c_force.cpp:      if (bond_ik->fprime && dFi_ij) force_ik+=Pre*bond_ik->fprime*dFi_ij;
+c_force.cpp:      if (dFc_ij && k->id==6){
+c_force.cpp:	if (bond_ik->Fv_kl){
+c_force.cpp:	  Sprime*=bond_ik->Fv_kl;
+c_force.cpp:	  for (VNI bond_kl=k->nlist.begin(); bond_kl!=k->nlist.end(); 
+c_force.cpp:	    if (bond_kl->fprime){
+c_force.cpp:	      atom* l=(atom*)bond_kl->a2;
+c_force.cpp:		Fij=(Sprime*bond_kl->fprime)*bond_kl->Rhat;
+c_force.cpp:		k->F += Fij; l->F -= Fij;
+c_force.cpp:      Fij = force_ik*bond_ik->Rhat;
+c_force.cpp:      i->F += Fij; k->F -= Fij;
+c_force.cpp:      j->F += Fij; k->F -= Fij;
+c_force.cpp:  for (VNI bond_jk=j->nlist.begin(); bond_jk!=j->nlist.end(); bond_jk++){
+c_force.cpp:    atom* k=(atom*)bond_jk->a2;
+c_force.cpp:      if (bond_jk->fprime && dFj_ij) force_jk+=Pre*bond_jk->fprime*dFj_ij;
+c_force.cpp:      if (dFc_ij && k->id==6){
+c_force.cpp:	if (bond_jk->Fv_kl){
+c_force.cpp:	  Sprime*=bond_jk->Fv_kl;
+c_force.cpp:	  for (VNI bond_kl=k->nlist.begin(); bond_kl!=k->nlist.end();
+c_force.cpp:	    if (bond_kl->fprime){
+c_force.cpp:	      atom* l=(atom*)bond_kl->a2;
+c_force.cpp:		Fij = (Sprime*bond_kl->fprime)*bond_kl->Rhat;
+c_force.cpp:		k->F += Fij; l->F -= Fij;
+c_force.cpp:      i->F += Fij; k->F -= Fij;
+c_force.cpp:      Fij = force_jk*bond_jk->Rhat;
+c_force.cpp:      j->F += Fij; k->F -= Fij;
+c_force.cpp:    double n = (r_ij - RE[i_id + j_id]) - (r_ik - RE[i_id + k_id]);
+c_force.cpp:      *dlam*=beta*pow(n, beta-1);
+c_force.cpp:      double c0 = -0.57058 - cosO;
+c_force.cpp:      *g = 1.5724e-07 * (1 + 7.5326e-9 - 1.4477264e-07 / (19.219456 + c02));
+c_force.cpp:      *g1 = -4.55281e-14 * c0 / pow((19.219456 + c02),2);
+c_force.cpp:      double c0 = -1 - cosO;
+c_force.cpp:      *g = 0.00020813 * (8890.8 - 108900 / (12.25 + c02));
+c_force.cpp:      *g1 = -45.330714 * c0 / pow((12.25 + c02),2);
+c_force.cpp:      *g = 0.0216 + 0.27*pow(-0.47-cosO, 2);
+c_force.cpp:      *g1 = -0.54*(-0.47-cosO);
+c_force.cpp:      *g = 0.0216 + 0.27*pow(-0.47-cosO, 2);
+c_force.cpp:      *g1 = -0.54*(-0.47-cosO);
+c_force.cpp:      *g = 0.16*pow(-0.59826-cosO, 2);
+c_force.cpp:      *g1 = -0.32*(-0.59826-cosO);
+c_force.cpp:    if (j_id==14){ //C-Tersoff
+c_force.new:    if (i_->ix == inert){
+c_force.new:      for (VNI bond_ij=i_->nlist.begin(); bond_ij!=i_->nlist.end(); bond_ij++){
+c_force.new:	atom* j=(atom*)bond_ij->a2;
+c_force.new:	double r=bond_ij->r;
+c_force.new:	int type = i_->id+j->id;
+c_force.new:	Fij=moeps/r*(0.35*SpExp(-0.3*rija)*(1/r+0.3/moa)
+c_force.new:		     +0.55*SpExp(-1.2*rija)*(1/r+1.2/moa)
+c_force.new:		     +0.1*SpExp(-6*rija)*(1/r+6/moa))*bond_ij->Rhat;
+c_force.new:	i_->F += Fij; j->F -= Fij;
+c_force.new:	u+= moeps/r*(0.35*SpExp(-0.3*rija)
+c_force.new:		     +0.55*SpExp(-1.2*rija)+0.1*SpExp(-6*rija));
+c_force.new:      for (VNI ij=i_->nlist.begin(); ij!=i_->nlist.end(); ij++){
+c_force.new:	atom* j = (atom*)ij->a2;
+c_force.new:	  int type=i_->id+j->id;
+c_force.new:	  double r=ij->r;
+c_force.new:	  double aa = B[type] * SpExp(-MORSE_MU[type] * r);
+c_force.new:	  VA_ij = ij->f * aa;
+c_force.new:	  dVA_ij = aa * (ij->fprime - ij->f*MORSE_MU[type]);
+c_force.new:	    VR_ij = moeps/r*(0.35*SpExp(-0.3*rija)
+c_force.new:			     +0.55*SpExp(-1.2*rija)
+c_force.new:			     +0.1*SpExp(-6*rija)) + MO_S[type];
+c_force.new:	    dVR_ij = -moeps/r*(0.35*SpExp(-0.3*rija)*(1/r+0.3/moa)
+c_force.new:			      +0.55*SpExp(-1.2*rija)*(1/r+1.2/moa)
+c_force.new:			      +0.1*SpExp(-6*rija)*(1/r+6/moa));
+c_force.new:	    aa=A[type] * SpExp(-MORSE_LAM[type] * r);
+c_force.new:	    VR_ij = ij->f * aa;
+c_force.new:	    dVR_ij = aa * (ij->fprime - ij->f*MORSE_LAM[type]);
+c_force.new:	  u+=VR_ij - b_ij*VA_ij;
+c_force.new:	  Fij=(-dVR_ij+b_ij*dVA_ij)*ij->Rhat;
+c_force.new:	  i_->F+=Fij; j->F-=Fij;
+c_force.new:  atom* i=(atom*)bond_ij->a1;
+c_force.new:  atom* j=(atom*)bond_ij->a2;
+c_force.new:  NF_ij = i->Nmap[9] - (j->id==9)*bond_ij->f;
+c_force.new:  NC_ij = i->Nmap[6] - (j->id==6)*bond_ij->f;
+c_force.new:  NSi_ij = i->Nmap[14] - (j->id==14)*bond_ij->f;
+c_force.new:  NF_ji = j->Nmap[9] - (i->id==9)*bond_ij->f;
+c_force.new:  NC_ji = j->Nmap[6] - (i->id==6)*bond_ij->f;
+c_force.new:  NSi_ij = j->Nmap[14] - (i->id==14)*bond_ij->f;
+c_force.new:  if (i->id==6){
+c_force.new:    if (j->id==6){
+c_force.new:    if (j->id==6){
+c_force.new:  for (VNI bond_ik=i->nlist.begin(); bond_ik!=i->nlist.end(); bond_ik++){
+c_force.new:    atom* k=(atom*)bond_ik->a2;
+c_force.new:      Rjk=j->R-k->R;
+c_force.new:      //*******b-sigma-pi calculations************
+c_force.new:      elambda(i->id, j->id, k->id, bond_ik->r, bond_ij->r, &el, &dlam);
+c_force.new:      elf=el*bond_ik->f;
+c_force.new:      cosO = bond_ij->Rhat ^ bond_ik->Rhat;
+c_force.new:      G_angle(i->id, j->id, k->id, cosO, &g, &g1);
+c_force.new:      iFv_ij+=(elf*(g1*(1/bond_ik->r - cosO/bond_ij->r) + g*dlam));
+c_force.new:      iFv_ik.push_back(bond_ik->fprime*
+c_force.new:		       (g*el +(k->id==6)*dCP_ij + (k->id==9)*dFP_ij)
+c_force.new:		       +elf*(g1*(1/bond_ij->r - cosO/bond_ik->r) - g*dlam));
+c_force.new:      iFv_jk.push_back(elf*(-g1*rjk/bond_ik->r/bond_ij->r));
+c_force.new:      if (k->id==6){
+c_force.new:	PolySwitch(k->Nt - bond_ik->f - 2, &Yik, &Y1ik);
+c_force.new:	iNconj += bond_ik->f * Yik;
+c_force.new:	iFv_ik2.push_back(bond_ik->fprime * Yik);
+c_force.new:	bond_ik->Fv_kl=bond_ik->f*Y1ik;
+c_force.new:	bond_ik->Fv_kl=0;
+c_force.new:  for (VNI bond_jk=j->nlist.begin(); bond_jk!=j->nlist.end(); bond_jk++){
+c_force.new:    atom* k=(atom*)bond_jk->a2;
+c_force.new:      Rik=i->R - k->R;
+c_force.new:      //*********b-sigma-pi calculation*************
+c_force.new:      elambda(j->id, i->id, k->id, bond_jk->r, bond_ij->r, &el, &dlam);
+c_force.new:      elf=el*bond_jk->f;
+c_force.new:      cosO = -(bond_ij->Rhat ^ bond_jk->Rhat);
+c_force.new:      G_angle(j->id, i->id, k->id, cosO, &g, &g1);
+c_force.new:      jFv_ij+=(elf*(g1*(1/bond_jk->r - cosO/bond_ij->r) + g*dlam));
+c_force.new:      jFv_ik.push_back(elf*(-g1*rik/bond_jk->r/bond_ij->r));
+c_force.new:      jFv_jk.push_back(bond_jk->fprime
+c_force.new:		       *(g*el + (k->id==6)*dCP_ji + (k->id==9)*dFP_ji)
+c_force.new:		       +elf*(g1*(1/bond_ij->r - cosO/bond_jk->r) - g*dlam));
+c_force.new:      if (k->id==6){
+c_force.new:	PolySwitch(k->Nt - bond_jk->f - 2, &Yik, &Y1ik);
+c_force.new:	jNconj += bond_jk->f * Yik;
+c_force.new:	jFv_jk2.push_back(bond_jk->fprime * Yik);
+c_force.new:	bond_jk->Fv_kl=bond_jk->f*Y1ik;
+c_force.new:	bond_jk->Fv_kl=0;
+c_force.new:  if (bond_ij->type==12)
+c_force.new:  bbar_ij = 0.5*(pow(1 + pow(bsp_ij, BO_ETA[i->id]), -BO_DELTA[i->id])
+c_force.new:		 + pow(1 + pow(bsp_ji, BO_ETA[j->id]), -BO_DELTA[j->id])
+c_force.new:  bsp_ij=-Pre*BO_DELTA[i->id]*
+c_force.new:    pow(1 + pow(bsp_ij, BO_ETA[i->id]), -BO_DELTA[i->id]-1)*
+c_force.new:    BO_ETA[i->id]*pow(bsp_ij, BO_ETA[i->id]-1);
+c_force.new:  bsp_ji=-Pre*BO_DELTA[j->id]*
+c_force.new:    pow(1 + pow(bsp_ji, BO_ETA[j->id]), -BO_DELTA[j->id]-1)*
+c_force.new:    BO_ETA[j->id]*pow(bsp_ji, BO_ETA[j->id]-1);
+c_force.new:  Fij=(bsp_ij*iFv_ij+bsp_ji*jFv_ij)*bond_ij->Rhat;
+c_force.new:  i->F+=Fij; j->F-=Fij;
+c_force.new:  for (VNI bond_ik=i->nlist.begin(); bond_ik!=i->nlist.end(); bond_ik++){
+c_force.new:    atom* k=(atom*)bond_ik->a2;
+c_force.new:      if (bond_ik->fprime && dFi_ij) force_ik+=Pre*bond_ik->fprime*dFi_ij;
+c_force.new:      if (k->id == 6 && dFc_ij){
+c_force.new:	if (bond_ik->Fv_kl){
+c_force.new:	  Sprime*=bond_ik->Fv_kl;
+c_force.new:	  for (VNI bond_kl=k->nlist.begin(); bond_kl!=k->nlist.end(); 
+c_force.new:	    if (bond_kl->fprime){
+c_force.new:	      atom* l=(atom*)bond_kl->a2;
+c_force.new:		Fij=(Sprime*bond_kl->fprime)*bond_kl->Rhat;
+c_force.new:		k->F += Fij; l->F -= Fij;
+c_force.new:      Fij = force_ik*bond_ik->Rhat;
+c_force.new:      i->F += Fij; k->F -= Fij;
+c_force.new:      j->F += Fij; k->F -= Fij;
+c_force.new:  for (VNI bond_jk=j->nlist.begin(); bond_jk!=j->nlist.end(); bond_jk++){
+c_force.new:    atom* k=(atom*)bond_jk->a2;
+c_force.new:      if (bond_jk->fprime && dFj_ij) force_jk+=Pre*bond_jk->fprime*dFj_ij;
+c_force.new:      if (k->id == 6 && dFc_ij){
+c_force.new:	if (bond_jk->Fv_kl){
+c_force.new:	  Sprime*=bond_jk->Fv_kl;
+c_force.new:	  for (VNI bond_kl=k->nlist.begin(); bond_kl!=k->nlist.end();
+c_force.new:	    if (bond_kl->fprime){
+c_force.new:	      atom* l=(atom*)bond_kl->a2;
+c_force.new:		Fij = (Sprime*bond_kl->fprime)*bond_kl->Rhat;
+c_force.new:		k->F += Fij; l->F -= Fij;
+c_force.new:      i->F += Fij; k->F -= Fij;
+c_force.new:      Fij = force_jk*bond_jk->Rhat;
+c_force.new:      j->F += Fij; k->F -= Fij;
+c_force.new:    *el=exp(pow(alpha*(RE[i_id + k_id] - r_ik
+c_force.new:		       -RE[i_id + j_id] + r_ij), beta));
+c_force.new:      *dlam*=beta*pow(alpha*(RE[i_id+k_id] - r_ik
+c_force.new:			     -RE[i_id+j_id] + r_ij), beta-1);
+c_force.new://       double c0 = -0.57058 - cosO;
+c_force.new://       *g = 1.5724e-07 * (1 + 7.5326e-9 - 1.4477264e-07 / (19.219456 + c02));
+c_force.new://       *g1 = -4.55281e-14 * c0 / pow((19.219456 + c02),2);
+c_force.new:      double c0 = -1 - cosO;
+c_force.new:      *g = 0.00020813 * (8890.8 - 108900 / (12.25 + c02));
+c_force.new:      *g1 = -45.330714 * c0 / pow((12.25 + c02),2);
+c_force.new://       *g = 0.0216 + 0.27*pow(-0.47-cosO, 2);
+c_force.new://       *g1 = -0.54*(-0.47-cosO);
+c_force.new://       *g = 0.16*pow(-0.59826-cosO, 2);
+c_force.new://       *g1 = -0.32*(-0.59826-cosO);
+Binary file c_force.o matches
+chemtab.cpp:  //carbon-carbon
+chemtab.cpp:  SPL_A[12] = -2.862885;
+chemtab.cpp:  SPL_C[12] = -44.727802;
+chemtab.cpp:  MO_A[12] = 0.388874*pow(2*sqrt(6.0),-TWO_THIRDS);
+chemtab.cpp:  //silicon-silicon
+chemtab.cpp:  SPL_A[28] = -7.155376;
+chemtab.cpp:  MO_A[28] = 0.388874*pow(2*sqrt(14.0),-TWO_THIRDS);
+chemtab.cpp:  //silicon-carbon
+chemtab.cpp:  SPL_A[20] = -5.9043;
+chemtab.cpp:  MO_A[20] = 0.388874*pow(sqrt(14.0)+sqrt(6.0),-TWO_THIRDS);
+chemtab.cpp:  //silicon-fluorine
+chemtab.cpp:  MO_A[23] = 0.388874*pow(sqrt(14.0)+sqrt(9.0),-TWO_THIRDS);
+chemtab.cpp:// 2003-07-12 -- no Psif function by this date
+chemtab.cpp:  // SPL_A[23] = -2.1325772404;
+chemtab.cpp:  // SPL_C[23] = -729.85931698;
+chemtab.cpp://2003-08-09 -- JCP paper submitted Sep 2003
+chemtab.cpp:  // SPL_A[23]=-8.873298291;
+chemtab.cpp:  // MO_S[23]=-2575.054547;
+chemtab.cpp:// 2003-11-07 -- these are the values in JCP paper
+chemtab.cpp:  MO_S[23]=-2521.162686;
+chemtab.cpp:  SPL_A[23]=-8.654155386;
+chemtab.cpp:  //silicon-chlorine
+chemtab.cpp:  MO_A[31] = 0.388874*pow(sqrt(14.0)+sqrt(17.0),-TWO_THIRDS);
+chemtab.cpp:  SPL_A[31]=	-9.199255798;
+chemtab.cpp:  MO_S[31]=	-4994.987664;
+chemtab.cpp:  //chlorine-chlorine
+chemtab.cpp:  MO_A[34] = 0.388874*pow(sqrt(17.0)+sqrt(17.0),-TWO_THIRDS);
+chemtab.cpp:  SPL_A[34]=	-7.256044358;
+chemtab.cpp:  MO_S[34]=	-4930.327312;
+chemtab.cpp:  //fluorine-fluorine FROM TANAKA 2000
+chemtab.cpp:  SPL_A[18] = -3.8113458035;
+chemtab.cpp:  SPL_C[18] = -67.291591284;
+chemtab.cpp:  MO_A[18] = 0.388874*pow(6.0,-TWO_THIRDS);
+chemtab.cpp:  //carbon-fluorine FROM TANAKA 2000
+chemtab.cpp:  SPL_A[15] = -5.1521258108;
+chemtab.cpp:  MO_A[15] = 0.388874*pow(3.0+sqrt(6.0),-TWO_THIRDS);
+chemtab.cpp:  MO_A[24] = 0.388874*pow(sqrt(18.0)+sqrt(6.0),-TWO_THIRDS);
+chemtab.cpp:  MO_A[27] = 0.388874*pow(sqrt(18.0)+3.0,-TWO_THIRDS);
+chemtab.cpp:  MO_A[32] = 0.388874*pow(sqrt(18.0)+sqrt(14.0),-TWO_THIRDS);
+chemtab.cpp:  MO_A[35] = 0.388874*pow(sqrt(18.0)+sqrt(17.0),-TWO_THIRDS);
+chemtab.cpp://   MO_A[36] = 0.388874*pow(sqrt(2.0)+sqrt(6.0),-TWO_THIRDS);
+chemtab.cpp://   MO_A[39] = 0.388874*pow(sqrt(2.0)+3.0,-TWO_THIRDS);
+chemtab.cpp://   MO_A[44] = 0.388874*pow(sqrt(2.0)+sqrt(14.0),-TWO_THIRDS);
+chemtab.cpp://   MO_A[37] = 0.388874*pow(sqrt(10.0)+sqrt(6.0),-TWO_THIRDS);
+chemtab.cpp://   MO_A[40] = 0.388874*pow(sqrt(10.0)+3.0,-TWO_THIRDS);
+chemtab.cpp://   MO_A[45] = 0.388874*pow(sqrt(10.0)+sqrt(14.0),-TWO_THIRDS);
+Binary file chemtab.o matches
+c_io.cpp:        else if (sfind(arg, "#-")) kill_me=1;
+c_io.cpp:      if (i->id == 18)
+c_io.cpp:        if (inert == -1) inert=i->ix;
+c_io.cpp:  fout<<"#----------"<<endl;
+c_ion.cpp:      inert=ion->ix;
+c_ion.cpp:      double rndx=rand01()*confine*2-confine;
+c_ion.cpp:      double rndy=rand01()*confine*2-confine;
+c_ion.cpp:	rndx=rand01()*confine*2-confine;
+c_ion.cpp:	rndy=rand01()*confine*2-confine;
+c_ion.cpp:      ion->R.set(rndx, rndy, 0);
+c_ion.cpp:      ion->R.set(rand01()*Lx, rand01()*Ly, 0);
+c_ion.cpp:      ion->R.minimg(Lx, Ly);
+c_ion.cpp:    ion->R.z=the_top+6.01;
+c_ion.cpp:      double kT=sqrt(KB*To/ion->m);
+c_ion.cpp:      vx-=6.0; vx*=kT; 
+c_ion.cpp:      vy-=6.0; vy*=kT;
+c_ion.cpp:      vz-=6.0; vz*=kT;
+c_ion.cpp:      //add sheath effects or if e==0 use half-maxwellian directed down
+c_ion.cpp:	Vth.z=-fabs(Vth.z);
+c_ion.cpp:	ion->V=Vth;
+c_ion.cpp:	speed=sqrt(2/ion->m*e);
+c_ion.cpp:		-speed*cos(inc));
+c_ion.cpp:	ion->V.x=pow(Vth.x,2)*signof(Vth.x)+pow(Vsh.x,2)*signof(Vsh.x);
+c_ion.cpp:	ion->V.x=ion->V.x > 0 ? sqrt(ion->V.x) : -sqrt(-1*ion->V.x);
+c_ion.cpp:	ion->V.y=pow(Vth.y,2)*signof(Vth.y)+pow(Vsh.y,2)*signof(Vsh.y);
+c_ion.cpp:	ion->V.y=ion->V.y > 0 ? sqrt(ion->V.y) : -sqrt(-1*ion->V.y);
+c_ion.cpp:	ion->V.z=pow(Vth.z,2)*signof(Vth.z)+pow(Vsh.z,2)*signof(Vsh.z);
+c_ion.cpp:	ion->V.z=ion->V.z > 0 ? sqrt(ion->V.z) : -sqrt(-1*ion->V.z);
+c_ion.cpp:      ion->is_fixed=0;
+c_ion.cpp:      ionek=ion->Ek();
+c_ion.cpp:    }while((ion->R.z - the_top)/vz > 10);
+c_ion.cpp:    AV=ion->V;
+c_ion.cpp:	if (inert==ion->ix) rcsq=36;
+c_ion.cpp:	else rcsq=RC_SQ[i->id+ion->id];
+c_ion.cpp:	if ((ion->R - i->R).minsqmag(Lx, Ly) < rcsq){
+c_ion.cpp:	ion->R+=dir;
+c_ion.cpp:	//cerr<<ion->R<<endl;
+c_ion.cpp:	ion->R.minimg(Lx,Ly);
+c_ion.cpp:	if ((this_cell=WhichCell(ion->R)) != ion->my_cell){
+c_ion.cpp:	  ((subcell*) ion->my_cell)->erase(&(*ion));
+c_ion.cpp:	  ((subcell*) this_cell)->insert(&(*ion));
+c_ion.cpp://     ion->R+=50*dir;   ion->R.minimg(Lx,Ly);
+c_ion.cpp://     cerr<<"* immediate force "<<ion->F<<endl;
+c_ion.cpp://     ion->R-=50*dir;
+c_ion.cpp:    ion->R-=dir;
+c_ion.cpp:    ion->R.minimg(Lx,Ly);
+c_ion.cpp:      ion->R.clear();
+c_ion.cpp:      H1->R.set(0, 1.267, 0);
+c_ion.cpp:      H2->R.set(-1.097, -0.6336, 0);
+c_ion.cpp:      H3->R.set(1.097, -0.6336, 0);
+c_ion.cpp:      ion=end-4;
+c_ion.cpp:      ion->R.clear();
+c_ion.cpp:      H1->R.set(-1.267, 0, 0);
+c_ion.cpp:      H2->R.set(1.267, 0, 0);
+c_ion.cpp:      ion=end-3;
+c_ion.cpp:      ion->R.clear();
+c_ion.cpp:      H1->R.set(-1.267, 0, 0);
+c_ion.cpp:      ion=end-2;
+c_ion.cpp:      ion->R.clear();
+c_ion.cpp:      H1->R.set(0, 1.59, 0);
+c_ion.cpp:      H2->R.set(-1.377, -0.795, 0);
+c_ion.cpp:      H3->R.set(1.377, -0.795, 0);
+c_ion.cpp:      ion=end-4;
+c_ion.cpp:      ion->R.clear();
+c_ion.cpp:      H1->R.set(0, 1.59, 0);
+c_ion.cpp:      H2->R.set(0, -1.59, 0);
+c_ion.cpp:      ion=end-3;
+c_ion.cpp:      ion->R.clear();
+c_ion.cpp:      H1->R.set(0, 1.59, 0);
+c_ion.cpp:      ion=end-2;
+c_ion.cpp:      ion->R.clear();
+c_ion.cpp:      H1->R.set(0, 1.435, 0);
+c_ion.cpp:      ion=end-2;
+c_ion.cpp:      ion->R.clear();
+c_ion.cpp:      H1->R.set(0, 2.02, 0);
+c_ion.cpp:      ion=end-2;
+c_ion.cpp:      double rndx=rand01()*confine*2-confine;
+c_ion.cpp:      double rndy=rand01()*confine*2-confine;
+c_ion.cpp:	rndx=rand01()*confine*2-confine;
+c_ion.cpp:	rndy=rand01()*confine*2-confine;
+c_ion.cpp:      ionmass+=i->m;
+c_ion.cpp:      i->R.EulerTrans(phi, theta, psi);
+c_ion.cpp:      i->R+=R;
+c_ion.cpp:      i->R.minimg(Lx,Ly);
+c_ion.cpp:      i->R.z+=(the_top+5);
+c_ion.cpp:	vx-=6.0; vx*=kT; 
+c_ion.cpp:	vy-=6.0; vy*=kT;
+c_ion.cpp:	vz-=6.0; vz*=kT;
+c_ion.cpp:		-speed*cos(inc));
+c_ion.cpp:	i->V.x=pow(Vth.x,2)*signof(Vth.x)+pow(Vsh.x,2)*signof(Vsh.x);
+c_ion.cpp:	i->V.x=i->V.x > 0 ? sqrt(i->V.x) : -sqrt(-1*i->V.x);
+c_ion.cpp:	i->V.y=pow(Vth.y,2)*signof(Vth.y)+pow(Vsh.y,2)*signof(Vsh.y);
+c_ion.cpp:	i->V.y=i->V.y > 0 ? sqrt(i->V.y) : -sqrt(-1*i->V.y);
+c_ion.cpp:	i->V.z=pow(Vth.z,2)*signof(Vth.z)+pow(Vsh.z,2)*signof(Vsh.z);
+c_ion.cpp:	i->V.z=i->V.z > 0 ? sqrt(i->V.z) : -sqrt(-1*i->V.z);
+c_ion.cpp:	i->is_fixed=0;
+c_ion.cpp:	ionek+=i->Ek();
+c_ion.cpp:	//netvz+=i->m*vz;
+c_ion.cpp:	Vcom+=i->m*i->V;
+c_ion.cpp:	    if ((i->R - j->R).minsqmag(Lx, Ly) < RC_SQ[i->id+j->id])
+c_ion.cpp:	  i->R+=dir; i->R.minimg(Lx,Ly);
+c_ion.cpp:	  if ((this_cell=WhichCell(i->R)) != i->my_cell){
+c_ion.cpp:	    ((subcell*) i->my_cell)->erase(&(*i));
+c_ion.cpp:	    ((subcell*) this_cell)->insert(&(*i));
+c_ion.cpp:      i->R-=dir;
+c_ion.cpp:      i->R.minimg(Lx,Ly);
+c_ion.cpp:    cerr<<"* Species added at "<<ion->R<<". Total atoms: "<<N<<endl;
+c_ion.cpp:    cerr<<"Actual Incidence: "<<180-AV.z/PI*180<<
+c_ion.cpp:  if (inert!=-1){
+c_ion.cpp:    inert=-1;
+Binary file c_ion.o matches
+Binary file c_io.o matches
+c_lcell.cpp://config's member functions for the linked-cell method.
+c_lcell.cpp:  the_top=-1000; the_bottom=1000;
+c_lcell.cpp:    the_top = mfmax(the_top, p->R.z);
+c_lcell.cpp:    the_bottom = mfmin(the_bottom, p->R.z);
+c_lcell.cpp:  the_bottom -= 0.0001;
+c_lcell.cpp:  Lz_full= mfmax(Lz, the_top - the_bottom);
+c_lcell.cpp:	xp=(x+1)%Nx; xm=(x-1+Nx)%Nx;
+c_lcell.cpp:	yp=(y+1)%Ny; ym=(y-1+Ny)%Ny;
+c_lcell.cpp:	zp=(z+1)%Nz; zm=(z-1+Nz)%Nz;
+c_lcell.cpp:	//same z-plane
+c_lcell.cpp:	if (z < Nz-1){
+c_lcell.cpp:    vscit->clear();
+c_lcell.cpp:  for (VAI p=begin; p!=end; p++) WhichCell(p->R)->insert(&(*p));
+Binary file c_lcell.o matches
+c_md.cpp:  for (VAI i=begin; i<end; i++) if (!i->is_fixed) d = mfmax(d,i->V.sqmag());
+c_md.cpp:    next=(double)(((int)(t*1000)+cfgevery - 
+c_md.cpp:	if (tso) Setdt(next-t);
+c_md.cpp:    if (track != -1){
+c_md.cpp:      cout<<sweet->F;
+c_md.cpp:  t-=dt;
+c_md.cpp:    next=(double)(((int)(t*1000)+cfgevery - 
+c_md.cpp:	  if (tso) Setdt(next-t);
+c_md.cpp:	    for (sai_j=cells_it->abegin(); sai_j!=cells_it->aend(); sai_j++){
+c_md.cpp:	      Tz+=(*sai_j)->Ek();
+c_md.cpp:	      if (!(*sai_j)->is_fixed) w++;
+c_md.cpp:	lambda=sqrt(1+dt/bhb_dt*(To/Tz-1));
+c_md.cpp:	    for (sai_j=cells_it->abegin(); sai_j!=cells_it->aend(); sai_j++)
+c_md.cpp:	      if (!(*sai_j)->is_fixed) (*sai_j)->V*=lambda;
+c_md.cpp:    t-=dt;
+c_md.cpp:	  if (tso) Setdt(next-t);
+c_md.cpp:	    for (sai_j=cells_it->abegin(); sai_j!=cells_it->aend(); sai_j++){
+c_md.cpp:	      Tz+=(*sai_j)->Ek();
+c_md.cpp:	      if (!(*sai_j)->is_fixed) w++;
+c_md.cpp:	lambda=sqrt(1+dt/bhb_dt*(To/Tz-1));
+c_md.cpp:	    for (sai_j=cells_it->abegin(); sai_j!=cells_it->aend(); sai_j++)
+c_md.cpp:	      if (!(*sai_j)->is_fixed) (*sai_j)->V*=lambda;
+c_md.cpp:    t-=dt;
+c_md.cpp:  Run(0.1, cfgevery, 0, printe, 0, -1, 1, tso,1);
+c_md.cpp:  //no-frills integration
+c_md.cpp:    next=(double)(((int)(t*1000)+cfgevery - 
+c_md.cpp:	if (tso) Setdt(next-t);
+c_md.cpp:    lambda=sqrt(1+dt/bhb_dt*(To/T-1));
+c_md.cpp:      if (!i->is_fixed)
+c_md.cpp:        i->V*=lambda;
+c_md.cpp:    if (track!= -1 )cout<<t<<"\t"<<atomix(track)->Nmap[6]<<endl;
+c_md.cpp:  t-=dt;
+c_md.cpp:    i->nlist.clear();
+c_md.cpp:    i->Nmap[6]=0; i->Nmap[9]=0; i->Nmap[14]=0; i->Nmap[17]=0;
+c_md.cpp:  if (inert!= -1){
+c_md.cpp:	R = ion->R - j->R; R.minimg(Lx,Ly);
+c_md.cpp:    for (sai_i=vscit->abegin(); sai_i!=vscit->aend(); sai_i++){
+c_md.cpp:      if (i->ix != inert)
+c_md.cpp:	for (c=vscit->nbegin(); c!=vscit->nend(); c++)
+c_md.cpp:	  for (sai_j=(*c)->abegin(); sai_j!=(*c)->aend(); sai_j++){
+c_md.cpp:	    if (i < j && j->ix!=inert){
+c_md.cpp:	      type = i->id+j->id;
+c_md.cpp:	      R = i->R-j->R; R.minimg(Lx,Ly);
+c_md.cpp:		i->nlist.push_back(n);
+c_md.cpp:		j->nlist.push_back(n);
+c_md.cpp:		i->Nmap[j->id] += n.f;
+c_md.cpp:		j->Nmap[i->id] += n.f;
+c_md.cpp:  for (VAI i=begin; i<end; i++) if (i->ix != inert){
+c_md.cpp:    i->AddNbrs();
+Binary file c_md.o matches
+config.h:  void TimeStepInit(){u=0; ek=0; for (VAI i=begin; i<end; i++) i->ts_init();}
+config.h:  void SetProps(){for (VAI i=begin; i<end; i++) i->SetProps();}
+config.h:    double z=1000; for (VAI w=begin; w<end; w++) z=mfmin(w->R.z,z); return z;}
+config.h:    double z=-1000; for (VAI w=begin; w<end; w++) z=mfmax(w->R.z,z); return z;}
+config.h:                 Nx*(((int)(fabs((R.y - Ly/2)/Lcy))%Ny) +
+config.h:                     Ny*((int)(fabs((R.z - the_top)/Lcz))%Nz))];
+consts.h:#define KB 8.6173857e-5
+c_pass.cpp:  for (VNI J0=s->nlist.begin(); J0!=s->nlist.end(); J0++){
+c_pass.cpp:    ((atom*)J0->a2)->EraseNbr(s);
+c_pass.cpp:  s->nlist.clear();
+c_pass.cpp:  subcell* subc = (subcell*)s->my_cell;
+c_pass.cpp:  for (c=subc->nbegin(); c!=subc->nend(); c++)
+c_pass.cpp:    for (sai_j=(*c)->abegin(); sai_j!=(*c)->aend(); sai_j++){
+c_pass.cpp:	type = s->id + J->id;
+c_pass.cpp:	R = s->R-J->R; R.minimg(Lx,Ly);
+c_pass.cpp:	  s->nlist.push_back(n);
+c_pass.cpp:	  J->nlist.push_back(n);
+c_pass.cpp:  s->AddNbrs();
+c_pass.cpp:  for (VNI J0=s->nlist.begin(); J0!=s->nlist.end(); J0++){
+c_pass.cpp:    ((atom*)J0->a2)->AddNbrs();
+c_pass.cpp:  return Uonly()-u;
+c_pass.cpp:  for (VAI s=begin; s<end-1; s++){
+c_pass.cpp:    if (!s->is_fixed && s->id!=9){
+c_pass.cpp:      if (s->Nt < 3.3)
+c_pass.cpp://       s->u=1000;
+c_pass.cpp:// 	  P+=s->R;
+c_pass.cpp:// 	    if (J!=s && J->id==6)
+c_pass.cpp:// 	      if ((J->R - P).minsqmag(Lx,Ly) < VDW_SQ)
+c_pass.cpp:	surf_list.insert(s->ix);
+c_pass.cpp:// 	    P+=s->R;
+c_pass.cpp:// 	    newatom->R=P;
+c_pass.cpp:// 	    if (uu < s->u){
+c_pass.cpp:// 	      s->u=uu;
+c_pass.cpp:// 	      s->P=P;
+c_pass.cpp://     if (s->id==6 && s->Nt<4){
+c_pass.cpp://       cerr<<"Target atom "<<*sii<<" at "<<target->P<<endl;
+c_pass.cpp://       newatom->R=target->P;
+c_pass.cpp://       RunQuenched(0.01,0,0,0,0,-1,1,1,0,300);
+c_pass.cpp://       if ((newatom->R - target->R).minmag(Lx,Ly)<bl*1.1){
+c_pass.cpp://  	newatom->V.clear();
+c_pass.cpp://  	kept--;
+c_pass.cpp://  	Nmax--;
+Binary file c_pass.o matches
+c_sput.cpp:  cl->insert(w);
+c_sput.cpp:  if (w->is_fixed) cl->cl_is_fixed=1;
+c_sput.cpp:  for (vj=w->nlist.begin(); vj!=w->nlist.end(); vj++){
+c_sput.cpp:    aj=(atom*)vj->a2;
+c_sput.cpp:    if(aj->p_clust==NULL)
+c_sput.cpp:    if (s->R.z < the_bottom) sput_list.insert(s->ix);
+c_sput.cpp:    if (s->p_clust==NULL){
+c_sput.cpp:      Visit(&(*s),&(*(cfg_clusts.end()-1)));
+c_sput.cpp:      if (!cl_it->cl_is_fixed)
+c_sput.cpp:  //center-of-mass velocity
+c_sput.cpp:  for (SAI s=cl->begin(); s!=cl->end(); s++){
+c_sput.cpp:    sV+=(*s)->m * (*s)->V;
+c_sput.cpp:    rmin=mfmin((*s)->R.z,rmin);
+c_sput.cpp:      for (SAI i=cl->begin(); i!=cl->end(); i++){
+c_sput.cpp:	    if (!binary_search(cl->begin(), cl->end(), &(*j))){
+c_sput.cpp:	      Rtemp=(*i)->R + sR; Rtemp.minimg(Lx,Ly);
+c_sput.cpp:	      if ((*i)->ix==inert) rc=36;
+c_sput.cpp:	      else rc=RC_SQ[(*i)->id+j->id];
+c_sput.cpp:	      if ((Rtemp - j->R).minsqmag(Lx, Ly) < rc)
+c_sput.cpp:  for (SAI s=cl->begin(); s!=cl->end(); s++){
+c_sput.cpp:    if ((*s)->id==6) nC++;
+c_sput.cpp:    if ((*s)->id==9) nF++;
+c_sput.cpp:    if ((*s)->id==14) nSi++;
+c_sput.cpp:    if ((*s)->id==17) nCl++;
+c_sput.cpp:  //center-of-mass velocity
+c_sput.cpp:  for (SAI s=cl->begin(); s!=cl->end(); s++){
+c_sput.cpp:    //cek+=(*s)->Ek();
+c_sput.cpp:    sV+=(*s)->m * (*s)->V;
+c_sput.cpp:    mass+=(*s)->m;
+c_sput.cpp:    sput_list.insert((*s)->ix);
+c_sput.cpp:    cerr<<"* Ion scattered. Time: "<<t<<". Exit V: "<<s->V
+c_sput.cpp:	<<"("<<s->Ek()<<" eV)"<<endl;
+c_sput.cpp:    inert=-1;
+c_sput.cpp:    if (s->R.z < the_bottom)
+c_sput.cpp:      cerr<<"* Atom "<<w<<" ("<<s->id<<") pushed through bottom. Time: "<<t<<endl;
+c_sput.cpp:      cerr<<"* Atom "<<w<<" ("<<s->id<<") sputtered from "
+c_sput.cpp:	  <<((s->P.is_zero())?s->R:s->P)<<" Time: "<<t<<endl;
+c_sput.cpp:  cl->insert(w);
+c_sput.cpp:  if (w->is_fixed) cl->cl_is_fixed=1;
+c_sput.cpp:  for (vj=w->nlist.begin(); vj!=w->nlist.end(); vj++){
+c_sput.cpp:    if (vj->f == 1){
+c_sput.cpp:      aj=(atom*)vj->a2;
+c_sput.cpp:      if(aj->p_clust==NULL)
+c_sput.cpp:    if (s->p_clust==NULL){
+c_sput.cpp:      BoundVisit(&(*s),&(*(cfg_clusts.end()-1)));
+c_sput.cpp:    //cerr<<"Found "<<cfg_clusts.size()-1<<endl;
+c_sput.cpp:      if (!cl_it->cl_is_fixed){
+c_sput.cpp:	for (SAI s=cl_it->begin(); s!=cl_it->end(); s++){
+c_sput.cpp:	  for (VNI vj=(*s)->nlist.begin(); vj!=(*s)->nlist.end(); vj++){
+c_sput.cpp:	    atom* aj=(atom*)vj->a2;
+c_sput.cpp:	    if (!binary_search(cl_it->begin(), cl_it->end(), aj))
+c_sput.cpp:	      cl_it->fmax = mfmax(vj->f, cl_it->fmax);
+c_sput.cpp:	if (AutoSweep(&(*cl_it)) || cl_it->fmax < 0.10){
+c_sput.cpp://  	  for (SAI s=cl_it->begin(); s!=cl_it->end(); s++)
+c_sput.cpp://   	    cerr<<(*s)->ix<<" "<<(*s)->R<<" ";
+c_sput.cpp://   	  cerr<<cl_it->fmax<<endl;
+c_sput.cpp:	  SAI anchor=cl_it->begin();
+c_sput.cpp:	  for (SAI s=cl_it->begin(); s!=cl_it->end(); s++){
+c_sput.cpp:	    for (SAI s2=cl_it->begin(); s2!=cl_it->end(); s2++){
+c_sput.cpp:	      float rad=((*s)->R - (*s2)->R).minsqmag(Lx,Ly);
+c_sput.cpp: 	      Rcom=(*s)->R*(*s)->m;
+c_sput.cpp: 	      float tr=(*s)->R.x - (*anchor)->R.x;
+c_sput.cpp:		Rcom.x+=(*s)->R.x*(*s)->m;
+c_sput.cpp:		if (tr<0) Rcom.x+=((*s)->R.x+Lx)*(*s)->m;
+c_sput.cpp:		else Rcom.x += ((*s)->R.x-Lx)*(*s)->m;
+c_sput.cpp:	      tr=(*s)->R.y - (*anchor)->R.y;
+c_sput.cpp:		Rcom.y+=(*s)->R.y*(*s)->m;
+c_sput.cpp:		if (tr<0) Rcom.y+=((*s)->R.y+Ly)*(*s)->m;
+c_sput.cpp:		else Rcom.y += ((*s)->R.y-Ly)*(*s)->m;
+c_sput.cpp:	      Rcom.z+=(*s)->R.z*(*s)->m;
+c_sput.cpp: 	    cl_mass+=(*s)->m;
+c_sput.cpp:	  if (the_top - Rcom.z < 15){
+c_sput.cpp:		  for (SAI s=cl_it->begin(); s!=cl_it->end(); s++){
+c_sput.cpp:			if (!binary_search(cl_it->begin(), cl_it->end(), &(*vj))){
+c_sput.cpp:			  if ((Rtemp - vj->R).minsqmag(Lx, Ly) < cl_rad){
+c_sput.cpp:			    s=cl_it->end();
+Binary file c_sput.o matches
+c_subcell.h://this is a class defining the subcells used in the linked-cell method.
+c_subcell.h:  void insert(atom* p){atom_list.insert(p); p->my_cell=this;}
+c_uonly.cpp:    for (VNI ij=i_->nlist.begin(); ij!=i_->nlist.end(); ij++){
+c_uonly.cpp:      atom* j = (atom*)ij->a2;
+c_uonly.cpp:	int type=i_->id+j->id;
+c_uonly.cpp:	double r=ij->r;
+c_uonly.cpp:	VA_ij = ij->f * B[type] * SpExp(-MORSE_MU[type] * r);
+c_uonly.cpp:	  VR_ij = MO_EPS[type]/r*(0.35*SpExp(-0.3*rija)
+c_uonly.cpp:			   +0.55*SpExp(-1.2*rija)
+c_uonly.cpp:			   +0.1*SpExp(-6*rija)) + MO_S[type];
+c_uonly.cpp:	  VR_ij = ij->f*A[type] * SpExp(-MORSE_LAM[type] * r);
+c_uonly.cpp:	NF_ij  = i_->Nmap[9]  - (j->id==9)  * ij->f;
+c_uonly.cpp:	NC_ij  = i_->Nmap[6]  - (j->id==6)  * ij->f;
+c_uonly.cpp:	NSi_ij = i_->Nmap[14] - (j->id==14) * ij->f;
+c_uonly.cpp:	NF_ji  = j->Nmap[9]  - (i_->id==9)  * ij->f;
+c_uonly.cpp:	NC_ji  = j->Nmap[6]  - (i_->id==6)  * ij->f;
+c_uonly.cpp:	NSi_ji = j->Nmap[14] - (i_->id==14) * ij->f;
+c_uonly.cpp:	if (ij->type==12){
+c_uonly.cpp:	else if (ij->type==15){
+c_uonly.cpp:	  if (i_->id==6) Pcf_bicubicint(NF_ij, NC_ij+NSi_ij, &P_ij, &dFP_ij,&dCP_ij);
+c_uonly.cpp:	for (VNI bond_ik=i_->nlist.begin(); bond_ik!=i_->nlist.end(); bond_ik++){
+c_uonly.cpp:	  atom* k=(atom*)bond_ik->a2;
+c_uonly.cpp:	    //*******b-sigma-pi calculations************
+c_uonly.cpp:	    elambda(i_->id, j->id, k->id, ij->r, bond_ik->r, &el, &dlam);
+c_uonly.cpp:	    G_angle(i_->id, j->id, k->id,
+c_uonly.cpp:		    ij->Rhat ^ bond_ik->Rhat, &g, &g1);
+c_uonly.cpp:	    bsp_ij += g*el*bond_ik->f;
+c_uonly.cpp:	    if (ij->type==12 && k->id==6){
+c_uonly.cpp:	      PolySwitch(k->Nt - bond_ik->f - 2, &Yik, &Y1ik);
+c_uonly.cpp:	      iNconj += bond_ik->f * Yik;
+c_uonly.cpp:	for (VNI bond_jk=j->nlist.begin(); bond_jk!=j->nlist.end(); bond_jk++){
+c_uonly.cpp:	  atom* k=(atom*)bond_jk->a2;
+c_uonly.cpp:	    //*********b-sigma-pi calculation*************
+c_uonly.cpp:	    elambda(j->id, i_->id, k->id, ij->r, bond_jk->r, &el, &dlam);
+c_uonly.cpp:	    G_angle(j->id, i_->id, k->id, 
+c_uonly.cpp:		    -(ij->Rhat ^ bond_jk->Rhat), &g, &g1);
+c_uonly.cpp:	    bsp_ji += g * el*bond_jk->f;
+c_uonly.cpp:	    if (ij->type==12 && k->id==6){
+c_uonly.cpp:	      PolySwitch(k->Nt - bond_jk->f - 2, &Yik, &Y1ik);
+c_uonly.cpp:	      jNconj += bond_jk->f * Yik;
+c_uonly.cpp:	if (ij->type==12){
+c_uonly.cpp:	set_eta(i_->id, j->id, &eta_i, &delta_i);
+c_uonly.cpp:	set_eta(j->id, i_->id, &eta_j, &delta_j);
+c_uonly.cpp:	bbar_ij = 0.5*(pow(1 + pow(bsp_ij, eta_i), -delta_i)
+c_uonly.cpp:		       + pow(1 + pow(bsp_ji, eta_j), -delta_j)
+c_uonly.cpp:	uu+=(VR_ij-bbar_ij*VA_ij);
+Binary file c_uonly.o matches
+c_vv.cpp:    if (!i->is_fixed){
+c_vv.cpp:      i->PosUpdate(dt, dtsq2, Lx, Ly);
+c_vv.cpp:      i->V+=dt2*i->F/i->m;
+c_vv.cpp:      if ((this_cell=WhichCell(i->R)) != i->my_cell){
+c_vv.cpp:        ((subcell*) i->my_cell)->erase(&(*i));
+c_vv.cpp:        ((subcell*) this_cell)->insert(&(*i));
+c_vv.cpp:    if (!i->is_fixed){
+c_vv.cpp:      i->V+=dt2*i->F/i->m;
+c_vv.cpp:      ek+= i->Ek();
+c_vv.cpp:  T=ek/3/(float)(N-NFixed)/KB;
+Binary file c_vv.o matches
+Binary file errors.o matches
+Makefile:RM = rm -f
+Makefile:CPPFLAGS = -O3 -ffast-math
+Makefile:CPPFLAGS =  -O3 -ffast-math -march=pentium4 -mcpu=pentium4 -funroll-loops -mfpmath=sse
+Makefile:CPPFLAGS = -O3 -ffast-math -march=athlon-mp -mcpu=athlon-mp -funroll-loops -mfpmath=sse
+Makefile:CPPFLAGS =  -O3 -ffast-math -march=pentium4 -mcpu=pentium4 -funroll-loops 
+Makefile:	$(CXX) -o $@ $(OBJS) $(LIBS)
+mathfun.cpp:    *Sprime -= 30*tt;
+mathfun.cpp:    *S -= 10*tt;
+mathfun.cpp:    *Sprime -=30*tt;
+mathfun.cpp:    *S-=6*tt*t;
+mathfun.h:  if (arg < -50) return 0;
+mathfun.h:inline double neg(double arg) {return -1*fabs(arg);}
+mathfun.h:inline int signof(double d){return d < 0 ? -1:1;}
+Binary file mathfun.o matches
+m_bomb.cpp:  string scfg="temp_0000-000.cfg";
+m_bomb.cpp:  bool b_test=0; //re-desorption not a problem except for H
+m_bomb.cpp:    else if (arg=="-time") runtime=atof(argv[++i]);
+m_bomb.cpp:    else if (arg=="-cfgevery") cfgevery=atoi(argv[++i]);
+m_bomb.cpp:    else if (arg=="-dt") dt=atof(argv[++i]);
+m_bomb.cpp:    else if (arg=="-begin") begin=atoi(argv[++i]);
+m_bomb.cpp:    else if (arg=="-printe") printe=1;
+m_bomb.cpp:    else if (arg=="-runs"||arg=="-rounds") runs=atoi(argv[++i]);
+m_bomb.cpp:    else if (arg=="-e"||arg=="-eion") e_ion=atof(argv[++i]);
+m_bomb.cpp:    else if (arg=="-T") T=atof(argv[++i]);
+m_bomb.cpp:    else if (arg=="-Tion") Tion=atof(argv[++i]);
+m_bomb.cpp:    else if (arg=="-type") species=argv[++i];
+m_bomb.cpp:    else if (arg=="-bhb_dt") bhb_dt=atof(argv[++i]);
+m_bomb.cpp:    else if (arg=="-tso") tso=1;
+m_bomb.cpp:    else if (arg=="-notest") b_test=0;
+m_bomb.cpp:    else if (arg=="-nocfgthermo") cfgthermo=0;
+m_bomb.cpp:    else if (arg=="-refresh") refresh=1;
+m_bomb.cpp:    else if (arg=="-nonfancy") fancy=0;
+m_bomb.cpp:    else if (arg=="-confine") confine=atof(argv[++i]);
+m_bomb.cpp:    else if (arg=="-dump"){
+m_bomb.cpp:    else if (arg=="-inc"){
+m_bomb.cpp:    else if (arg=="-azi"){
+m_bomb.cpp:    else if (arg=="-seeds")
+m_bomb.cpp:      for (int run=begin; run<=begin+runs-1; run++){
+m_bomb.cpp:	cerr<<"------------"<<DateTime()<<"--------run "<<run
+m_bomb.cpp:	    <<"-----------------------"<<endl;
+m_bomb.cpp:	  int Hix=I->ix;
+m_bomb.cpp:	  nbegin=I->Nmap[6]+I->Nmap[14];
+m_bomb.cpp:	    cfg.Run(0.01, 0, dt, printe, 0, -1, 0, tso,1);
+m_bomb.cpp:	    else if (I->Nmap[6]+I->Nmap[14] > 0.3){
+m_bomb.cpp:	      int bondix=-1;
+m_bomb.cpp:	      for (VNI sj=I->nlist.begin(); sj!=I->nlist.end(); sj++){
+m_bomb.cpp:		atom* j=(atom*)sj->a2;
+m_bomb.cpp:		if ((I->R - j->R).minsqmag(cfg.Lx,cfg.Ly) < bondr){
+m_bomb.cpp:		  bondr=(I->R - j->R).minsqmag(cfg.Lx,cfg.Ly);
+m_bomb.cpp:		  bondix=j->ix;
+m_bomb.cpp:		  <<I->R<<endl;
+m_bomb.cpp:		  <<I->Nmap[6]+I->Nmap[14]<<endl;
+m_bomb.cpp:	      if (b_test) cfg.Run(2, 0, dt, printe, 0, -1, 0, tso,1);
+m_bomb.cpp:      cerr<<"---------------------------------------------------------------------------"<<endl;
+m_bomb.cpp:    } //fancy-refresh
+m_bomb.cpp:    else{ //fancy-cumulative
+m_bomb.cpp:      for (int run=begin; run<=begin+runs-1; run++){
+m_bomb.cpp:	cerr<<"------------"<<DateTime()<<"--------run "<<run
+m_bomb.cpp:	    <<"-----------------------"<<endl;
+m_bomb.cpp:	for (VAI s=cfg.begin; s<cfg.end; s++) s->P=s->R;
+m_bomb.cpp:	int Hix=I->ix;
+m_bomb.cpp:	double nbegin=I->Nmap[6]+I->Nmap[14];
+m_bomb.cpp:	  cfg.Run(0.05, 0, dt, printe, 0, -1, 0, tso,1);
+m_bomb.cpp:	    if (fabs(1-T/cfg.T) > 0.05)
+m_bomb.cpp:	  else if (I->Nmap[6]+I->Nmap[14] > 0.3){
+m_bomb.cpp:	    int bondix=-1;
+m_bomb.cpp:	    for (VNI sj=I->nlist.begin(); sj!=I->nlist.end(); sj++){
+m_bomb.cpp:	      atom* j=(atom*)sj->a2;
+m_bomb.cpp:	      if ((I->R - j->R).minsqmag(cfg.Lx,cfg.Ly) < bondr){
+m_bomb.cpp:		bondr=(I->R - j->R).minsqmag(cfg.Lx,cfg.Ly);
+m_bomb.cpp:		bondix=j->ix;
+m_bomb.cpp:	        <<I->R<<endl;
+m_bomb.cpp:	    cerr<<"  Begin: "<<nbegin<<" End: "<<I->Nmap[6]+I->Nmap[14]<<endl;
+m_bomb.cpp:	    if (b_test) cfg.Run(0.5, 0, dt, printe, 0, -1, 0, tso,0);
+m_bomb.cpp:	      cfg.Run(0.05, 0, dt, printe, 0, -1, 0, tso,2);
+m_bomb.cpp:// 	  else if (I->id==17 && I->Nmap[17] > 0.5){
+m_bomb.cpp:      cerr<<"---------------------------------------------------------------------------"<<endl;
+m_bomb.cpp:      for (int run=begin; run<=begin+runs-1; run++){
+m_bomb.cpp:	cerr<<"------------"<<DateTime()<<"--------run "<<run
+m_bomb.cpp:	    <<"-----------------------"<<endl;
+m_bomb.cpp:	  for (VAI I=cfg.begin; I<cfg.end; I++) I->P=I->R;
+m_bomb.cpp:	  cfg.Run(runtime, 0, dt, printe, 0, -1, 0, tso,1);
+m_bomb.cpp:	  cfg.Run(0.05, 0, dt, printe, 0, -1, 0, tso,2);
+m_bomb.cpp:      for (int run=begin; run<=begin+runs-1; run++){
+m_bomb.cpp:	cerr<<"------------"<<DateTime()<<"--------run "<<run
+m_bomb.cpp:	    <<"-----------------------"<<endl;
+m_bomb.cpp:	for (VAI I=cfg.begin; I<cfg.end; I++) I->P=I->R;
+m_bomb.cpp:	cfg.Run(runtime, 0, dt, printe, 0, -1, 0, tso,1);
+m_bomb.cpp:	cfg.Run(0.05, 0, dt, printe, 0, -1, 0, tso,2);
+m_bomb.cpp:      cerr<<"---------------------------------------------------------------------------"<<endl;
+Binary file m_bomb.o matches
+m_cgmin.cpp:#define EPS 1.e-10
+m_cgmin.cpp:double ftol_=1e-7;
+m_cgmin.cpp:  cfg->TimeStepInit();
+m_cgmin.cpp:  cfg->ReNeighbor();
+m_cgmin.cpp:  cfg->ForceEval();
+m_cgmin.cpp:  return cfg->u;
+m_cgmin.cpp:#define TINY 1.e-20
+m_cgmin.cpp:#define SIGN(a, b) ((b) > 0.0 ? fabs(a) : -fabs(a)) 
+m_cgmin.cpp:  *cx=(*bx)+GOLD*(*bx-*ax);
+m_cgmin.cpp:    r=(*bx-*ax)*(*fb-*fc);
+m_cgmin.cpp:    q=(*bx-*cx)*(*fb-*fa);
+m_cgmin.cpp:    u=(*bx)-((*bx-*cx)*q-(*bx-*ax)*r)/(2.0*SIGN(DMAX(fabs(q-r), TINY), q-r));
+m_cgmin.cpp:    ulim=(*bx)+GLIMIT*(*cx-*bx);
+m_cgmin.cpp:    if ((*bx-u)*(u-*cx) > 0.0)
+m_cgmin.cpp:      u=(*cx)+GOLD*(*cx-*bx);
+m_cgmin.cpp:    else if ((*cx-u)*(u-ulim) > 0.0)
+m_cgmin.cpp:      	SHFT(*bx, *cx, u, *cx+GOLD*(*cx-*bx));
+m_cgmin.cpp:    else if ((u-ulim)*(ulim-*cx) >= 0.0)
+m_cgmin.cpp:      u=(*cx)+GOLD*(*cx-*bx);
+m_cgmin.cpp:    if (fabs(x-xm)<=(tol2-0.5*(b-a)))
+m_cgmin.cpp:      r=(x-w)*(fx-fv);
+m_cgmin.cpp:      q=(x-v)*(fx-fw);
+m_cgmin.cpp:      p=(x-v)*q-(x-w)*r;
+m_cgmin.cpp:      q=2.0*(q-r);
+m_cgmin.cpp:      if (q>0.0) p=-p;
+m_cgmin.cpp:      if (fabs(p) >= fabs(0.5*q*etemp) || p <= q*(a-x) || p >= q*(b-x))
+m_cgmin.cpp:      	d=CGOLD*(e=(x >= xm ? a-x : b-x));
+m_cgmin.cpp:      	if (u-a < tol2 || b-u < tol2)
+m_cgmin.cpp:      	  d=SIGN(tol1, xm-x);
+m_cgmin.cpp:      d=CGOLD*(e=(x >= xm ? a-x : b-x));
+m_cgmin.cpp:  string scfg="temp_0000-000.cfg";
+m_cgmin.cpp:    else if (arg=="-ftol") ftol_=atof(argv[++i]);
+m_cgmin.cpp:    else if (arg=="-nosave") dump=0;
+m_cgmin.cpp:  n=3*(cfg.N-cfg.NFixed);
+m_cgmin.cpp:    if (!s->is_fixed)
+m_cgmin.cpp:      r_.push_back(&(s->R.x));
+m_cgmin.cpp:      r_.push_back(&(s->R.y));
+m_cgmin.cpp:      r_.push_back(&(s->R.z));
+m_cgmin.cpp:      ng_.push_back(&(s->F.x));
+m_cgmin.cpp:      ng_.push_back(&(s->F.y));
+m_cgmin.cpp:      ng_.push_back(&(s->F.z));
+m_cgmin.cpp:  //r_=(double*)&(A->pos->x);
+m_cgmin.cpp:  //ng_=(double*)&(A->frc->x);
+m_cgmin.cpp:    data_out(iter, fret, 2.0*fabs(fret-fp));
+m_cgmin.cpp:    if (2.0*fabs(fret-fp) <= ftol_*(fabs(fret)+fabs(fp)+EPS)) break;
+m_cgmin.cpp:      dgg+=(-(*ng_[j])+g[j])*-(*ng_[j]);
+Binary file m_cgmin.o matches
+md_main.cpp://An object-oriented molecular dynamics code in C++.
+md_main.cpp:  if (arg=="-run") MainRun(argc, argv);
+md_main.cpp:  else if (arg=="-addfix") MainAddFixed(argc,argv);
+md_main.cpp:  else if (arg=="-reset") MainReset(argc, argv);
+md_main.cpp:  else if (arg=="-delete") MainDelete(argc, argv);
+md_main.cpp:  else if (arg=="-seto") MainShiftOrigin(argc,argv);
+md_main.cpp:  else if (arg=="-rand") MainRandomize(argc,argv);
+md_main.cpp:  else if (arg=="-init") MainInit(argc,argv);
+md_main.cpp:  else if (arg=="-edep") MainEnergyDep(argc, argv);
+md_main.cpp:  //else if (arg=="-sat") MainSat(argc,argv);
+md_main.cpp:  //else if (arg=="-pass") MainPass(argc,argv);
+md_main.cpp:  else if (arg=="-addion") MainAddion(argc, argv);
+md_main.cpp:  //else if (arg=="-path") MainPath(argc,argv);
+md_main.cpp:  else if (arg=="-bomb") MainIonBombard(argc,argv);
+md_main.cpp:  else if (arg=="-mixion") MainMixIon(argc,argv);
+md_main.cpp:  else if (arg=="-cgmin") MainCGmin(argc,argv);
+md_main.cpp:  else if (arg=="-sweep") MainMisc(argc,argv);
+Binary file md_main.o matches
+m_edep.cpp:      R.x=m-cfg.Lx/2;
+m_edep.cpp:      R.y=cfg.Ly/2-n;
+m_edep.cpp:	box[m][n]-=1;
+m_edep.cpp:	int y=(int)(fabs((R.y - cfg.Ly/2)/cfg.Lcy))%cfg.Ny;
+m_edep.cpp:	int z=(int)(fabs((R.z - cfg.the_top)/cfg.Lcz))%cfg.Nz;
+m_edep.cpp:	  for (SAI j0=(*c)->abegin(); j0!=(*c)->aend(); j0++)
+m_edep.cpp:	      if ((R - (*j0)->R).minsqmag(cfg.Lx, cfg.Ly) > 1)
+m_edep.cpp:		box[m][n]=(*j0)->R.z;
+m_edep.cpp:  string scfg="temp_0000-000.cfg";
+m_edep.cpp:    else if (arg=="-time") runtime=atof(argv[++i]);
+m_edep.cpp:    else if (arg=="-dt") dt=atof(argv[++i]);
+m_edep.cpp:    else if (arg=="-runs") runs=atoi(argv[++i]);
+m_edep.cpp:    else if (arg=="-e")  e=atof(argv[++i]);
+m_edep.cpp:    else if (arg=="-T") Tion=atof(argv[++i]);
+m_edep.cpp:    else if (arg=="-tso") tso=1;
+m_edep.cpp:    else if (arg=="-id") id=argv[++i];
+m_edep.cpp:    else if (arg=="-num") num=atoi(argv[++i]);
+m_edep.cpp:    else if (arg=="-seed") seed=atoi(argv[++i]);
+m_edep.cpp:    else if (arg=="-begin") begin=atoi(argv[++i]);
+m_edep.cpp:    else if (arg=="-res") res=atof(argv[++i]);
+m_edep.cpp:    else if (arg=="-noion") addion=0;
+m_edep.cpp:    else if (arg=="-inc"){
+m_edep.cpp:    else if (arg=="-azi"){
+m_edep.cpp:  double zmin=-5;
+m_edep.cpp:  for (int run=begin; run<=begin+runs-1; run++){
+m_edep.cpp:    cerr<<"----"<<DateTime()<<"--EDEP Run "<<run<<"-------------"<<endl;
+m_edep.cpp:    else ion=cfg.end-1;
+m_edep.cpp:    double ek=ion->Ek();
+m_edep.cpp:    double z_cutoff=ion->R.z+0.1;
+m_edep.cpp:    while (cfg.t<finish && ion->R.z <= z_cutoff && ion->R.z > cfg.the_bottom){
+m_edep.cpp:      i=(int)((my_top-ion->R.z)/res);
+m_edep.cpp:      if (i<Nz) depth[i]+=cfg.dt*ion->Ek()/ek;
+Binary file m_edep.o matches
+m_init.cpp:    if(arg=="-T") T=atof(argv[++i]);
+m_init.cpp:    else if(arg=="-I") { Ix=atoi(argv[++i]); Iy=Ix; Iz=Ix;}
+m_init.cpp:    else if(arg=="-Ix") Ix=atoi(argv[++i]);
+m_init.cpp:    else if(arg=="-Iy") Iy=atoi(argv[++i]);
+m_init.cpp:    else if(arg=="-Iz") Iz=atoi(argv[++i]);
+m_init.cpp:    else if(arg=="-rho") rho=atof(argv[++i]);
+m_init.cpp:    else if(arg=="-name") name=argv[++i];
+m_init.cpp:    else if(arg=="-mat" || arg=="-id") id=atoi(argv[++i]);
+m_init.cpp:    else if(arg=="-seed") seed=atoi(argv[++i]);
+m_init.cpp:  string arg; string scfg="temp_0000-000.cfg";
+m_init.cpp:    else if (arg=="-rho") rho=atof(argv[++i]);
+Binary file m_init.o matches
+m_ion.cpp:    else if (arg=="-e") e=atof(argv[++i]);
+m_ion.cpp:    else if (arg=="-type") species=argv[++i];
+m_ion.cpp:    else if (arg=="-T") T=atof(argv[++i]);
+m_ion.cpp:    else if (arg=="-seed") seed=atoi(argv[++i]);
+m_ion.cpp:    else if (arg=="-confine") confine=atof(argv[++i]);
+m_ion.cpp:    else if (arg=="-inc"){
+m_ion.cpp:    else if (arg=="-azi"){
+m_ion.cpp:    else if (arg=="-nosave") nosave=1;
+Binary file m_ion.o matches
+m_manip.cpp:  short ix=-1; string arg;
+m_manip.cpp:    else if (arg=="-x") x=atof(argv[++i]);
+m_manip.cpp:    else if (arg=="-y") y=atof(argv[++i]);
+m_manip.cpp:    else if (arg=="-ix") ix=atoi(argv[++i]);
+m_manip.cpp:    if (ix!=-1){
+m_manip.cpp:	R=cfg.atomix(ix)->R;
+m_manip.cpp:      i->R-=R; i->R.minimg(cfg.Lx, cfg.Ly);
+m_manip.cpp:  short ix=-1; string arg;
+m_manip.cpp:    else if (arg=="-T") T=atof(argv[++i]);
+m_manip.cpp:  string scfg="temp_0000-000.cfg";
+m_manip.cpp://   string scfg="temp_0000-000.cfg";
+m_manip.cpp://     else if (arg=="-id") id=argv[++i];
+Binary file m_manip.o matches
+m_mix.cpp:  string scfg="temp_0000-000.cfg";
+m_mix.cpp:    else if (arg=="-time") runtime=atof(argv[++i]);
+m_mix.cpp:    else if (arg=="-cfgevery") cfgevery=atoi(argv[++i]);
+m_mix.cpp:    else if (arg=="-dt") dt=atof(argv[++i]);
+m_mix.cpp:    else if (arg=="-begin") begin=atoi(argv[++i]);
+m_mix.cpp:    else if (arg=="-printe") printe=1;
+m_mix.cpp:    else if (arg=="-runs"||arg=="-rounds") runs=atoi(argv[++i]);
+m_mix.cpp:    else if (arg=="-T") T=atof(argv[++i]);
+m_mix.cpp:    else if (arg=="-bhb_dt") bhb_dt=atof(argv[++i]);
+m_mix.cpp:    else if (arg=="-pickup") pickup=1;
+m_mix.cpp:    else if (arg=="-tso") tso=1;
+m_mix.cpp:    else if (arg=="-notest") b_test=0;
+m_mix.cpp:    else if (arg=="-nocfgthermo") cfgthermo=0;
+m_mix.cpp:    else if (arg=="-confine") confine=atof(argv[++i]);
+m_mix.cpp:    else if (arg=="-dump"){
+m_mix.cpp:    else if (arg=="-inc"){
+m_mix.cpp:    else if (arg=="-azi"){
+m_mix.cpp:    else if (arg=="-seeds")
+m_mix.cpp:    else if (arg=="-ions") {
+m_mix.cpp:  //command line looks like -mix species1,T1,e1,ratio1:species2,T2,e2,ratio2
+m_mix.cpp:      level1.push_back(mix.substr(h,p-h));
+m_mix.cpp:	level2.push_back(m.substr(h,p-h));
+m_mix.cpp:    total+=vmi->ratio;
+m_mix.cpp:    vmi->ratio/=total;
+m_mix.cpp:    vmi->ratio+=sum;
+m_mix.cpp:    sum=vmi->ratio;
+m_mix.cpp:    vmi->type=RectifySpecies(vmi->type);
+m_mix.cpp:  srand(TimeSeed()-1); //don't want to reseed with the same number.
+m_mix.cpp:    if (fff < vmi->ratio) break;
+m_mix.cpp:  for (int run=begin; run<=begin+runs-1; run++){
+m_mix.cpp:    cerr<<"------------"<<DateTime()<<"--------run "<<run
+m_mix.cpp:	<<"-----------------------"<<endl;
+m_mix.cpp:    I=cfg.AddIon(vmi->e, vmi->type, vmi->T, choose_inc, inc, choose_azi, 
+m_mix.cpp:    for (VAI s=cfg.begin; s<cfg.end; s++) s->P=s->R;
+m_mix.cpp:    if (vmi->e != 0){
+m_mix.cpp:      cfg.Run(runtime, 0, dt, printe, 0, -1, 0, tso,1);
+m_mix.cpp:      cfg.Run(0.05, 0, dt, printe, 0, -1, 0, tso,2);
+m_mix.cpp:      int Hix=I->ix;
+m_mix.cpp:      double nbegin=I->Nmap[6]+I->Nmap[14];  
+m_mix.cpp:	cfg.Run(0.01, 0, dt, printe, 0, -1, 0, 0,1);
+m_mix.cpp:	  if (fabs(1-T/cfg.T) > 0.05)
+m_mix.cpp:	else if (I->Nmap[6]+I->Nmap[14] > 0.3){
+m_mix.cpp:	  cerr<<"* Species appears to be bound. "<<I->R<<endl;
+m_mix.cpp:	  cerr<<"  Begin: "<<nbegin<<" End: "<<I->Nmap[6]+I->Nmap[14]<<endl;
+m_mix.cpp:	  cfg.Run(0.05, 0, dt, printe, 0, -1, 0, 0 ,2);
+m_mix.cpp:      if (fff < vmi->ratio) break;
+m_mix.cpp:    if ((vmi->type=="Ar" && dump_before) || dump_each) cfg.Dump();
+m_mix.cpp:  cerr<<"---------------------------------------------------------------------------"<<endl;
+Binary file m_mix.o matches
+m_run.cpp:  int cfgevery=0; int track=-1; bool tso=0;
+m_run.cpp:    else if (arg=="-time") runtime=atof(argv[++i]);
+m_run.cpp:    else if (arg=="-T") To=atof(argv[++i]);
+m_run.cpp:    else if (arg=="-tso") tso=1;
+m_run.cpp:    else if (arg=="-cfgevery") cfgevery=atoi(argv[++i]);
+m_run.cpp:    else if (arg=="-dt") dt=atof(argv[++i]);
+m_run.cpp:    else if (arg=="-bhb_dt") bhb_dt=atof(argv[++i]);
+m_run.cpp:    else if (arg=="-printe") printe=1;
+m_run.cpp:    else if (arg=="-track") track=atoi(argv[++i]);
+m_run.cpp:    else if (arg=="-dump_end") dump_end=1;
+m_run.cpp:    else if (arg=="-quiet") quiet=1;
+m_run.cpp:    else if (arg=="-nosput") sput=0;
+m_run.cpp:    else if (arg=="-sweep") sput=2;
+m_run.cpp:    else if (arg=="-quench") {quench=1; To=atof(argv[++i]);}
+Binary file m_run.o matches
+m_sat.cpp:    else if (arg=="-id") id=atoi(argv[++i]);
+m_sat.cpp:    else if (arg=="-rounds") rounds=atoi(argv[++i]);
+m_sat.cpp:    else if (arg=="-time") runtime=atof(argv[++i]);
+m_sat.cpp:    else if (arg=="-begin") begin=atoi(argv[++i]);
+m_sat.cpp:    else if (arg=="-T") T=atof(argv[++i]);
+m_sat.cpp://   for (int run=begin; run<=begin+rounds-1; run++){
+m_sat.cpp://     cerr<<"------------"<<DateTime()<<"--------round "<<run
+m_sat.cpp:// 	<<"-----------------------"<<endl;
+m_sat.cpp://       if (i->id==6 && !i->is_fixed){
+m_sat.cpp:// 	if (i->u < u_min){
+m_sat.cpp:// 	  u_min=i->u;
+m_sat.cpp://     test->R=target->P;
+m_sat.cpp://     cerr<<"* Adding atom "<<test->ix<<" to "<<target->ix<<" at "<<test->R<<endl;
+m_sat.cpp://     cfg.RunQuenched(runtime,0,0,0,0,-1,0,0,0,T);
+m_sat.cpp://   cerr<<"---------------------------------------------------------------------------"<<endl;
+nbr.cpp:  Rhat*=-1;
+nbr.cpp:  PolySwitch((r-dmin)/(dmax-dmin), &f, &fprime);
+nbr.cpp:  fprime/=(dmax-dmin);
+Binary file nbr.o matches
+pdbdump.cpp:    int serial=-1;
+pdbdump.cpp:	while(serial+1 < s->ix){
+pdbdump.cpp:      sprintf (outbuf, "%4s", name[s->id].c_str()); pdb<<outbuf;
+pdbdump.cpp:      sprintf (outbuf, "%4d", s->ix); pdb<<outbuf;
+pdbdump.cpp:      //code for insertion of residues (char); skip columns 28-30
+pdbdump.cpp:      sprintf (outbuf, "%8.3f%8.3f%8.3f",s->R.x,s->R.y,s->R.z); pdb<<outbuf;
+pdbdump.cpp:      //occupancy factor (6.2) --i use this for color defs
+pdbdump.cpp:      sprintf (outbuf, "%6.2f", s->Nt); pdb<<outbuf;
+pdbdump.cpp:      if (!s->is_fixed)
+pdbdump.cpp:	if (s->Ek() < 9){
+pdbdump.cpp:	  sprintf(outbuf, "%6.2f", (9-s->Ek())/9.0); 
+pdbdump.cpp:      while (serial < Nmax-1){
+rdf.cpp:  string scfg="temp_0000-000.cfg";
+rdf.cpp:    else if (arg=="-time") runtime=atof(argv[++i]);
+rdf.cpp:    else if (arg=="-dt") dt=atof(argv[++i]);
+rdf.cpp:    else if (arg=="-printe") printe=1;
+rdf.cpp:    else if (arg=="-tso") tso=1;
+rdf.cpp:    else if (arg=="-dr") dr=atof(argv[++i]);
+rdf.cpp:      for (i0=cells_it->abegin(); i0!=cells_it->aend(); i0++)  
+rdf.cpp:	for (c=cells_it->nbegin(); c!=cells_it->nend(); c++)
+rdf.cpp:	  for (j0=(*c)->abegin(); j0!=(*c)->aend(); j0++)
+rdf.cpp:	      rij=((*i0)->R - (*j0)->R).minsqmag(cfg.Lx, cfg.Ly);
+rdf.cpp:	      if (bin<num_bins && !(*i0)->is_fixed && !(*j0)->is_fixed){
+rdf.cpp:		if ((*i0)->id + (*j0)->id==28)
+rdf.cpp:		else if ((*i0)->id + (*j0)->id==23)
+rdf.cpp:	      if (rij< ((*i0)->rc >? (*j0)->rc)){
+rdf.cpp:		(*i0)->nlist.insert(*j0);
+rdf.cpp:		(*j0)->nlist.insert(*i0);
+rdf.cpp:  cfg.t-=cfg.dt;
+rdf.cpp:  double C=4.0*PI*(double)(cfg.N-cfg.NFixed)
+rdf.cpp:    double nideal=C*(pow(rupper,3)-pow(rlower,3));
+rdf.cpp:    gSiSi[i]=(double)histSiSi[i]/((finish-start)/dt)/
+rdf.cpp:      (double)(cfg.N-cfg.NFixed)/nideal;
+rdf.cpp:    gSiF[i]=(double)histSiF[i]/((finish-start)/dt)/
+rdf.cpp:      (double)(cfg.N-cfg.NFixed)/nideal;
+rdf.cpp:    gFF[i]=(double)histFF[i]/((finish-start)/dt)/
+rdf.cpp:      (double)(cfg.N-cfg.NFixed)/nideal;
+strfun.cpp:  return front+"-"+bitch.substr(5,9);
+Binary file strfun.o matches
+svector.cpp:   q1=sin(0.5*theta)*cos(0.5*(phi-psi));
+svector.cpp:   q2=sin(0.5*theta)*sin(0.5*(phi-psi));
+svector.cpp:   double dx=(q0*q0+q1*q1-q2*q2-q3*q3)*x
+svector.cpp:     +(2*(q1*q3-q0*q2))*z;
+svector.cpp:   double dy=(2*(q1*q2-q0*q3))*x
+svector.cpp:     +(q0*q0-q1*q1+q2*q2-q3*q3)*y
+svector.cpp:     +(2*(q2*q3-q1*q0))*y
+svector.cpp:     +(q0*q0-q1*q1-q2*q2+q3*q3)*z;
+svector.cpp://****************input-output functions**************
+svector.h:    while (abs(x/Lx)>0.5) x = (x<0) ? x+Lx : x-Lx;
+svector.h:    while (abs(y/Ly)>0.5) y = (y<0) ? y+Ly : y-Ly;
+svector.h:  //void operator -= (double f) {x-=f; y-=f; z-=f;}
+svector.h:  void operator -= (const svector& v) {x-=v.x; y-=v.y; z-=v.z;}
+svector.h:    {return svector(V1.y*V2.z-V1.z*V2.y, 
+svector.h:		    V1.z*V2.x-V1.x*V2.z,
+svector.h:		    V1.x*V2.y-V1.y*V2.x);}
+svector.h:  friend svector operator - (const svector& V1, const svector& V2)
+svector.h:    {return svector(V1.x-V2.x, V1.y-V2.y, V1.z-V2.z);}
+Binary file svector.o matches
+sysfun.cpp://     execlp("sh", "sh", "-c", s, (char *) 0);
+Binary file sysfun.o matches
+tricof.h:-3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:2, 0, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:-3, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -3, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:9, 0, 0, -9, -9, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 3, -6, 0, 0, -3, 6, 0, 0, -6, 3, 0, 0, -3, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 2, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:-6, 0, 0, 6, 6, 0, 0, -6, 0, 0, 0, 0, 0, 0, 0, 0, -4, 0, 0, -2, 4, 0, 0, 2, -3, 0, 0, 3, -3, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, -1, -2, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:2, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:-6, 0, 0, 6, 6, 0, 0, -6, 0, 0, 0, 0, 0, 0, 0, 0, -3, 0, 0, -3, 3, 0, 0, 3, -4, 0, 0, 4, -2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, -2, -1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:4, 0, 0, -4, -4, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 2, -2, 0, 0, -2, 2, 0, 0, -2, 2, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, -3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, 0, -1, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, -3, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -3, 0, 0, 3, 0, 0, 0, 0, -2, 0, 0, -1, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, -9, -9, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 3, -6, 0, 0, -3, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, -6, 3, 0, 0, -3, 4, 0, 0, 2, 2, 0, 0, 1, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, -6, 0, 0, 6, 6, 0, 0, -6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -4, 0, 0, -2, 4, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, -3, 0, 0, 3, -3, 0, 0, 3, -2, 0, 0, -1, -2, 0, 0, -1, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, -2, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, -6, 0, 0, 6, 6, 0, 0, -6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -3, 0, 0, -3, 3, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, -4, 0, 0, 4, -2, 0, 0, 2, -2, 0, 0, -2, -1, 0, 0, -1, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, -4, -4, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 2, -2, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, -2, 2, 0, 0, -2, 1, 0, 0, 1, 1, 0, 0, 1, 
+tricof.h:-3, 3, 0, 0, 0, 0, 0, 0, -2, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:9, -9, 0, 0, -9, 9, 0, 0, 6, 3, 0, 0, -6, -3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, -6, 0, 0, 3, -3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 2, 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:-6, 6, 0, 0, 6, -6, 0, 0, -4, -2, 0, 0, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -3, 3, 0, 0, -3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, -1, 0, 0, -2, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, -1, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, -9, 0, 0, -9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 3, 0, 0, -6, -3, 0, 0, 6, -6, 0, 0, 3, -3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 2, 0, 0, 2, 1, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -6, 6, 0, 0, 6, -6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -4, -2, 0, 0, 4, 2, 0, 0, -3, 3, 0, 0, -3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, -1, 0, 0, -2, -1, 0, 0, 
+tricof.h:9, -9, 9, -9, 0, 0, 0, 0, 6, 3, -3, -6, 0, 0, 0, 0, 6, -6, -3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 2, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, -9, 9, -9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, -6, -3, 3, 0, 0, 0, 0, 6, 3, -3, -6, 0, 0, 0, 0, 4, 2, 1, 2, 0, 0, 0, 0, 
+tricof.h:-27, 27, -27, 27, 27, -27, 27, -27, -18, -9, 9, 18, 18, 9, -9, -18, -18, 18, 9, -9, 18, -18, -9, 9, -18, 18, -18, 18, -9, 9, -9, 9, -12, -6, -3, -6, 12, 6, 3, 6, -12, 12, 6, -6, -6, 6, 3, -3, -12, -6, 6, 12, -6, -3, 3, 6, -8, -4, -2, -4, -4, -2, -1, -2, 
+tricof.h:18, -18, 18, -18, -18, 18, -18, 18, 12, 6, -6, -12, -12, -6, 6, 12, 12, -12, -6, 6, -12, 12, 6, -6, 9, -9, 9, -9, 9, -9, 9, -9, 8, 4, 2, 4, -8, -4, -2, -4, 6, -6, -3, 3, 6, -6, -3, 3, 6, 3, -3, -6, 6, 3, -3, -6, 4, 2, 1, 2, 4, 2, 1, 2, 
+tricof.h:-6, 6, -6, 6, 0, 0, 0, 0, -4, -2, 2, 4, 0, 0, 0, 0, -3, 3, 3, -3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, -1, -1, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -6, 6, -6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -3, 3, 3, -3, 0, 0, 0, 0, -4, -2, 2, 4, 0, 0, 0, 0, -2, -1, -1, -2, 0, 0, 0, 0, 
+tricof.h:18, -18, 18, -18, -18, 18, -18, 18, 12, 6, -6, -12, -12, -6, 6, 12, 9, -9, -9, 9, -9, 9, 9, -9, 12, -12, 12, -12, 6, -6, 6, -6, 6, 3, 3, 6, -6, -3, -3, -6, 6, -6, -6, 6, 3, -3, -3, 3, 8, 4, -4, -8, 4, 2, -2, -4, 4, 2, 2, 4, 2, 1, 1, 2, 
+tricof.h:-12, 12, -12, 12, 12, -12, 12, -12, -8, -4, 4, 8, 8, 4, -4, -8, -6, 6, 6, -6, 6, -6, -6, 6, -6, 6, -6, 6, -6, 6, -6, 6, -4, -2, -2, -4, 4, 2, 2, 4, -3, 3, 3, -3, -3, 3, 3, -3, -4, -2, 2, 4, -4, -2, 2, 4, -2, -1, -1, -2, -2, -1, -1, -2, 
+tricof.h:2, -2, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:-6, 6, 0, 0, 6, -6, 0, 0, -3, -3, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -4, 4, 0, 0, -2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, -2, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:4, -4, 0, 0, -4, 4, 0, 0, 2, 2, 0, 0, -2, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -2, 0, 0, 2, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -6, 6, 0, 0, 6, -6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -3, -3, 0, 0, 3, 3, 0, 0, -4, 4, 0, 0, -2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, -2, 0, 0, -1, -1, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, -4, 0, 0, -4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, -2, -2, 0, 0, 2, -2, 0, 0, 2, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 
+tricof.h:-6, 6, -6, 6, 0, 0, 0, 0, -3, -3, 3, 3, 0, 0, 0, 0, -4, 4, 2, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, -2, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -6, 6, -6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -4, 4, 2, -2, 0, 0, 0, 0, -3, -3, 3, 3, 0, 0, 0, 0, -2, -2, -1, -1, 0, 0, 0, 0, 
+tricof.h:18, -18, 18, -18, -18, 18, -18, 18, 9, 9, -9, -9, -9, -9, 9, 9, 12, -12, -6, 6, -12, 12, 6, -6, 12, -12, 12, -12, 6, -6, 6, -6, 6, 6, 3, 3, -6, -6, -3, -3, 8, -8, -4, 4, 4, -4, -2, 2, 6, 6, -6, -6, 3, 3, -3, -3, 4, 4, 2, 2, 2, 2, 1, 1, 
+tricof.h:-12, 12, -12, 12, 12, -12, 12, -12, -6, -6, 6, 6, 6, 6, -6, -6, -8, 8, 4, -4, 8, -8, -4, 4, -6, 6, -6, 6, -6, 6, -6, 6, -4, -4, -2, -2, 4, 4, 2, 2, -4, 4, 2, -2, -4, 4, 2, -2, -3, -3, 3, 3, -3, -3, 3, 3, -2, -2, -1, -1, -2, -2, -1, -1, 
+tricof.h:4, -4, 4, -4, 0, 0, 0, 0, 2, 2, -2, -2, 0, 0, 0, 0, 2, -2, -2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+tricof.h:0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, -4, 4, -4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -2, -2, 2, 0, 0, 0, 0, 2, 2, -2, -2, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 
+tricof.h:-12, 12, -12, 12, 12, -12, 12, -12, -6, -6, 6, 6, 6, 6, -6, -6, -6, 6, 6, -6, 6, -6, -6, 6, -8, 8, -8, 8, -4, 4, -4, 4, -3, -3, -3, -3, 3, 3, 3, 3, -4, 4, 4, -4, -2, 2, 2, -2, -4, -4, 4, 4, -2, -2, 2, 2, -2, -2, -2, -2, -1, -1, -1, -1, 
+tricof.h:8, -8, 8, -8, -8, 8, -8, 8, 4, 4, -4, -4, -4, -4, 4, 4, 4, -4, -4, 4, -4, 4, 4, -4, 4, -4, 4, -4, 4, -4, 4, -4, 2, 2, 2, 2, -2, -2, -2, -2, 2, -2, -2, 2, 2, -2, -2, 2, 2, 2, -2, -2, 2, 2, -2, -2, 1, 1, 1, 1, 1, 1, 1, 1
+tricubic.cpp: *  m x n x l 8-membered grid cubes.  Each one of these grid cubes 
+tricubic.cpp: *  3D-matrix of 3D-matrices",  or (*)(***c)[4][4][4], and dynamically
+tricubic.cpp:  d1 = x1u - x1l;
+tricubic.cpp:  d2 = x2u - x2l;
+tricubic.cpp:  d3 = x3u - x3l;
+tricubic.cpp:  t = (x1 - x1l)/d1;
+tricubic.cpp:  u = (x2 - x2l)/d2;
+tricubic.cpp:  v = (x3 - x3l)/d3;
+tricubic.cpp:  for (i = 3; i >= 0; i--){
+tricubic.cpp:     *              (8)------(7)
+tricubic.cpp:     *		(4)------(3)  |
+tricubic.cpp:     *		 |  (5)---|--(6)               /\    __ 
+tricubic.cpp:     *          (1)------(2)             1===>  2  3 
+tricubic.cpp:  fcc[0][1][1] = -0.0412;		/* C2F */
+tricubic.cpp:  fcc[0][2][1] = -0.0683;		/* CC dbl b. in C=CF2 */
+tricubic.cpp:  fcc[1][1][1] = -0.0635;		/* CC tpl b. in FCCF */
+tricubic.cpp:  fcc[1][1][2] = -0.0127;		/* C4 */
+tricubic.cpp:  fcc[1][2][1] = -0.1690;		/* CC b.e. in C2F3 */
+tricubic.cpp:  fcc[2][2][1] = -0.1248;		/* CC b.e. in F2CCF2 */
+tricubic.cpp:  fcc[2][3][1] = fcc[2][3][2] = -0.0363;  /* Evac for diamond */
+tricubic.cpp:  fcc[1][2][2] = -0.0243;		    /* Evac for graphite */
+tricubic.cpp:    fcc12[0][0][k] =(fcc[1][1][k]-fcc[1][0][k]-fcc[0][1][k]+fcc[0][0][k]);
+tricubic.cpp:    fcc12[ls][0][k]=(fcc[ls][1][k]-fcc[ls][0][k]-fcc[ls-1][1][k]+fcc[ls-1][0][k]);
+tricubic.cpp:    fcc12[0][ms][k]=(fcc[1][ms][k]-fcc[1][ms-1][k]-fcc[0][ms][k]+fcc[0][ms-1][k]);
+tricubic.cpp:    fcc12[ls][ms][k]=(fcc[ls][ms][k]-fcc[ls][ms-1][k]-fcc[ls-1][ms][k]+fcc[ls-1][ms-1][k]);
+tricubic.cpp:	(-3*(fcc[i+1][0][k]-fcc[i-1][0][k])+
+tricubic.cpp:	 4*(fcc[i+1][1][k]-fcc[i-1][1][k])-(fcc[i+1][2][k]-fcc[i-1][2][k]))/4;
+tricubic.cpp:	-(-3*(fcc[i+1][ms][k]-fcc[i-1][ms][k])+
+tricubic.cpp:	  4*(fcc[i+1][ms-1][k]-fcc[i-1][ms-1][k])-(fcc[i+1][ms-2][k]-fcc[i-1][ms-2][k]))/4;
+tricubic.cpp:	(-3*(fcc[0][j+1][k]-fcc[0][j-1][k])+
+tricubic.cpp:	 4*(fcc[1][j+1][k]-fcc[1][j-1][k])-(fcc[2][j+1][k]-fcc[2][j-1][k]))/4;
+tricubic.cpp:	-(-3*(fcc[ls][j+1][k]-fcc[ls][j-1][k])+
+tricubic.cpp:	  4*(fcc[ls-1][j+1][k]-fcc[ls-1][j-1][k])-(fcc[ls-2][j+1][k]-fcc[ls-2][j-1][k]))/4;
+tricubic.cpp:    fcc23[i][0][0] =(fcc[i][1][1]-fcc[i][1][0]-fcc[i][0][1]+fcc[i][0][0]);
+tricubic.cpp:    fcc23[i][ms][0]=(fcc[i][ms][1]-fcc[i][ms][0]-fcc[i][ms-1][1]+fcc[i][ms-1][0]);
+tricubic.cpp:    fcc23[i][0][ns]=(fcc[i][1][2]-fcc[i][1][1]-fcc[i][0][2]+fcc[i][0][1]);
+tricubic.cpp:    fcc23[i][ms][ns]=(fcc[i][ms][2]-fcc[i][ms][1]-fcc[i][ms-1][2]+fcc[i][ms-1][1]);
+tricubic.cpp:	(-3*(fcc[i][0][k+1]-fcc[i][0][k-1])+
+tricubic.cpp:	 4*(fcc[i][1][k+1]-fcc[i][1][k-1])-(fcc[i][2][k+1]-fcc[i][2][k-1]))/2;
+tricubic.cpp:	-(-3*(fcc[i][ms][k+1]-fcc[i][ms][k-1])+
+tricubic.cpp:	  4*(fcc[i][ms-1][k+1]-fcc[i][ms-1][k-1])-(fcc[i][ms-2][k+1]-fcc[i][ms-2][k-1]))/2;
+tricubic.cpp:	(-3*(fcc[i][j+1][0]-fcc[i][j-1][0])+
+tricubic.cpp:	 4*(fcc[i][j+1][1]-fcc[i][j-1][1])-(fcc[i][j+1][2]-fcc[i][j-1][2]));
+tricubic.cpp:	-(-3*(fcc[i][j+1][ns]-fcc[i][j-1][ns])+
+tricubic.cpp:	  4*(fcc[i][j+1][ns-1]-fcc[i][j-1][ns-1])-(fcc[i][j+1][ns-2]-fcc[i][j-1][ns-2]));
+tricubic.cpp:    fcc31[0][j][0] = (fcc[1][j][1]-fcc[1][j][0]-fcc[0][j][1]+fcc[0][j][0]);
+tricubic.cpp:    fcc31[ls][j][0] = (fcc[ls][j][1]-fcc[ls][j][0]-fcc[ls-1][j][1]+fcc[ls-1][j][0]);
+tricubic.cpp:    fcc31[0][j][ns] = (fcc[1][j][ns]-fcc[1][j][ns-1]-fcc[0][j][ns]+fcc[0][j][ns-1]);
+tricubic.cpp:    fcc31[ls][j][ns] = (fcc[ls][j][ns]-fcc[ls][j][ns-1]-fcc[ls-1][j][ns]+fcc[ls-1][j][ns-1]);
+tricubic.cpp:	(-3*(fcc[0][j][k+1]-fcc[0][j][k-1])+
+tricubic.cpp:	 4*(fcc[1][j][k+1]-fcc[1][j][k-1])-(fcc[2][j][k+1]-fcc[2][j][k-1]))/2;
+tricubic.cpp:	-(-3*(fcc[ls][j][k+1]-fcc[ls][j][k-1])+
+tricubic.cpp:	  4*(fcc[ls-1][j][k+1]-fcc[ls-1][j][k-1])-(fcc[ls-2][j][k+1]-fcc[ls-2][j][k-1]))/2;
+tricubic.cpp:	(-3*(fcc[i+1][j][0]-fcc[i-1][j][0])+
+tricubic.cpp:	 4*(fcc[i+1][j][1]-fcc[i-1][j][1])-(fcc[i+1][j][2]-fcc[i-1][j][2]))/4;
+tricubic.cpp:	-(-3*(fcc[i+1][j][ns]-fcc[i-1][j][ns])+
+tricubic.cpp:	  4*(fcc[i+1][j][ns-1]-fcc[i-1][j][ns-1])-(fcc[i+1][j][ns-2]-fcc[i-1][j][ns-2]))/4;
+tricubic.cpp:      fcc1[0][j][k] =(-3*fcc[0][j][k]+4*fcc[1][j][k]-fcc[2][j][k])/2;
+tricubic.cpp:      fcc1[ls][j][k]=( 3*fcc[ls][j][k]-4*fcc[ls-1][j][k]+fcc[ls-2][j][k])/2; 
+tricubic.cpp:	if (j==0) fcc2[i][j][k]=fcc[i][j+1][k]-fcc[i][j][k];
+tricubic.cpp:	if (j==ms) fcc2[i][j][k]=-(-3*fcc[i][j][k]+4*fcc[i][j-1][k]-fcc[i][j-2][k])/2;
+tricubic.cpp:	if (k==0) fcc3[i][j][k]=(-3*fcc[i][j][k]+4*fcc[i][j][k+1]-fcc[i][j][k+2])/2;
+tricubic.cpp:	if (k==ns) fcc3[i][j][k]=-(-3*fcc[i][j][k]+4*fcc[i][j][k-1]-fcc[i][j][k-2])/2; 
+tricubic.cpp:	if (i>0&&i<ls) fcc1[i][j][k]=(fcc[i+1][j][k]-fcc[i-1][j][k])/2;
+tricubic.cpp:	if (j>0&&j<ms) fcc2[i][j][k]=(fcc[i][j+1][k]-fcc[i][j-1][k])/2;
+tricubic.cpp:	if (k>0&&j<ns) fcc3[i][j][k]=(fcc[i][j][k+1]-fcc[i][j][k-1])/2;
+tricubic.cpp:				    (fcc[i+1][j+1][k]-fcc[i-1][j+1][k]-fcc[i+1][j-1][k]+fcc[i-1][j-1][k]);
+tricubic.cpp:				    (fcc[i][j+1][k+1]-fcc[i][j-1][k+1]-fcc[i][j+1][k-1]+fcc[i][j-1][k-1]);
+tricubic.cpp:				    (fcc[i+1][j][k+1]-fcc[i-1][j][k+1]-fcc[i+1][j][k-1]+fcc[i-1][j][k-1]); 
+tricubic.cpp:  double x1max = ls-1e-10, x2max = ms-1e-10, x3max = ns-1e-10;
+tricubic.cpp:	 x1-i, x2-j, x3-k, 
+tricubic.h: * MD series -- Molecular Dynamics of Plasma-Surface Chemistry
+tricubic.h: * (c) 1996-1998 Cam Abrams, Dept. of Chemical Engineering
+tricubic.h:#define X3_NGRIDSQUARES (X3_NGRIDPOINTS-1)
+tricubic.h: * Generates the 64-member coefficient matrix c_(ijk), i=1->4, j=1->4, k=1->4.
+tricubic.h: * value at a specified off-lattice point.
+Binary file tricubic.o matches

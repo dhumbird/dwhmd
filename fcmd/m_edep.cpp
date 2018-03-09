@@ -21,7 +21,7 @@ double AvgTop(config& cfg){
       flag=1;
       R.x=m-cfg.Lx/2;
       R.y=cfg.Ly/2-n;
-      while(flag && box[m][n]>cfg.the_bottom){
+      while(flag){
 	box[m][n]-=1;
 	R.z=box[m][n];
 	int x=(int)((R.x + cfg.Lx/2)/cfg.Lcx)%cfg.Nx;
@@ -32,7 +32,7 @@ double AvgTop(config& cfg){
 	for (c=cfg.cells[a].nbegin(); c!=cfg.cells[a].nend(); c++)
 	  for (SAI j0=(*c)->abegin(); j0!=(*c)->aend(); j0++)
 	    if (flag)
-	      if ((R - (*j0)->R).minsqmag(cfg.Lx, cfg.Ly) > 6.25)
+	      if ((R - (*j0)->R).minsqmag(cfg.Lx, cfg.Ly) > 1)
 		flag=1;
 	      else{
 		flag=0;
@@ -42,14 +42,8 @@ double AvgTop(config& cfg){
       }
     }
   }
-  int total=0;
-  for (int m=0; m<nx; m++) 
-    for (int n=0; n<ny; n++) 
-      if (box[m][n]>cfg.the_bottom){
-	my_top+=box[m][n];
-	total++;
-      }
-  return my_top/(total);
+  for (int m=0; m<nx; m++) for (int n=0; n<ny; n++) my_top+=box[m][n];
+  return my_top/(nx*ny);
 }
 
 void MainEnergyDep(int argc, char * argv[]){
@@ -114,15 +108,13 @@ void MainEnergyDep(int argc, char * argv[]){
   }  
 
   //set up the spatial array.
-  //double Llong=cfg.the_top-cfg.the_bottom;
   double zmin=-5;
   int Nz;
   float my_top;
   {
     config cfg(scfg);
-    //my_top=AvgTop(cfg);
-    my_top=cfg.the_top;
-    Nz=(int)((cfg.the_top-cfg.the_bottom)/res)+1;  
+    my_top=AvgTop(cfg);
+    Nz=(int)(cfg.Lz_full/res)+1;  
     outfile=cfg.name+"."+Num+"."+energy+"."+angle+".dep";
   }
   vector<double> depth(Nz);
@@ -146,7 +138,7 @@ void MainEnergyDep(int argc, char * argv[]){
 
     double finish=cfg.t+runtime;
     double z_cutoff=ion->R.z+0.1;
-    int total_time=0;
+    double total_time=0;
     while (cfg.t<finish && ion->R.z <= z_cutoff && ion->R.z > cfg.the_bottom){
       if (tso) cfg.dtOptimize();
       if (cfg.u!=0) cfg.FirstVV();
@@ -155,15 +147,16 @@ void MainEnergyDep(int argc, char * argv[]){
       cfg.ForceEval();
       cfg.SecondVV();
       cfg.t+=cfg.dt;
-      total_time++;
-      i=(int)((my_top-ion->R.z)/res); //cerr<<i<<endl;
-      if (i>0 && i<Nz) depth[i]+=ion->Ek();
+      total_time+=cfg.dt;
+      i=(int)((my_top-ion->R.z)/res);
+      if (i<Nz) depth[i]+=cfg.dt*ion->Ek()/ek;
     }
     for (i=0; i<Nz; i++){
-      //depth[i]/=total_time;
+      depth[i]/=total_time;
       megabox[i]+=depth[i];
       depth[i]=0;
     }
+  
     fout.open(outfile.c_str(), ios::out);
     for (i=0; i<Nz; i++){
       sprintf(out_buffer, "%f\t%f\n", i*res, megabox[i]/(float)run);

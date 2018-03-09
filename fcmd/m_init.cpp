@@ -4,7 +4,7 @@
 #include <string>
 
 void MainInit(int argc, char * argv[]){
-  short Ix=4; short Iy=4; short Iz=4; short id=14;
+  short Ix=4; short Iy=4; short Iz=4; short id=6;
   float T=300; float rho=0;
   int seed=0;
   string name="temp";

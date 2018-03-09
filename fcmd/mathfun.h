@@ -15,10 +15,6 @@ inline double SpExp(double arg){
   if (arg < -50) return 0;
   else return exp(arg);
 }
-inline double SpSqrt(double arg){
-  if (fabs(arg)<1.0e-10) return 0;
-  else return sqrt(arg);
-}
 inline double neg(double arg) {return -1*fabs(arg);}
 inline double rand01() {return(double)rand()/(double)RAND_MAX;}
 inline int TimeSeed(){return (unsigned)clock()+(unsigned)time(NULL);}

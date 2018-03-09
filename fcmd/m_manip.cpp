@@ -90,8 +90,7 @@ void MainMisc(int argc, char * argv[]){
     else CmdError(arg.c_str());
   }
   config cfg(scfg);
-  cout<<cfg.AvgTop()<<endl;
-  //cfg.Sweep();
+  cfg.Sweep();
   //cfg.Dump();
   exit(0);
 }

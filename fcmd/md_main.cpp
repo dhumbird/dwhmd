@@ -35,6 +35,5 @@ int main(int argc, char * argv[]){
   else if (arg=="-mixion") MainMixIon(argc,argv);
   else if (arg=="-cgmin") MainCGmin(argc,argv);
   else if (arg=="-sweep") MainMisc(argc,argv);
-  else if (arg=="-bdist") MainBondDist(argc,argv);
   else CmdError(arg.c_str());
 };

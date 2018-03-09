@@ -13,8 +13,7 @@ void config::Partition(){
     the_top = mfmax(the_top, p->R.z);
     the_bottom = mfmin(the_bottom, p->R.z);
   }
-  the_bottom -= 10;
-  //the_bottom -= 0.0001;
+  the_bottom -= 0.0001;
   the_top += 0.0001;
   Lz_full= mfmax(Lz, the_top - the_bottom);
   Nx=(int)(Lx/rc_max);

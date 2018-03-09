@@ -1,5 +1,5 @@
 
-BINDIR=/Users/humbird/bin
+BINDIR=/home/dhumbird/bin
 
 SRCS = c_io.cpp bicubic.cpp tricubic.cpp\
 c_force.cpp c_vv.cpp chemtab.cpp atom.cpp nbr.cpp c_md.cpp c_base.cpp\
@@ -19,16 +19,7 @@ CXX = g++
 RM = rm -f
 host:=$(shell hostname)
 
-CPPFLAGS = -O3 -ffast-math
-ifeq ($(host),raptor)
-CPPFLAGS =  -O3 -ffast-math -march=pentium4 -mcpu=pentium4 -funroll-loops -mfpmath=sse
-endif
-ifeq ($(host),ihml)
-CPPFLAGS = -O3 -ffast-math -march=athlon-mp -mcpu=athlon-mp -funroll-loops -mfpmath=sse
-endif
-ifeq ($(host),bedrock)
-CPPFLAGS =  -O3 -ffast-math -march=pentium4 -mcpu=pentium4 -funroll-loops 
-endif
+CPPFLAGS = -O3 -ffast-math -fpermissive
 
 
 LIBS	= 

@@ -15,5 +15,4 @@ void nbr::PreComp(){
   dmin=F_MIN[type]; dmax=F_MAX[type];
   PolySwitch((r-dmin)/(dmax-dmin), &f, &fprime);
   fprime/=(dmax-dmin);
-  bo=0;
 }

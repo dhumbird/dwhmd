@@ -140,8 +140,8 @@ void bicubic_genCoef (double y[X1_NGRIDPOINTS][X2_NGRIDPOINTS],
   
   /* For each grid square (i,j) compute the 4x4 matrix c_(ij).
    * 
-   *	      (4)------(3)
-   *	       |        |
+   *	        (4)------(3)
+   *	         |        |
    *           |        |
    *           |        |
    *          (1)------(2)
@@ -243,6 +243,7 @@ void Pcf_genCoef (void){
 
 void Psif_genCoef (void){
   int i, j;
+  double pp;
   double p[X1_NGRIDPOINTS][X2_NGRIDPOINTS]; 
   double p1[X1_NGRIDPOINTS][X2_NGRIDPOINTS]; 
   double p2[X1_NGRIDPOINTS][X2_NGRIDPOINTS]; 
@@ -250,8 +251,21 @@ void Psif_genCoef (void){
   
   for (i = 0; i < X1_NGRIDPOINTS; i++)
     for (j = 0; j < X2_NGRIDPOINTS; j++)
-      p[i][j] = p1[i][j] = p2[i][j] = p12[i][j] = 0.0;
+    {
+      p[i][j] = 0;
+      p1[i][j] = 0;
+      p2[i][j] = 0;
+      p12[i][j] = 0.0;
+    }
   
+  // ifstream fin("/home/dhumbird/fcmd/src/bicubic/Si_F", ios::in);
+  // while (!fin.eof())
+  // {
+  //   fin>>i>>j>>pp;
+  //   p[i][j] = pp;
+  // }
+  // fin.close();
+
   /* Set values of Pcf at the various integer grid points. */
   
   //p[NF][NC]
@@ -264,9 +278,10 @@ void Psif_genCoef (void){
   // change 4
   p[0][3] = -0.12;
   p[0][2] = 0.085;
-  //p[1][3] = -.21;//-.25;
   p[2][1] = -.07;//-0.06;
   p[1][2] = -0.08;//0.2;//-0.0845;
+  //these werent used
+  //p[1][3] = -.21;//-.25;
   //p[2][2] = -.1;
   /* Derivative values by centered finite difference */
   p1[1][1] = 0.5*(p[2][1] - p[0][1]);

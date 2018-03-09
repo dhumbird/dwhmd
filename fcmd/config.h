@@ -88,7 +88,6 @@ class config{
   void Maxwell(float,int);
   void AddFixed(float);
   void CheckDepth();
-  double AvgTop();
   //******in c_force.cpp*************
   void ForceEval();
   double BondOrder(nbr*, double);
@@ -102,7 +101,6 @@ class config{
   void dtOptimize();
   void ReNeighbor();
   void Run(double, int, double, bool, bool, int, bool, bool,short);
-  void bonddist(double, double, bool,short);
   void RunQuenched(double, int, double, bool, bool, int, bool, bool, 
 		   short, float);
   void Thermo(float, float, int, double, bool, bool, bool,double);

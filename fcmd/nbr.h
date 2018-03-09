@@ -18,7 +18,6 @@ class nbr{
   void Invert();
   void PreComp();
   short type; 
-  double bo;
 };
 
 

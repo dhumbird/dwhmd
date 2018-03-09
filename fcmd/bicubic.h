@@ -7,9 +7,11 @@
 #ifndef BICUBIC_H
 #define BICUBIC_H
 #include <iostream>
+#include <fstream>
 #include <cstdio>
 #include <cstdlib>
 #include <cmath>
+using namespace std;
 
 #define	X1_NGRIDPOINTS	11
 #define X2_NGRIDPOINTS	11
