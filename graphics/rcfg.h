@@ -27,10 +27,24 @@ class rcfg{
   //******inline functions**********
   rcfg(){init();}
   rcfg(string scfg, float rad){init(); Load(scfg, rad); ReNeighbor();}
-  double MinZ(){
-    double z=1000; for (VAI w=begin; w<end; w++) z=w->R.z<?z; return z;}
-  double MaxZ(){
-    double z=-1000; for (VAI w=begin; w<end; w++) z=w->R.z>?z; return z;}
+  
+  double MinZ()
+  {
+    double z=1000; 
+    for (VAI w=begin; w<end; w++) 
+    {
+      z = std::min(w->R.z, z);
+    }
+    return z;
+  }
+  double MaxZ()
+  {
+    double z=-1000; 
+    for (VAI w=begin; w<end; w++){
+      z = std::max(w->R.z, z);
+    }
+    return z;
+  }
   //******in rcfg.cpp************
   void ReNeighbor();
   void resize(int);
