@@ -1,0 +1,176 @@
+#!/usr/bin/perl
+
+$name{14}="Si"; $mass{14}=28.086/9648.531;
+$name{9}="F"; $mass{9}=18.9984/9648.531;
+$name{18}="Ar"; $mass{18}=39.948/9648.531;
+$name{2}="He"; $mass{2}=4.0026/9648.531;
+$name{17}="Cl"; $mass{17}=35.453/9648.531;
+$name{10}="Ne"; $mass{10}=20.17/9648.531;
+$name{6}="C"; $mass{6}=12.011/9648.531;
+$name{1}="H"; $mass{1}=1.0079/9648.531;
+
+$colordef=0;
+$launch=1;
+
+for ($i=0; $i<=$#ARGV; $i++){
+    if ($ARGV[$i]=~/cfg/){
+	push @files, $ARGV[$i];
+    }
+    elsif ($ARGV[$i]=~/color/){
+	$colordef=1;
+	$colorfile=$ARGV[++$i];
+    }
+    elsif ($ARGV[$i]=~/-v/){
+	$launch=1;
+    }
+    elsif ($ARGV[$i]=~/\+v/){
+	$launch=0;
+    }
+}
+
+if ($colordef){
+    open (CDEF, $colorfile) || die("No such color file!\n");
+    while (<CDEF>){
+	chomp;
+	@line=split;
+	#$color{$line[0]}=hue($line[1],$line[2],$line[3]);
+	$color{$line[0]}=$line[2];
+    }
+}
+
+
+$pdb=$files[0];
+if ($#files==0){
+    $pdb=~s/cfg/pdb/;
+    $N=-1;
+}
+else{
+    $pdb=substr($pdb,0,index($pdb,"_")).".pdb";
+}
+open(CFG, $files[$#files]);
+while(<CFG>){
+    if (/#Nmax /){
+	$Nmax=substr($_,6);
+    }
+}
+close(CFG);
+
+open (PDB, ">$pdb");
+print PDB "HEADER  PROTEIN\n";
+print PDB "COMPND  $pdb\n";
+print PDB "AUTHOR  JOE MAMMA\n";
+
+for ($i=0; $i<=$#files; $i++){
+    if ($#files>0){
+	print PDB "MODEL ";
+	printf PDB "%4d\n", $i+1;
+    }
+    open (CFG,$files[$i]);
+    $serial=-1;
+    while (<CFG>){
+	if (!/#|%/){
+	    s/<|>//g;
+	    @atom=split;
+	    $ix=$atom[0];
+	    $id=$atom[1];
+	    $Rx=$atom[2]; $Ry=$atom[3]; $Rz=$atom[4];
+	    $Vx=$atom[5]; $Vy=$atom[6]; $Vz=$atom[7];
+	    $is_fixed=$atom[8];
+	    if ($#files>0){
+		while($serial+1<$ix){
+		    print PDB "ATOM  ";
+		    printf PDB "%5d\n", ++$serial;
+		}
+	    }
+	    #record name (string 6)
+	    print PDB "ATOM  ";
+	    #serial number (integer 5)
+	    printf PDB "%5d", ++$serial;
+	    #skip column 12
+	    print PDB " ";
+	    #atom name (string 4)
+	    #printf PDB "%4s", $name{$id};
+	    printf PDB "%4s", $id;
+            #alternate location indicator (char)
+	    print PDB " ";
+	    #residue name (string 3)
+	    print PDB "UNK";
+	    #skip column 21
+	    print PDB " ";
+	    #chain identifier (char)
+	    print PDB " ";
+	    #residue sequence number (integer 4)
+	    printf PDB "%4d", $ix;
+	    #code for insertion of residues (char)
+	    print PDB " ";
+	    #skip columns 28-30
+	    print PDB "   ";
+	    #x,y,z coord (angstroms) (8.3, 8.3, 8.3)
+	    printf PDB "%8.3f%8.3f%8.3f",$Rx,$Ry,$Rz;
+	    #occupancy factor (6.2) --i use this for color defs
+	    if ($colordef){
+		printf PDB "%6.2f",$color{$ix};
+	    }
+	    else{
+		printf PDB "%6.2f", 1;
+	    }
+	    #temperature factor (6.2)
+	    if (!$is_fixed){
+		$ek=(($Vx**2+$Vy**2+$Vz**2)*$mass{$id}/2);
+		if ($ek < 9){
+		    printf PDB "%6.2f", (9-$ek)/9;
+		}
+		else{
+		    printf PDB "%6.2f",0;
+		}
+	    }
+	    else{
+		printf PDB "%6.2f",1;
+	    }
+	    #end of record
+	    print PDB "\n";
+	}
+    }
+    if ($#files>0){
+	while ($serial < $Nmax-1){
+	    print PDB "ATOM  ";
+	    printf PDB "%5d\n", ++$serial;
+	}
+    #if ($#files>0){
+    	print PDB "ENDMDL\n";
+    }
+}
+print PDB "END\n";
+
+if ($launch){
+    exec("/usr/local/bin/vmd $pdb")
+	or die "Couldn't replace myself with vmd!\n";
+}
+
+############################################################
+sub hue{
+    $r=$_[0]; $g=$_[1]; $b=$_[2];
+    $h=$s=$v=0;
+    if ($r > $g){$v=$r;}
+    else {$v=$g;}
+    if ($b > $v){$v=$b;}
+    if ($r < $g){$m=$r;}
+    else {$m=$g;}
+    if ($b < $m){$m=$b;}
+    if ($v > 0){$s=($v-$m)/$v;}
+    if ($s>0){
+	$r1=($v-$r)/($v-$m);
+	$g1=($v-$g)/($v-$m);
+	$b1=($v-$b)/($v-$m);
+	if ($r==$v){$h=$b1-$g1;}
+	if ($g==$v){$h=2+$r1-$b1;}
+	if ($b==$v){$h=4+$g1-$r1;}
+	$h*=60;
+	if ($h<0){$h+=360;}
+	$h/=360;
+    }
+    return $h;
+}
+    
+
+
