@@ -1,6 +1,8 @@
 #!/usr/bin/perl
 
 $launch=1;
+$vmd = '/usr/local/bin/vmd';
+$pdbdump = '/home/dhumbird/md/bin/pdbdump';
 
 for ($i=0; $i<=$#ARGV; $i++){
     if ($ARGV[$i]=~/-v/){
@@ -15,9 +17,9 @@ for ($i=0; $i<=$#ARGV; $i++){
 
 if ($#ARGV==0){
     if (-e $ARGV[$#ARGV]){
-	$pdb=`/home/dhumbird/bin/pdbdump @ARGV`;
+	$pdb=`$pdbdump @ARGV`;
 	if ($launch){
-	    exec("/usr/local/bin/vmd $pdb")
+	    exec("$vmd $pdb")
 		or die "Couldn't replace myself with vmd!\n";
 	}
     }
@@ -26,9 +28,9 @@ if ($#ARGV==0){
     }
 }
 else{
-    $pdb=`/home/dhumbird/bin/pdbdump @ARGV`;
+    $pdb=`$pdbdump @ARGV`;
     if ($launch){
-	exec("/usr/local/bin/vmd $pdb")
+	exec("$vmd $pdb")
 	    or die "Couldn't replace myself with vmd!\n";
     }
 }

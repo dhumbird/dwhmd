@@ -17,9 +17,9 @@ static	double (***cCF)[4][4];
 static	double (***cSiF)[4][4];
 static	double (***cSiCl)[4][4];
 /* A ptr to...__|||    |____|
- *	         ||       |_______________________ 
+ *	             ||       |_______________________ 
  *               ||                               |
- *		 \|__ an "m"x"n" 2D array of...   |___ 4x4 2D arrays.
+ *		           \|__ an "m"x"n" 2D array of...   |___ 4x4 2D arrays.
  *
  *  Here, we state that the 2D grid of points ("knots") which define the
  *  function we are interpolating is "m+1"x"n+1" and has, therefore, 

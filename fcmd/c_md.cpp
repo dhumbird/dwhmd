@@ -28,17 +28,17 @@ void config::Run(double run_time, int cfgevery, double del_t, bool printe,
     if (tso) dtOptimize();
     if (cfgevery>0){
       if (t+dt > next){
-	if (tso) Setdt(next-t);
-	dump=1;
-	next+=(double)cfgevery/1000;
+	      if (tso) Setdt(next-t);
+	      dump=1;
+	      next+=(double)cfgevery/1000;
       }
     }
     //cerr<<t<<" ";
     if (u!=0.0){
       if (sputmode){
-	//cerr<<"chksp ";
-	if (sputmode==1) CheckSput();
-	else  Sweep();
+	      //cerr<<"chksp ";
+	      if (sputmode==1) CheckSput();
+	      else  Sweep();
       }
       //cerr<<"vv1 ";
       FirstVV();
@@ -189,13 +189,16 @@ void config::RunQuenched(double run_time, int cfgevery, double del_t,
   if (cfgevery>0)
     next=(double)(((int)(t*1000)+cfgevery - 
 		   ((int)(t*1000)+cfgevery)%cfgevery))/1000;
-  while (t<finish+dt){
+  while (t<finish+dt)
+  {
     dump=0;
     if (tso) dtOptimize();
-    if (cfgevery>0){
-      if (t+dt > next){
-	if (tso) Setdt(next-t);
-	dump=1;
+    if (cfgevery>0)
+    {
+      if (t+dt > next)
+      {
+	      if (tso) Setdt(next-t);
+        dump=1;
 	next+=(double)cfgevery/1000;
       }
     }

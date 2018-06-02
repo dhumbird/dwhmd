@@ -1,5 +1,5 @@
 
-BINDIR=/home/dhumbird/bin
+BINDIR=/home/dhumbird/md/bin
 
 SRCS = c_io.cpp bicubic.cpp tricubic.cpp\
 c_force.cpp c_vv.cpp chemtab.cpp atom.cpp nbr.cpp c_md.cpp c_base.cpp\

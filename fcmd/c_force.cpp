@@ -33,8 +33,11 @@ void config::ForceEval()
       	atom* j = (atom*)ij->a2;
       	if (j > &(*i_))
         {
+          //std::cerr<<i_->ix<<" "<<j->ix<<" "<<ij->r<<"\n";
+
     	    int type=i_->id+j->id;
     	    double r=ij->r;
+
           double aa = B[type] * SpExp(-MORSE_MU[type] * r);
           VA_ij = ij->f * aa;
           dVA_ij = aa * (ij->fprime - ij->f*MORSE_MU[type]);
@@ -61,8 +64,8 @@ void config::ForceEval()
       	    VR_ij = ij->f * aa;
       	    dVR_ij = aa * (ij->fprime - ij->f*MORSE_LAM[type]);
       	  }
+
           double b_ij=BondOrder(&(*ij), VA_ij);
-          //cerr<<b_ij<<endl;
       	  u+=VR_ij - b_ij*VA_ij;
       	  Fij=(-dVR_ij+b_ij*dVA_ij)*ij->Rhat;
       	  i_->F+=Fij; j->F-=Fij;
@@ -70,6 +73,9 @@ void config::ForceEval()
       }
     }
   }
+  double NSi=1;
+  double NHal = 2;
+  double P_ij, P_ji, dFP_ij, dFP_ji, dCP_ij, dCP_ji, dlam;
 }
 //******************************************************
 double config::BondOrder(nbr* bond_ij, double Pre){
@@ -144,13 +150,13 @@ double config::BondOrder(nbr* bond_ij, double Pre){
       	rjk=Rjk.mag();
       	Rjk/=rjk;
       }
+
       scr_Rhat.push_back(Rjk);
       //*******b-sigma-pi calculations************
       elambda(i->id, j->id, k->id, bond_ij->r, bond_ik->r, &el, &dlam);
       elf=el*bond_ik->f;
       cosO = bond_ij->Rhat ^ bond_ik->Rhat;
       G_angle(i->id, j->id, k->id, cosO, &g, &g1);
-      //cerr<<cosO<<" "<<g<<endl;
       iFv_ij+=(elf*(g1*(1/bond_ik->r - cosO/bond_ij->r) + g*dlam));
       iFv_ik.push_back(bond_ik->fprime*
 		       (g*el + ((k->id==9||k->id==17) ? dFP_ij : dCP_ij))
@@ -173,7 +179,6 @@ double config::BondOrder(nbr* bond_ij, double Pre){
       }
     }
   }
-  //cerr<<bsp_ij<<" ";
   //***************for k neighbor of j*************************
   for (VNI bond_jk=j->nlist.begin(); bond_jk!=j->nlist.end(); bond_jk++)
   {
@@ -193,6 +198,7 @@ double config::BondOrder(nbr* bond_ij, double Pre){
       	rik=Rik.mag();
       	Rik/=rik;
       }
+
       scr_Rhat.push_back(Rik);
       //*********b-sigma-pi calculation*************
       elambda(j->id, i->id, k->id, bond_ij->r, bond_jk->r, &el, &dlam);
@@ -221,7 +227,6 @@ double config::BondOrder(nbr* bond_ij, double Pre){
       }
     }
   }
-  //cerr<<bsp_ji<<endl;
   //***************conjugation************************
   if (bond_ij->type==12)
   {
@@ -238,7 +243,6 @@ double config::BondOrder(nbr* bond_ij, double Pre){
   bbar_ij = 0.5*(pow(1 + pow(bsp_ij, eta_i), -delta_i)
 		 + pow(1 + pow(bsp_ji, eta_j), -delta_j)
 		 +F_ij);
-
   //bsp becomes temp variable
   if (eta_i!=1)
   {
@@ -297,7 +301,7 @@ double config::BondOrder(nbr* bond_ij, double Pre){
       }
       Fij = force_ik*bond_ik->Rhat;
       i->F += Fij; k->F -= Fij;
-      
+
       Fij = bsp_ij * iFv_jk[cnt] * scr_Rhat[scrcount++];
       j->F += Fij; k->F -= Fij;
       cnt++;
@@ -383,8 +387,6 @@ void config::elambda(short i_id, short j_id, short k_id,
 void config::G_angle(short i_id, short j_id, short k_id, 
 		     double cosO, double* g, double* g1)
 {
-  //cerr<<i_id<<" "<<j_id<<" "<<k_id<<endl;
-  //cerr<<cosO<<" ";
   if (i_id==6)
   {
     if (j_id==14)

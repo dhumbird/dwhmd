@@ -28,12 +28,14 @@ void MainDelete(int argc, char * argv[]){
   exit(0);
 }
 
-void MainShiftOrigin(int argc, char * argv[]){
+void MainShiftOrigin(int argc, char * argv[])
+{
   short ix=-1; string arg;
   float x=0; float y=0;
   vector<string> filelist;
   vector<string>::iterator f;
-  for (int i=2; i<argc; i++){
+  for (int i=2; i<argc; i++)
+  {
     arg=argv[i];
     if (sfind(arg, ".cfg")) filelist.push_back(arg);
     else if (arg=="-x") x=atof(argv[++i]);
@@ -41,19 +43,24 @@ void MainShiftOrigin(int argc, char * argv[]){
     else if (arg=="-ix") ix=atoi(argv[++i]);
     else CmdError(arg.c_str());
   }
-  for (f=filelist.begin(); f!=filelist.end(); f++){
+  for (f=filelist.begin(); f!=filelist.end(); f++)
+  {
     config cfg(*f);
     svector R;
-    if (ix!=-1){
-      if (cfg.atomix(ix)!=cfg.end){
-	R=cfg.atomix(ix)->R;
+    if (ix!=-1)
+    {
+      if (cfg.atomix(ix)!=cfg.end)
+      {
+        R=cfg.atomix(ix)->R;
       }
-      else{
-	cerr<<"That atom not found!"<<endl;
-	exit(0);
+      else
+      {
+	      cerr<<"That atom not found!"<<endl;
+	      exit(0);
       }
     }
-    else{
+    else
+    {
       R.x=x;
       R.y=y;
     }
