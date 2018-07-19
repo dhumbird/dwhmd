@@ -31,7 +31,7 @@ void MainDelete(int argc, char * argv[]){
 void MainShiftOrigin(int argc, char * argv[])
 {
   short ix=-1; string arg;
-  float x=0; float y=0;
+  float x=0; float y=0; float z=0;
   vector<string> filelist;
   vector<string>::iterator f;
   for (int i=2; i<argc; i++)
@@ -40,6 +40,7 @@ void MainShiftOrigin(int argc, char * argv[])
     if (sfind(arg, ".cfg")) filelist.push_back(arg);
     else if (arg=="-x") x=atof(argv[++i]);
     else if (arg=="-y") y=atof(argv[++i]);
+    else if (arg=="-z") z=atof(argv[++i]);
     else if (arg=="-ix") ix=atoi(argv[++i]);
     else CmdError(arg.c_str());
   }
@@ -63,8 +64,8 @@ void MainShiftOrigin(int argc, char * argv[])
     {
       R.x=x;
       R.y=y;
+      R.z=0;
     }
-    R.z=0;
     for (VAI i=cfg.begin; i!=cfg.end; i++){
       i->R-=R; i->R.minimg(cfg.Lx, cfg.Ly);
     }
