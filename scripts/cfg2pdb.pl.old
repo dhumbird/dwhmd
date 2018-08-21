@@ -77,10 +77,10 @@ for ($i=0; $i<=$#files; $i++){
 	    $Vx=$atom[5]; $Vy=$atom[6]; $Vz=$atom[7];
 	    $is_fixed=$atom[8];
 	    if ($#files>0){
-		while($serial+1<$ix){
-		    print PDB "ATOM  ";
-		    printf PDB "%5d\n", ++$serial;
-		}
+			while($serial+1<$ix){
+			    print PDB "ATOM  ";
+		    	printf PDB "%5d\n", ++$serial;
+			}
 	    }
 	    #record name (string 6)
 	    print PDB "ATOM  ";
@@ -91,7 +91,7 @@ for ($i=0; $i<=$#files; $i++){
 	    #atom name (string 4)
 	    #printf PDB "%4s", $name{$id};
 	    printf PDB "%4s", $id;
-            #alternate location indicator (char)
+        #alternate location indicator (char)
 	    print PDB " ";
 	    #residue name (string 3)
 	    print PDB "UNK";
@@ -109,34 +109,33 @@ for ($i=0; $i<=$#files; $i++){
 	    printf PDB "%8.3f%8.3f%8.3f",$Rx,$Ry,$Rz;
 	    #occupancy factor (6.2) --i use this for color defs
 	    if ($colordef){
-		printf PDB "%6.2f",$color{$ix};
+			printf PDB "%6.2f",$color{$ix};
 	    }
 	    else{
-		printf PDB "%6.2f", 1;
+			printf PDB "%6.2f", 1;
 	    }
 	    #temperature factor (6.2)
 	    if (!$is_fixed){
-		$ek=(($Vx**2+$Vy**2+$Vz**2)*$mass{$id}/2);
-		if ($ek < 9){
-		    printf PDB "%6.2f", (9-$ek)/9;
-		}
-		else{
-		    printf PDB "%6.2f",0;
-		}
+			$ek=(($Vx**2+$Vy**2+$Vz**2)*$mass{$id}/2);
+			if ($ek < 9){
+		    	printf PDB "%6.2f", (9-$ek)/9;
+			}
+			else{
+		    	printf PDB "%6.2f",0;
+			}
 	    }
 	    else{
-		printf PDB "%6.2f",1;
+			printf PDB "%6.2f",1;
 	    }
 	    #end of record
 	    print PDB "\n";
 	}
     }
     if ($#files>0){
-	while ($serial < $Nmax-1){
-	    print PDB "ATOM  ";
-	    printf PDB "%5d\n", ++$serial;
-	}
-    #if ($#files>0){
+		while ($serial < $Nmax-1){
+	    	print PDB "ATOM  ";
+	    	printf PDB "%5d\n", ++$serial;
+		}
     	print PDB "ENDMDL\n";
     }
 }

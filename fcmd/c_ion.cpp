@@ -23,8 +23,10 @@ VAI config::AddIon(float e, string species, float To, bool choose_inc,
   VAI ion;
   svector Vcom;
   double rcsq;
-  if (species=="F" || species=="Ar" || species=="C" || species=="Cl"){
-    if (species=="Ar"){
+  if (species=="F" || species=="Ar" || species=="C" || species=="Cl")
+  {
+    if (species=="Ar")
+    {
       rcsq=36;
       ion=append(18);
       inert=ion->ix;
@@ -33,16 +35,19 @@ VAI config::AddIon(float e, string species, float To, bool choose_inc,
     else if (species=="Cl") ion=append(17);
     else if (species=="C") ion=append(6);
     //assign ion x, y position
-    if (confine){
+    if (confine)
+    {
       double rndx=rand01()*confine*2-confine;
       double rndy=rand01()*confine*2-confine;
-      while (sqrt(pow(rndx,2)+pow(rndy,2))>confine){
-	rndx=rand01()*confine*2-confine;
-	rndy=rand01()*confine*2-confine;
+      while (sqrt(pow(rndx,2)+pow(rndy,2))>confine)
+      {
+        rndx=rand01()*confine*2-confine;
+        rndy=rand01()*confine*2-confine;
       }
       ion->R.set(rndx, rndy, 0);
     }
-    else{
+    else
+    {
       ion->R.set(rand01()*Lx, rand01()*Ly, 0);
       ion->R.minimg(Lx, Ly);
     }
@@ -55,13 +60,15 @@ VAI config::AddIon(float e, string species, float To, bool choose_inc,
     if (choose_azi) azi=rand01()*2*PI;
     if (choose_inc) inc=rand01()*PI/2;
     //assign random velocity
-    do{
+    do
+    {
       vx=vy=vz=0;
       double kT=sqrt(KB*To/ion->m);
-      for (int q=0; q<12; q++){
-	vx+=rand01();
-	vy+=rand01();
-	vz+=rand01();
+      for (int q=0; q<12; q++)
+      {
+        vx+=rand01();
+        vy+=rand01();
+        vz+=rand01();
       }
       vx-=6.0; vx*=kT; 
       vy-=6.0; vy*=kT;
@@ -69,21 +76,21 @@ VAI config::AddIon(float e, string species, float To, bool choose_inc,
       svector Vth(vx,vy,vz);
       svector Vsh;
       //add sheath effects or if e==0 use half-maxwellian directed down
-      if (e==0){
-	Vth.z=-fabs(Vth.z);
-	ion->V=Vth;
+      if (e==0)
+      {
+        Vth.z=-fabs(Vth.z);
+        ion->V=Vth;
       }
-      else{
-	speed=sqrt(2/ion->m*e);
-	Vsh.set(speed*sin(inc)*cos(azi),
-		speed*sin(inc)*sin(azi),
-		-speed*cos(inc));
-	ion->V.x=pow(Vth.x,2)*signof(Vth.x)+pow(Vsh.x,2)*signof(Vsh.x);
-	ion->V.x=ion->V.x > 0 ? sqrt(ion->V.x) : -sqrt(-1*ion->V.x);
-	ion->V.y=pow(Vth.y,2)*signof(Vth.y)+pow(Vsh.y,2)*signof(Vsh.y);
-	ion->V.y=ion->V.y > 0 ? sqrt(ion->V.y) : -sqrt(-1*ion->V.y);
-	ion->V.z=pow(Vth.z,2)*signof(Vth.z)+pow(Vsh.z,2)*signof(Vsh.z);
-	ion->V.z=ion->V.z > 0 ? sqrt(ion->V.z) : -sqrt(-1*ion->V.z);
+      else
+      {
+        speed=sqrt(2/ion->m*e);
+        Vsh.set(speed*sin(inc)*cos(azi), speed*sin(inc)*sin(azi), -speed*cos(inc));
+        ion->V.x=pow(Vth.x,2)*signof(Vth.x)+pow(Vsh.x,2)*signof(Vsh.x);
+        ion->V.x=ion->V.x > 0 ? sqrt(ion->V.x) : -sqrt(-1*ion->V.x);
+        ion->V.y=pow(Vth.y,2)*signof(Vth.y)+pow(Vsh.y,2)*signof(Vsh.y);
+        ion->V.y=ion->V.y > 0 ? sqrt(ion->V.y) : -sqrt(-1*ion->V.y);
+        ion->V.z=pow(Vth.z,2)*signof(Vth.z)+pow(Vsh.z,2)*signof(Vsh.z);
+        ion->V.z=ion->V.z > 0 ? sqrt(ion->V.z) : -sqrt(-1*ion->V.z);
       }
       ion->is_fixed=0;
       ionek=ion->Ek();
@@ -92,22 +99,27 @@ VAI config::AddIon(float e, string species, float To, bool choose_inc,
     //take down to first neighbor
     svector dir=0.01*AV/AV.mag();
     bool got_neighbors=0;
-    while (!got_neighbors){
-      for (VAI i=begin; i<ion; i++){
-	if (inert==ion->ix) rcsq=36;
-	else rcsq=RC_SQ[i->id+ion->id];
-	if ((ion->R - i->R).minsqmag(Lx, Ly) < rcsq){
-	  got_neighbors=1;
-	}
+    while (!got_neighbors)
+    {
+      for (VAI i=begin; i<ion; i++)
+      {
+        if (inert==ion->ix) rcsq=36;
+        else rcsq=RC_SQ[i->id+ion->id];
+        if ((ion->R - i->R).minsqmag(Lx, Ly) < rcsq)
+        {
+          got_neighbors=1;
+        }
       }
-      if (!got_neighbors){
-	ion->R+=dir;
-	//cerr<<ion->R<<endl;
-	ion->R.minimg(Lx,Ly);
-	if ((this_cell=WhichCell(ion->R)) != ion->my_cell){
-	  ((subcell*) ion->my_cell)->erase(&(*ion));
-	  ((subcell*) this_cell)->insert(&(*ion));
-	}
+      if (!got_neighbors)
+      {
+        ion->R+=dir;
+        //cerr<<ion->R<<endl;
+        ion->R.minimg(Lx,Ly);
+        if ((this_cell=WhichCell(ion->R)) != ion->my_cell)
+        {
+          ((subcell*) ion->my_cell)->erase(&(*ion));
+          ((subcell*) this_cell)->insert(&(*ion));
+        }
       }
     }
 //     ion->R+=50*dir;   ion->R.minimg(Lx,Ly);
@@ -121,7 +133,8 @@ VAI config::AddIon(float e, string species, float To, bool choose_inc,
     Partition();
     ReNeighbor(); 
   }
-  else{ 
+  else
+  { 
     //VAI ion will point to the carbon
     //assign ion x, y center of mass position
     double ionmass=0;
