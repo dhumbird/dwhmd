@@ -18,7 +18,7 @@ def init(lmp, file, log):
                      "timestep        "+str(timestep),
                      "neighbor        1.0 bin",
                      "neigh_modify    every 1 delay 10 check yes",
-                     "compute pea all pe/atom", 
+                     "compute pea all pe/atom",
                     ])
   log.write("* Initializing config from file "+file+".\n")
 
@@ -113,16 +113,15 @@ def thermalImpact(lmp, log):
 
   t=0
   steps=50
-  while eng==0 and vz<0 and t<20000:
+  while vz<0 and t<20000:
     run(lmp, steps)
     run(lmp, 0)
     eng = lmp.extract_compute('ionpe',0,0)
     vz = lmp.extract_compute('vIon',0,0)
-    #print (t,eng,vz)
     t+=steps
 
   if eng!=0: # make sure it's not going to come off
-    run(lmp, 2000)
+    run(lmp, 4000)
     run(lmp, 0)
     eng = lmp.extract_compute('ionpe',0,0)
     vz = lmp.extract_compute('vIon',0,0)
@@ -132,7 +131,7 @@ def thermalImpact(lmp, log):
     lmp.command("delete_atoms group ion")
     return False
 
-  if eng==0 and t>=20000:
+  if t>=20000:
     log.write("* Species too slow. Ion deleted.\n")
     lmp.command("delete_atoms group ion")
     return False
@@ -175,3 +174,5 @@ def productSweep(lmp, log):
       log.write("* Deleting etch cluster "+cluname+".\n")
   if delete:
       lmp.command("delete_atoms group etchprod")
+  return delete
+

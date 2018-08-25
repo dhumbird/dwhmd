@@ -34,13 +34,13 @@ if len(datfile)==1:
     pdbfile = datfile[0].replace('dat','pdb')
 else:
     pdbfile = datfile[0][:datfile[0].find("_")]+'.pdb'
-    for f in datfile:
-        with open(f) as fp:
-            for i, line in enumerate(fp):
-                if i == 2:
-                    Nmax=max(Nmax,int(line.split()[0]))
-                elif i > 2:
-                    break
+for f in datfile:
+    with open(f) as fp:
+        for i, line in enumerate(fp):
+            if i == 2:
+                Nmax=max(Nmax,int(line.split()[0]))
+            elif i > 2:
+                break
 
 with open(pdbfile,'w') as f:
     f.write("HEADER  PROTEIN\n")
