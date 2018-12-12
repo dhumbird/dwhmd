@@ -36,10 +36,9 @@ def ionBombard(args):
 		i+=1
 	filebase = datfile[0:datfile.find("_")+1]
 	A=datfile
-	#print (filebase, e_ion, Tion, T)
 	with open("md.log",'w',1) as log:
 	    for run in range(1,runs+1):
-	        lmp = lammps()#(cmdargs=["-echo", "both"])
+	        lmp = lammps(cmdargs=["-echo", "screen"])
 	        log.write("------------"+md.dateTime()+"--------run "+str(run)+"-----------------------\n")
 	        md.init(lmp,A,log)
 	        seed=md.timeSeed()
@@ -55,7 +54,9 @@ def ionBombard(args):
 	    log.write("---------------------------------------------------------------------------\n")
 	    log.write(md.dateTime()+" Requested runs ("+str(runs)+") completed.\n")   	
 
+###################################################################
 ###################### COMMAND-LINE HANDLER #######################
+###################################################################
 if len(sys.argv) <= 2:
 	print ("supply some more arguments.")
 
