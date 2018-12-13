@@ -80,9 +80,12 @@ def addion(lmp, seed, log, e=0, T=300):
   lmp.command("velocity ion set "+str(vx)+" "+str(vy)+" "+str(vz))          # Set its velocity
   vmag = math.sqrt(vx*vx + vy*vy + vz*vz)
   step = 0.1
-  dx = step*vx/vmag
-  dy = step*vy/vmag
-  dz = step*vz/vmag
+#  dx = step*vx/vmag
+#  dy = step*vy/vmag
+#  dz = step*vz/vmag
+  dx = -vx*step/vz
+  dy = -vy*step/vz
+  dz = -step
   run(lmp, 0)
   eng = lmp.extract_compute('ionpe',0,0)
   while eng==0:

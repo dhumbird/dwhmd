@@ -13,6 +13,7 @@ def ionBombard(args):
 	Tion=300
 	T=300
 	runs=1
+	seeds=[]
 
 	i=0
 	while i < len(args):
@@ -32,16 +33,27 @@ def ionBombard(args):
 		elif (args[i]=="-log"):
 			i+=1
 			logfile=args[i]
+		elif (args[i]=="-seeds"):
+			i+=1
+			for j in range(0,runs):
+				seeds.append(int(args[i]))
+				i+=1
 		else: print("ionBombard: bad argument ",args[i])
 		i+=1
 	filebase = datfile[0:datfile.find("_")+1]
 	A=datfile
+	if len(seeds)==0:
+		seed=md.timeSeed()
+		for run in range(0,runs):
+			seeds.append(seed+run)
+
 	with open("md.log",'w',1) as log:
 	    for run in range(1,runs+1):
 	        lmp = lammps(cmdargs=["-echo", "screen"])
 	        log.write("------------"+md.dateTime()+"--------run "+str(run)+"-----------------------\n")
 	        md.init(lmp,A,log)
-	        seed=md.timeSeed()
+#	        seed=md.timeSeed()
+	        seed=seeds[run-1]
 	        md.thermo(lmp, seed, T)
 	        md.addion(lmp, seed, log)
 	        bound = md.thermalImpact(lmp,log)
