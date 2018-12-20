@@ -79,16 +79,38 @@ def addion(lmp, seed, log, e=0, T=300):
     vz=-abs(vz)
   lmp.command("velocity ion set "+str(vx)+" "+str(vy)+" "+str(vz))          # Set its velocity
   vmag = math.sqrt(vx*vx + vy*vy + vz*vz)
-  step = 0.1
-  dx = step*vx/vmag
-  dy = step*vy/vmag
-  dz = step*vz/vmag
+
+  step = 0.1                                                                # advance the ion until it has a neighbor
+  dx = -vx*step/vz
+  dy = -vy*step/vz
+  dz = -step
   run(lmp, 0)
   eng = lmp.extract_compute('ionpe',0,0)
   while eng==0:
-    lmp.command("displace_atoms ion move "+str(dx)+" "+str(dy)+" "+str(dz))  # advance the ion until it has a neighbor
+    lmp.command("displace_atoms ion move "+str(dx)+" "+str(dy)+" "+str(dz))  
     run(lmp, 0)
     eng = lmp.extract_compute('ionpe',0,0)
+
+  step = -0.01                                                              # back off the ion until it has no neighbor
+  dx = -vx*step/vz
+  dy = -vy*step/vz
+  dz = -step
+  run(lmp, 0)
+  while eng!=0:
+    lmp.command("displace_atoms ion move "+str(dx)+" "+str(dy)+" "+str(dz))  
+    run(lmp, 0)
+    eng = lmp.extract_compute('ionpe',0,0)
+
+  step = 0.001                                                              # advance the ion until it has a neighbor
+  dx = -vx*step/vz
+  dy = -vy*step/vz
+  dz = -step
+  run(lmp, 0)
+  while eng==0:
+    lmp.command("displace_atoms ion move "+str(dx)+" "+str(dy)+" "+str(dz))  
+    run(lmp, 0)
+    eng = lmp.extract_compute('ionpe',0,0)
+
   lmp.command("displace_atoms ion move "+str(-dx)+" "+str(-dy)+" "+str(-dz)) # back off one step
 
 ######################################
@@ -171,7 +193,7 @@ def productSweep(lmp, log):
       if cluform["Si"]>1: cluname+=str(cluform["Si"])
       if cluform["F"]>0: cluname+="F"
       if cluform["F"]>1: cluname+=str(cluform["F"])
-      log.write("* Deleting etch cluster "+cluname+".\n")
+      log.write("* Deleting etch cluster "+cluname+"\n")
   if delete:
       lmp.command("delete_atoms group etchprod")
   return delete
