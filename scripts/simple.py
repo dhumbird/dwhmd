@@ -33,6 +33,8 @@ def ionBombard(args):
 		elif (args[i]=="-log"):
 			i+=1
 			logfile=args[i]
+		elif (args[i]=="-cont"):
+			cont = True
 		elif (args[i]=="-seeds"):
 			i+=1
 			for j in range(0,runs):
@@ -46,25 +48,51 @@ def ionBombard(args):
 		seed=md.timeSeed()
 		for run in range(0,runs):
 			seeds.append(seed+run)
+	if cont:
+		maxrun=0
+		with open("md.log") as log:
+			for line in log:
+				if line.find("---run") > -1:
+					run= int((line[line.find("run")+4:]).replace('-','').strip())
+					maxrun=max(run,maxrun)
+		with open("md.log",'a',1) as log:
+			for run in range(maxrun+1,maxrun+runs+1):
+				lmp = lammps(cmdargs=["-echo", "screen"])
+				log.write("------------"+md.dateTime()+"--------run "+str(run)+"-----------------------\n")
+				md.init(lmp,A,log)
+#				seed=md.timeSeed()
+				seed=seeds[run-maxrun-1]
+				md.thermo(lmp, seed, T)
+				md.addion(lmp, seed, log)
+				bound = md.thermalImpact(lmp,log)
+				sput=md.productSweep(lmp,log)
+				if bound or sput:
+					file = filebase+str(run).rjust(6,"0")+".dat"
+					A = md.dump(lmp, file)
+				lmp.close()
+				run+=1
+			log.write("---------------------------------------------------------------------------\n")
+			log.write(md.dateTime()+" Requested runs ("+str(runs)+") completed.\n")   	
+	else:
+		with open("md.log",'w',1) as log:
+			for run in range(1,runs+1):
+				lmp = lammps(cmdargs=["-echo", "screen"])
+				log.write("------------"+md.dateTime()+"--------run "+str(run)+"-----------------------\n")
+				md.init(lmp,A,log)
+#				seed=md.timeSeed()
+				seed=seeds[run-1]
+				md.thermo(lmp, seed, T)
+				md.addion(lmp, seed, log)
+				bound = md.thermalImpact(lmp,log)
+				sput=md.productSweep(lmp,log)
+				if bound or sput:
+					file = filebase+str(run).rjust(6,"0")+".dat"
+					A = md.dump(lmp, file)
+				lmp.close()
+				run+=1
+			log.write("---------------------------------------------------------------------------\n")
+			log.write(md.dateTime()+" Requested runs ("+str(runs)+") completed.\n")   	
 
-	with open("md.log",'w',1) as log:
-	    for run in range(1,runs+1):
-	        lmp = lammps(cmdargs=["-echo", "screen"])
-	        log.write("------------"+md.dateTime()+"--------run "+str(run)+"-----------------------\n")
-	        md.init(lmp,A,log)
-#	        seed=md.timeSeed()
-	        seed=seeds[run-1]
-	        md.thermo(lmp, seed, T)
-	        md.addion(lmp, seed, log)
-	        bound = md.thermalImpact(lmp,log)
-	        sput=md.productSweep(lmp,log)
-	        if bound or sput:
-	            file = filebase+str(run).rjust(6,"0")+".dat"
-	            A = md.dump(lmp, file)
-	        lmp.close()
-	        run+=1
-	    log.write("---------------------------------------------------------------------------\n")
-	    log.write(md.dateTime()+" Requested runs ("+str(runs)+") completed.\n")   	
 
 ###################################################################
 ###################### COMMAND-LINE HANDLER #######################
