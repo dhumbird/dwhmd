@@ -71,8 +71,9 @@ mol modselect 3 0 name C or name Si
 color Display Background white
 color Name S white
 color Name F green
+color Name C green
 color Name A yellow
-color Name C white
+#color Name C white
 #mol modcolor 0 0 Occupancy
 # start the scene a-rockin'
 #rock y by 1

@@ -14,7 +14,8 @@ def ionBombard(args):
 	T=300
 	runs=1
 	seeds=[]
-
+	cont=False
+	
 	i=0
 	while i < len(args):
 		if args[i].find(".dat")>-1: datfile=args[i]
