@@ -4,6 +4,19 @@ atomtype={}
 atomtype[1]="Si"
 atomtype[2]="F"
 atomtype[3]="Cl"
+atomtype[4]="Ar"
+
+atomname={}
+atomname["Si"]=1
+atomname["F"]=2
+atomname["Cl"]=3
+atomname["Ar"]=4
+
+atommass={}
+atommass["Si"]=28.066
+atommass["F"]=18.9984
+atommass["Cl"]=35.453
+atommass["Ar"]=39.948
 
 def init(lmp, file, log):
   timestep = 0.001
@@ -81,6 +94,7 @@ def addion(lmp, seed, log, e=0, T=300):
     vz=-abs(vz)
   lmp.command("velocity ion set "+str(vx)+" "+str(vy)+" "+str(vz))          # Set its velocity
   vmag = math.sqrt(vx*vx + vy*vy + vz*vz)
+  ionek = (vx*vx + vy*vy + vz*vz)*mass[ionType]/2
 
   step = 0.1                                                                # advance the ion until it has a neighbor
   dx = -vx*step/vz
@@ -114,6 +128,7 @@ def addion(lmp, seed, log, e=0, T=300):
     eng = lmp.extract_compute('ionpe',0,0)
 
   lmp.command("displace_atoms ion move "+str(-dx)+" "+str(-dy)+" "+str(-dz)) # back off one step
+  log.write("  Energy: "+str(ionek)+" eV\n")
 
 ######################################
 def dump(lmp, file):
