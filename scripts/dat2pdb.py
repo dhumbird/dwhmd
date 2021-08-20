@@ -25,6 +25,8 @@ def writeRecord(f, i, name, ix, x, y, z, vx, vy, vz, m):
 name={}
 name[28]="Si"
 name[19]="F"
+name[35]="Cl"
+name[40]="Ar"
 launch = True
 
 args = sys.argv
