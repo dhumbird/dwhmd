@@ -8,13 +8,13 @@ bool sfind (string s1, string s2){
 //**************************************************************************
 string time2string (double t){
   char strt[12];
-  sprintf(strt, "%8.3f", t);
-  string bitch=strt;
-  string front=bitch.substr(0,bitch.find("."));
-  for (int s=0; s<4; s++)
+  sprintf(strt, "%10.3f", t);
+  string b=strt;
+  string front=b.substr(0,b.find("."));
+  for (int s=0; s<6; s++)
     if (sfind(front," "))
       front.replace(front.find(" "),1,"0");
-  return front+"-"+bitch.substr(5,9);
+  return front+"-"+b.substr(7,11);
 }
 //**************************************************************************
 string ftoa (float f, int digits){

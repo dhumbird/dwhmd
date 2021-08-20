@@ -94,7 +94,7 @@ VAI config::AddIon(float e, string species, float To, bool choose_inc,
       }
       ion->is_fixed=0;
       ionek=ion->Ek();
-    }while((ion->R.z - the_top)/vz > 10);
+    }while(vz > 0);
     AV=ion->V;
     //take down to first neighbor
     svector dir=0.01*AV/AV.mag();

@@ -4,6 +4,7 @@
 int main(int argc, char* argv[]){
   string arg, pdbfile;
   vector<string> filelist;
+  map<int, string> type;
   map<int, string> name;
   name[14]="Si";
   name[17]="Cl";
@@ -13,7 +14,7 @@ int main(int argc, char* argv[]){
   name[1]="H";
   name[54]="Xe";
   int Nmax=0;
-  
+    
   for (int i=1; i<argc; i++)
   {
     arg=argv[i];
@@ -26,13 +27,26 @@ int main(int argc, char* argv[]){
     Nmax=cfg.Nmax;
     pdbfile=cfg.name+".pdb";
   }
-  
   else
   {
     rcfg cfg(filelist.front(),1);
+    Nmax=cfg.Nmax;
     pdbfile=cfg.name+"_"+time2string(cfg.t)+".pdb";
   }
-  
+
+  for (int i=0; i<=Nmax; i++)
+    type[i]="none";
+
+  for (int i=0; i<filelist.size(); i++)
+  {
+    rcfg cfg(filelist[i],1);
+    for (VAI s=cfg.begin; s<cfg.end; s++)
+    {
+      if (type[s->ix]=="none")
+        type[s->ix]=name[s->id];
+    }
+  }
+
   int ione=1;
   float fone=1; float fzero=0;
 
@@ -51,87 +65,69 @@ int main(int argc, char* argv[]){
     }
     int serial=-1;
     rcfg cfg(filelist[i],1);
-    for (VAI s=cfg.begin; s<cfg.end; s++)
+    for (int n=0; n<=Nmax; n++)
     {
-      if (filelist.size()>1)
-      {
-        while(serial+1 < s->ix){
-          sprintf(outbuf, "ATOM  %5d\n", ++serial);
-          pdb<<outbuf;
-        }
-      }
-      
       //record name (string 6)
       sprintf(outbuf, "ATOM  "); 
       pdb<<outbuf;
-      
       //serial number (integer 5)
-      sprintf(outbuf, "%5d", ++serial); 
+      sprintf(outbuf, "%5d", n); 
       pdb<<outbuf;
-      
       //skip column 12
       pdb<<" ";
-      
-      //atom name (string 4)
-      sprintf (outbuf, "%4s", name[s->id].c_str()); 
-      pdb<<outbuf;
-      
-      //alternate location indicator (char);
-      //residue name (string 3); skip column 21; chain identifier (char)
-      pdb<<" UNK  ";
-      
-      //residue sequence number (integer 4)
-      sprintf (outbuf, "%4d", s->ix); 
-      pdb<<outbuf;
-
-      //code for insertion of residues (char); skip columns 28-30
-      pdb<<"    ";
-
-      //x,y,z coord (angstroms) (8.3, 8.3, 8.3)
-      sprintf (outbuf, "%8.3f%8.3f%8.3f",s->R.x,s->R.y,s->R.z); 
-      pdb<<outbuf;
-      
-      //occupancy factor (6.2) --i use this for color defs
-      //if ($colordef){
-      //  printf PDB "%6.2f",$color{$ix};
-      //}
-      //    else{
-      sprintf (outbuf, "%6.2f", s->nlist.size()); pdb<<outbuf;
-      //}
-      
-      //temperature factor (6.2)
-      if (!s->is_fixed)
-      {
-        if (s->Ek() < 9)
-        {
-          sprintf(outbuf, "%6.2f", (9-s->Ek())/9.0); 
-          pdb<<outbuf;
-        }
-        else
-        {
-          sprintf(outbuf, "%6.2f", fzero); 
-          pdb<<outbuf;
-        }
-      }
-      else
-      {
-        sprintf (outbuf, "%6.2f",fone); 
+      //if type is still none then the atom is not in any frames; skip
+      if (type[n]!="none")
+      {        
+        //atom name (string 4)
+        sprintf (outbuf, "%4s", type[n].c_str()); 
         pdb<<outbuf;
+        //residue name (string 3); skip column 21; chain identifier (char)
+        pdb<<" UNK  ";
+        //residue sequence number (integer 4)
+        sprintf (outbuf, "%4d", n); 
+        pdb<<outbuf;
+        VAI s=cfg.atomix(n);
+     
+        if (s!=cfg.end)
+        {
+          //code for insertion of residues (char); skip columns 28-30
+          pdb<<"    ";
+          //x,y,z coord (angstroms) (8.3, 8.3, 8.3)
+          sprintf (outbuf, "%8.3f%8.3f%8.3f",s->R.x,s->R.y,s->R.z); 
+          pdb<<outbuf;
+          //occupancy factor (6.2) --i use this for color defs
+          //if ($colordef){
+          //  printf PDB "%6.2f",$color{$ix};
+          //}
+          //    else{
+          sprintf (outbuf, "%6.2f", s->nlist.size()); pdb<<outbuf;
+          //}
+          //temperature factor (6.2)
+          if (!s->is_fixed)
+          {
+            if (s->Ek() < 9)
+            {
+              sprintf(outbuf, "%6.2f", (9-s->Ek())/9.0); 
+              pdb<<outbuf;
+            }
+            else
+            {
+              sprintf(outbuf, "%6.2f", fzero); 
+              pdb<<outbuf;
+            }
+          }
+          else
+          {
+            sprintf (outbuf, "%6.2f",fone); 
+            pdb<<outbuf;
+          }
+        }      
+        //end of record
       }
-      
-      //end of record
       pdb<<endl;
     }
-
     if (filelist.size()>1)
-    {
-      while (serial < Nmax-1)
-      {
-        sprintf(outbuf, "ATOM  %5d\n", ++serial);
-        pdb<<outbuf;
-      }
       pdb<<"ENDMDL\n";
-    }
   }
   pdb<<"END\n";
   cout<<pdbfile;

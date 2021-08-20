@@ -1,8 +1,8 @@
 #!/usr/bin/perl
 
 $launch=1;
-$vmd = '/usr/local/bin/vmd';
-$pdbdump = '/home/dhumbird/md/bin/pdbdump';
+$vmd = 'vmd';
+$pdbdump = 'pdbdump';
 
 for ($i=0; $i<=$#ARGV; $i++){
     if ($ARGV[$i]=~/-v/){
