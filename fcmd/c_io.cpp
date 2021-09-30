@@ -96,3 +96,16 @@ void config::Dump(){
   for (VAI i=begin; i<end; i++) fout<<*i<<endl;
   cerr<<"* Cfg saved. File: "<<out_cfg<<endl;
 }
+
+void config::DumpFlist(){
+  TimeStepInit();
+  ReNeighbor();
+  ForceEval();
+  printf("%6s %10s %10s %10s %10s\n","index","Ek","F.x","F.y","F.z");
+  for (VAI i=begin; i<end; i++)
+  {
+    printf("%6d %10.5f %10.5f %10.5f %10.5f\n",i->ix,i->Ek(),i->F.x,i->F.y,i->F.z);
+    //cout<<i->ix<<" "<<i->Ek()<<" "<<i->F.x<<" "<<i->F.y<<" "<<i->F.z<<endl;
+  } 
+
+}

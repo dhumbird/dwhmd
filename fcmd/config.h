@@ -97,6 +97,7 @@ class config{
   //******in c_io.cpp****************
   void Load(string);
   void Dump();
+  void DumpFlist();
   //******in c_md.cpp****************
   void dtOptimize();
   void ReNeighbor();

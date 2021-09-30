@@ -1,5 +1,5 @@
 
-BINDIR=/home/humbird/md/bin
+BINDIR=/home/dhumbird/md/bin
 
 SRCS = i_atom.cpp i_config.cpp i_chemtab.cpp svector.cpp strfun.cpp \
 sysfun.cpp mathfun.cpp cfginfo.cpp diag.cpp energy.cpp uptake.cpp xps.cpp \
@@ -13,10 +13,7 @@ CXX = g++
 RM = rm -f
 host:=$(shell hostname)
 
-CPPFLAGS = -O3 -ffast-math -march=pentium4 -mcpu=pentium4 -funroll-loops -mfpmath=sse
-ifeq ($(host),bedrock)
-CPPFLAGS =  -O3 -ffast-math -march=pentium4 -mcpu=pentium4 -funroll-loops
-endif
+CPPFLAGS = -O3 -ffast-math -fpermissive
 
 LIBS	= 
 

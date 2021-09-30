@@ -19,3 +19,4 @@ void MainIonBombard(int, char*[]);
 void MainMixIon(int, char*[]);
 void MainCGmin(int, char*[]);
 void MainMisc(int, char*[]); //versatile debugging function
+void MainForceList(int, char*[]);

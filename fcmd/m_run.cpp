@@ -39,3 +39,17 @@ void MainRun(int argc, char * argv[]){
   }
   exit(0);
 }
+
+void MainForceList(int argc, char * argv[]){
+  string scfg="temp_000000.cfg";
+  string arg;
+  for (int i=2; i<argc; i++){
+    arg=argv[i];
+    if (sfind(arg, ".cfg")) scfg=arg;
+    else CmdError(arg.c_str());
+  }
+  config cfg(scfg);
+  cfg.DumpFlist();
+
+  exit(0);
+}
