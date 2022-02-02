@@ -34,7 +34,7 @@ int main(int argc, char* argv[]){
     pdbfile=cfg.name+"_"+time2string(cfg.t)+".pdb";
   }
 
-  for (int i=0; i<=Nmax; i++)
+  for (int i=0; i<Nmax; i++)
     type[i]="none";
 
   for (int i=0; i<filelist.size(); i++)
@@ -65,7 +65,7 @@ int main(int argc, char* argv[]){
     }
     int serial=-1;
     rcfg cfg(filelist[i],1);
-    for (int n=0; n<=Nmax; n++)
+    for (int n=0; n<Nmax; n++)
     {
       //record name (string 6)
       sprintf(outbuf, "ATOM  "); 
@@ -100,7 +100,7 @@ int main(int argc, char* argv[]){
           //  printf PDB "%6.2f",$color{$ix};
           //}
           //    else{
-          sprintf (outbuf, "%6.2f", s->nlist.size()); pdb<<outbuf;
+          sprintf (outbuf, "%6.2f", double(s->nlist.size())); pdb<<outbuf;
           //}
           //temperature factor (6.2)
           if (!s->is_fixed)
@@ -123,6 +123,17 @@ int main(int argc, char* argv[]){
           }
         }      
         //end of record
+      }
+      else
+      { 
+        //atom name (string 4)
+        sprintf (outbuf, "%4s", "NA"); 
+        pdb<<outbuf;
+        //residue name (string 3); skip column 21; chain identifier (char)
+        pdb<<" UNK  ";
+        //residue sequence number (integer 4)
+        sprintf (outbuf, "%4d", n); 
+        pdb<<outbuf;
       }
       pdb<<endl;
     }
