@@ -71,7 +71,7 @@ void config::Load(string cfgfile)
     }
     fin.close();
     SetProps();
-    name=cfgfile.replace(cfgfile.find("_"),14,"");
+    name=cfgfile.substr(0, cfgfile.find("_"));
   }
   else
   {
